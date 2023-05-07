@@ -8,15 +8,15 @@ Intended status: Informational                                7 May 2023
 Expires: 8 November 2023
 
 
-                Hybrid ECDHE-Kyber Key Exchange for TLS
+              Hybrid ECDHE-Kyber Key Exchange for TLSv1.3
                 draft-kwiatkowski-tls-ecdhe-kyber-latest
 
 Abstract
 
-   This draft specifies a TLS key exchange that combines the post-
-   quantum Kyber KEM with a with elliptic curve Diffie-Hellman (ECDHE)
-   key exchange based on eliptic curves secp256r1 (NIST P-256) and
-   secp384r1 (NIST P-384).
+   This draft requests codepoints for hybrid key exchange in TLS 1.3
+   [hybrid] that combines the post-quantum Kyber KEM [kyber] with a
+   elliptic curve Diffie-Hellman (ECDHE) key exchange based on eliptic
+   curves secp256r1 (NIST P-256) and secp384r1 (NIST P-384).
 
 About This Document
 
@@ -128,7 +128,7 @@ Table of Contents
 
    Value:  0x6402
 
-   Description:  secp23841-Kyber1024
+   Description:  secp384r1-Kyber1024
 
    DTLS-OK:  Y
 
