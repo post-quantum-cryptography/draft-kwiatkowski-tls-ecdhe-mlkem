@@ -1,5 +1,5 @@
 ---
-title: Hybrid ECDHE-Kyber Key Exchange for TLS
+title: Hybrid ECDHE-Kyber Key Exchange for TLSv1.3
 abbrev: ECDHE-Kyber
 category: info
 
@@ -65,7 +65,7 @@ informative:
 
 --- abstract
 
-This draft specifies a TLS key exchange that combines the post-quantum Kyber KEM with a with
+This draft requests codepoints for hybrid key exchange in TLS 1.3 {{hybrid}} that combines the post-quantum Kyber KEM {{kyber}} with a
 elliptic curve Diffie-Hellman (ECDHE) key exchange based on eliptic curves secp256r1 (NIST P-256) and secp384r1 (NIST P-384).
 
 --- middle
@@ -138,7 +138,7 @@ This document requests/registers a new entry to the TLS Named Group
  : 0x6402
 
  Description:
- : secp23841-Kyber1024
+ : secp384r1-Kyber1024
 
  DTLS-OK:
  : Y
