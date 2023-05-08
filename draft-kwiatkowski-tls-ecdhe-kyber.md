@@ -23,10 +23,13 @@ venue:
   latest: https://post-quantum-cryptography.github.io/draft-kwiatkowski-tls-ecdhe-kyber/
 
 author:
- -  ins: K. Kwiatkowski
+  - ins: K. Kwiatkowski
     name: Kris Kwiatkowski
     organization: PQShield, LTD
     email: kris@amongbytes.com
+  - ins: P. Kampanakis
+    name: Panos Kampanakis
+    organization: AWS
 
 normative:
   kyber: I-D.cfrg-schwabe-kyber
