@@ -4,32 +4,31 @@
 
 None                                                      K. Kwiatkowski
 Internet-Draft                                             PQShield, LTD
-Intended status: Informational                                7 May 2023
-Expires: 8 November 2023
+Intended status: Informational                             P. Kampanakis
+Expires: 9 November 2023                                             AWS
+                                                              8 May 2023
 
 
-              Hybrid ECDHE-Kyber Key Exchange for TLSv1.3
+              Hybrid ECDHE-Kyber Key Agreement for TLSv1.3
                 draft-kwiatkowski-tls-ecdhe-kyber-latest
 
 Abstract
 
-   This draft requests codepoints for hybrid key exchange in TLS 1.3
-   [hybrid] that combines the post-quantum Kyber KEM [kyber] with a
-   elliptic curve Diffie-Hellman (ECDHE) key exchange based on eliptic
-   curves secp256r1 (NIST P-256) and secp384r1 (NIST P-384).
+   This draft defines a hybrid key agreement for TLS 1.3 that combines a
+   post-quantum KEM with elliptic curve Diffie-Hellman (ECDHE).
 
 About This Document
 
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at https://post-
-   quantum-cryptography.github.io/draft-kwiatkowski-tls-ecdh-kyber/.
+   quantum-cryptography.github.io/draft-kwiatkowski-tls-ecdhe-kyber/.
    Status information for this document may be found at
    https://datatracker.ietf.org/doc/draft-kwiatkowski-tls-ecdhe-kyber/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/https://github.com/post-quantum-cryptography/
-   draft-kwiatkowski-tls-ecdh-kyber.
+   draft-kwiatkowski-tls-ecdhe-kyber.
 
 Status of This Memo
 
@@ -46,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 November 2023.
+   This Internet-Draft will expire on 9 November 2023.
 
 Copyright Notice
 
@@ -67,22 +66,29 @@ Table of Contents
    1.  Introduction
      1.1.  Motivation
    2.  Conventions and Definitions
-   3.  Security Considerations
-   4.  IANA Considerations
-   5.  References
-     5.1.  Normative References
-     5.2.  Informative References
-   Author's Address
+   3.  Negotiated Groups
+     3.1.  Construction
+     3.2.  Defined Hybrid Groups
+   4.  Security Considerations
+   5.  IANA Considerations
+   6.  References
+     6.1.  Normative References
+     6.2.  Informative References
+   Authors' Addresses
 
 1.  Introduction
 
 1.1.  Motivation
 
-   The final draft for Kyber is expected in 2024.  There are already
-   early deployments of post-quantum key agreement, with more to come
-   before Kyber is standardised.  To promote interoperability of early
-   implementations, this document specifies a preliminary hybrid post-
-   quantum key agreement.
+   Kyber is a key encapsulation method (KEM) designed to be resistant to
+   cryptanalytic attacks with quantum computers.  Standardization of
+   Kyber KEM is expected to be finalized in 2024.
+
+   Experimentation and early deployments are crucial part of the
+   migration to post-quantum cryptography.  To promote interoperability
+   of those deployments this document provides specification of
+   preliminary hybrid post-quantum key agreement to be used in TLS 1.3
+   protocol.
 
 2.  Conventions and Definitions
 
@@ -92,11 +98,47 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Security Considerations
+3.  Negotiated Groups
 
-   TODO
+   This document defines additional supported groups which can be used
+   for hybrid post-quantum key agreements.  The hybrid key agreement for
+   TLS 1.3 is detailed in the [hybrid] draft.  We compose the hybrid
+   scheme with the Kyber KEM as defined in [kyber] draft, and the ECDHE
+   scheme parametrized with elliptic curves defined in ANSI X9.62
+   [ECDSA] and FIPS 186-5 [DSS].
 
-4.  IANA Considerations
+3.1.  Construction
+
+   The client's share is a concatenation of the ECDHE ephemeral share
+   and Kyber's public key.  The server's share is a concatenation of
+   ECDHE ephemeral share and Kyber's ciphertext returned from
+   encapsulation (see [kyber]).  Finally, the shared secret is a
+   concatenation of the ECDHE shared secret and the Kyber's shared
+   secret value returned from either encapsulation (on the server side)
+   or decapsulation (on the client side).
+
+3.2.  Defined Hybrid Groups
+
+   The table below lists all additional supported groups defined by this
+   document and provides the total size (in bytes) of generated shares
+   and calculated secret.
+
+   +---------------------+--------------+--------------+---------------|
+   | Hybrid Group name   | Client Share | Server Share | Shared Secret |
+   +---------------------+--------------+--------------+---------------|
+   | secp256r1_kyber768  |         1248 |         1152 |            64 |
+   | secp384r1_kyber768  |         1280 |         1184 |            80 |
+   | secp384r1_kyber1024 |         1664 |         1664 |            80 |
+   +---------------------+--------------+--------------+---------------|
+
+4.  Security Considerations
+
+   The same security considerations as those described in [hybrid] apply
+   to the approach used by this document.  Implementers are encouraged
+   to use implementations resistant to side-channel attacks, especially
+   those that can be applied by remote attackers.
+
+5.  IANA Considerations
 
    This document requests/registers a new entry to the TLS Named Group
    (or Supported Group) registry, according to the procedures in
@@ -104,7 +146,7 @@ Table of Contents
 
    Value:  0x6400
 
-   Description:  secp256r1-Kyber768
+   Description:  secp256r1_kyber768
 
    DTLS-OK:  Y
 
@@ -116,7 +158,7 @@ Table of Contents
 
    Value:  0x6401
 
-   Description:  secp384r1-Kyber768
+   Description:  secp384r1_kyber768
 
    DTLS-OK:  Y
 
@@ -128,7 +170,7 @@ Table of Contents
 
    Value:  0x6402
 
-   Description:  secp384r1-Kyber1024
+   Description:  secp384r1_kyber1024
 
    DTLS-OK:  Y
 
@@ -138,9 +180,9 @@ Table of Contents
 
    Comment:  Pre-standards version of Kyber1024
 
-5.  References
+6.  References
 
-5.1.  Normative References
+6.1.  Normative References
 
    [kyber]    Schwabe, P. and B. Westerbaan, "Kyber Post-Quantum KEM",
               Work in Progress, Internet-Draft, draft-cfrg-schwabe-
@@ -157,7 +199,17 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-5.2.  Informative References
+6.2.  Informative References
+
+   [DSS]      Moody, D., "Digital Signature Standard (DSS)", National
+              Institute of Standards and Technology report,
+              DOI 10.6028/nist.fips.186-5, 2023,
+              <https://doi.org/10.6028/nist.fips.186-5>.
+
+   [ECDSA]    American National Standards Institute, "Public Key
+              Cryptography for the Financial Services Industry: The
+              Elliptic Curve Digital Signature Algorithm (ECDSA)",
+              ANSI ANS X9.62-2005, November 2005.
 
    [hybrid]   Stebila, D., Fluhrer, S., and S. Gueron, "Hybrid key
               exchange in TLS 1.3", Work in Progress, Internet-Draft,
@@ -165,22 +217,18 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
               hybrid-design-06>.
 
-   [KyberV302]
-              Avanzi, R., Bos, J., Ducas, L., Kiltz, E., Lepoint, T.,
-              Lyubashevsky, V., Schanck, J., Schwabe, P., Seiler, G.,
-              and D. Stehle, "CRYSTALS-Kyber, Algorithm Specification
-              And Supporting Documentation (version 3.02)", 2021,
-              <https://pq-crystals.org/kyber/data/kyber-specification-
-              round3-20210804.pdf>.
-
    [tlsiana]  Salowey, J. A. and S. Turner, "IANA Registry Updates for
               TLS and DTLS", Work in Progress, Internet-Draft, draft-
               ietf-tls-rfc8447bis-04, 27 March 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
               rfc8447bis-04>.
 
-Author's Address
+Authors' Addresses
 
    Kris Kwiatkowski
    PQShield, LTD
    Email: kris@amongbytes.com
+
+
+   Panos Kampanakis
+   AWS
