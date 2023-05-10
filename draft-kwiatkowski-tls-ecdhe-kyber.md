@@ -84,6 +84,7 @@ The table below lists all additional supported groups defined by this document a
 | secp256r1_kyber768  |         1248 |         1152 |            64 |
 | secp384r1_kyber768  |         1280 |         1184 |            80 |
 | secp384r1_kyber1024 |         1664 |         1664 |            80 |
+| secp521r1_kyber1024 |         1682 |         1682 |            98 |
 +---------------------+--------------+--------------+---------------|
 ~~~
 
