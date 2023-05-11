@@ -100,58 +100,54 @@ This document requests/registers a new entry to the TLS Named Group
 
  Value:
  : 0x6400
-
  Description:
- : secp256r1_kyber768
-
+ : secp256r1_kyber768round3_d00
  DTLS-OK:
  : Y
-
  Recommended:
  : N
-
  Reference:
  : This document
-
  Comment:
- : Pre-standards version of Kyber768
+ : Combining secp256r1 ECDH with pre-standards version of Kyber768 (NIST Round 3)
 
+ Value:
+ : 0x2F3C \[ EDNOTE: from commonly used [OQS codepoints](https://github.com/open-quantum-safe/openssl/blob/OQS-OpenSSL_1_1_1-stable/oqs-template/oqs-kem-info.md) \]
+ Description:
+ : secp384r1_kyber768round3_d00
+ DTLS-OK:
+ : Y
+ Recommended:
+ : N
+ Reference:
+ : This document
+ Comment:
+ : Combining secp384r1 ECDH with pre-standards version of Kyber768 (NIST Round 3)
 
  Value:
  : 0x6401
-
  Description:
- : secp384r1_kyber768
-
+ : secp384r1_kyber1024round3_d00
  DTLS-OK:
  : Y
-
  Recommended:
  : N
-
  Reference:
  : This document
-
  Comment:
- : Pre-standards version of Kyber768
+ : Combining secp384r1 ECDH with pre-standards version of Kyber1024 (NIST Round 3)
 
  Value:
- : 0x6402
-
+ : 0x2F3D \[ EDNOTE: from commonly used [OQS codepoints](https://github.com/open-quantum-safe/openssl/blob/OQS-OpenSSL_1_1_1-stable/oqs-template/oqs-kem-info.md) \]
  Description:
- : secp384r1_kyber1024
-
+ : secp521r1_kyber1024round3_d00
  DTLS-OK:
  : Y
-
  Recommended:
  : N
-
  Reference:
  : This document
-
  Comment:
- : Pre-standards version of Kyber1024
-
+ : Combining secp521r1 ECDH with pre-standards version of Kyber1024 (NIST Round 3)
 
 --- back
