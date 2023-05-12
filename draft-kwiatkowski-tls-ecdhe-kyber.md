@@ -69,9 +69,32 @@ This document defines additional supported groups which can be used for hybrid p
 
 ## Construction
 
-The client's share is a concatenation of the ECDHE ephemeral share and Kyber's
-public key. The server's share is a concatenation of ECDHE ephemeral share and
-Kyber's ciphertext returned from encapsulation (see {{kyber}}). Finally, the shared secret is a concatenation of the ECDHE shared secret and the Kyber's shared secret value returned from either encapsulation (on the server side) or decapsulation (on the client side).
+The client's share is a fixed-size concatenation of the ECDHE ephemeral share and Kyber's
+public key. The client ECDHE ephemeral share is the serialized value of the uncompressed ECDH point
+representation UncompressedPointRepresentation as defined in Section 4.2.8.2 of {{!RFC8446}}.
+Its size for secp256r1 is 64 bytes. The Kyber ephemeral share is the public key output of the
+KeyGen step (see {{kyber}}) represented as an octet string. Its size for kyber768 is 1184 bytes.
+The whole client's share is 64+1184=1248 bytes.
+
+The server's share is a fixed-size concatenation of ECDHE ephemeral share and
+Kyber's ciphertext returned from encapsulation (see {{kyber}}). The server ECDHE
+ephemeral share is the serialized value of the uncompressed ECDH point
+representation UncompressedPointRepresentation as defined in Section 4.2.8.2 of
+{{!RFC8446}}. Its size for secp256r1 is 64 bytes. The server share is the
+Kyber's ciphertext returned from the Encapsulate step (see {{kyber}})
+represented as an octet string. Its size for kyber768 is 1088 bytes.
+The whole server's share is 64+1088=1152 bytes.
+
+Finally, the shared secret is a concatenation of the ECDHE and the Kyber
+shared secrets. The ECDHE shared secret is x-coordinate of the ECDH
+shared secret elliptic curve point represented as an octet string as
+defined in Section 7.4.2 of {{!RFC8446}}. Its size for secp256r1
+is 32 bytes. The Kyber shared secret is the value returned from
+either encapsulation (on the server side) or decapsulation
+(on the client side) represented as an octet string. Its size
+for kyber768 is 32 bytes. The whole shared secret is 32+32=64 bytes.
+
+
 
 ## Defined Hybrid Groups
 
