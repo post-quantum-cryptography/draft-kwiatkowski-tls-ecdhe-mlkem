@@ -107,58 +107,15 @@ This document requests/registers a new entry to the TLS Named Group
 
  Value:
  : 0x6400
-
  Description:
- : secp256r1_kyber768
-
+ : secp256r1_kyber768round3_d00
  DTLS-OK:
  : Y
-
  Recommended:
  : N
-
  Reference:
  : This document
-
  Comment:
- : Pre-standards version of Kyber768
-
-
- Value:
- : 0x6401
-
- Description:
- : secp384r1_kyber768
-
- DTLS-OK:
- : Y
-
- Recommended:
- : N
-
- Reference:
- : This document
-
- Comment:
- : Pre-standards version of Kyber768
-
- Value:
- : 0x6402
-
- Description:
- : secp384r1_kyber1024
-
- DTLS-OK:
- : Y
-
- Recommended:
- : N
-
- Reference:
- : This document
-
- Comment:
- : Pre-standards version of Kyber1024
-
+ : Combining secp256r1 ECDH with pre-standards version of Kyber768 (NIST Round 3)
 
 --- back
