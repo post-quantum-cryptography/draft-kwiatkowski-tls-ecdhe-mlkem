@@ -1,5 +1,5 @@
 ---
-title: Hybrid ECDHE-Kyber Key Agreement for TLSv1.3
+title: FIPS-approved Post-quantum Hybrid ECDHE-Kyber Key Agreement for TLSv1.3
 abbrev: ECDHE-Kyber
 category: info
 
