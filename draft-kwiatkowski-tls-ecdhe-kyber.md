@@ -69,9 +69,12 @@ This document defines additional supported groups which can be used for hybrid p
 
 ## Construction
 
-The client's share is a fixed-size concatenation of the ECDHE ephemeral share and Kyber's
-public key. The client ECDHE ephemeral share is the serialized value of the uncompressed ECDH point
-representation UncompressedPointRepresentation as defined in Section 4.2.8.2 of {{!RFC8446}}.
+The name of the new supported hybrid post-quantum group is secp256r1_kyber768round3_d00. 
+
+When this group is negotiated, the client's share is a fixed-size concatenation of
+the ECDHE ephemeral share and Kyber's public key. The client ECDHE ephemeral share is
+the serialized value of the uncompressed ECDH point representation
+UncompressedPointRepresentation as defined in Section 4.2.8.2 of {{!RFC8446}}.
 Its size for secp256r1 is 64 bytes. The Kyber ephemeral share is the public key output of the
 KeyGen step (see {{kyber}}) represented as an octet string. Its size for kyber768 is 1184 bytes.
 The whole client's share is 64+1184=1248 bytes.
@@ -93,22 +96,6 @@ is 32 bytes. The Kyber shared secret is the value returned from
 either encapsulation (on the server side) or decapsulation
 (on the client side) represented as an octet string. Its size
 for kyber768 is 32 bytes. The whole shared secret is 32+32=64 bytes.
-
-
-
-## Defined Hybrid Groups
-
-The table below lists all additional supported groups defined by this document and provides the total size (in bytes) of generated shares and calculated secret.
-
-~~~
-+---------------------+--------------+--------------+---------------|
-| Hybrid Group name   | Client Share | Server Share | Shared Secret |
-+---------------------+--------------+--------------+---------------|
-| secp256r1_kyber768  |         1248 |         1152 |            64 |
-| secp384r1_kyber768  |         1280 |         1184 |            80 |
-| secp384r1_kyber1024 |         1664 |         1664 |            80 |
-+---------------------+--------------+--------------+---------------|
-~~~
 
 # Security Considerations
 
