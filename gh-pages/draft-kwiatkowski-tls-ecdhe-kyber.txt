@@ -5,8 +5,8 @@
 None                                                      K. Kwiatkowski
 Internet-Draft                                             PQShield, LTD
 Intended status: Informational                             P. Kampanakis
-Expires: 9 November 2023                                             AWS
-                                                              8 May 2023
+Expires: 18 November 2023                                            AWS
+                                                             17 May 2023
 
 
               Hybrid ECDHE-Kyber Key Agreement for TLSv1.3
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 November 2023.
+   This Internet-Draft will expire on 18 November 2023.
 
 Copyright Notice
 
@@ -68,7 +68,6 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Negotiated Groups
      3.1.  Construction
-     3.2.  Defined Hybrid Groups
    4.  Security Considerations
    5.  IANA Considerations
    6.  References
@@ -100,36 +99,52 @@ Table of Contents
 
 3.  Negotiated Groups
 
-   This document defines additional supported groups which can be used
+   This document defines an additional supported group which can be used
    for hybrid post-quantum key agreements.  The hybrid key agreement for
    TLS 1.3 is detailed in the [hybrid] draft.  We compose the hybrid
    scheme with the Kyber KEM as defined in [kyber] draft, and the ECDHE
    scheme parametrized with elliptic curves defined in ANSI X9.62
-   [ECDSA] and FIPS 186-5 [DSS].
+   [ECDSA] and NIST SP 800-186 [DSS].
+
+   The new group allows deriving TLS session keys by using FIPS-approved
+   schemes.  NIST's special publication 800-56Cr2 [SP56C] approves the
+   usage of HKDF [HKDF] with two distinct shared secrets as long as the
+   first one is computed by a FIPS-approved key-establishment scheme.
+   Both ECDHE and a curve secp256r1 (NIST P-256) are FIPS-approved by
+   NIST SP 800-56Ar3 [SP56A] and NIST SP 800-186 [DSS] correspondingly.
 
 3.1.  Construction
 
-   The client's share is a concatenation of the ECDHE ephemeral share
-   and Kyber's public key.  The server's share is a concatenation of
-   ECDHE ephemeral share and Kyber's ciphertext returned from
-   encapsulation (see [kyber]).  Finally, the shared secret is a
-   concatenation of the ECDHE shared secret and the Kyber's shared
-   secret value returned from either encapsulation (on the server side)
-   or decapsulation (on the client side).
+   The name of the new supported hybrid post-quantum group is
+   secp256r1_kyber768_d00.
 
-3.2.  Defined Hybrid Groups
+   When this group is negotiated, the client's share is a fixed-size
+   concatenation of the ECDHE share and Kyber's public key.  The client
+   ECDHE share is the serialized value of the uncompressed ECDH point
+   representation as defined in Section 4.2.8.2 of [RFC8446].  Its size
+   for secp256r1 is 64 bytes.  The Kyber ephemeral share is the public
+   key output of the KeyGen step (see [kyber]) represented as an octet
+   string.  Its size for kyber768 is 1184 bytes.  The whole client's
+   share is 64+1184=1248 bytes.
 
-   The table below lists all additional supported groups defined by this
-   document and provides the total size (in bytes) of generated shares
-   and calculated secret.
+   The server's share is a fixed-size concatenation of ECDHE share and
+   Kyber's ciphertext returned from encapsulation (see [kyber]).  The
+   server ECDHE share is the serialized value of the uncompressed ECDH
+   point representation UncompressedPointRepresentation as defined in
+   Section 4.2.8.2 of [RFC8446].  Its size for secp256r1 is 64 bytes.
+   The server share is the Kyber's ciphertext returned from the
+   Encapsulate step (see [kyber]) represented as an octet string.  Its
+   size for kyber768 is 1088 bytes.  The whole server's share is
+   64+1088=1152 bytes.
 
-   +---------------------+--------------+--------------+---------------|
-   | Hybrid Group name   | Client Share | Server Share | Shared Secret |
-   +---------------------+--------------+--------------+---------------|
-   | secp256r1_kyber768  |         1248 |         1152 |            64 |
-   | secp384r1_kyber768  |         1280 |         1184 |            80 |
-   | secp384r1_kyber1024 |         1664 |         1664 |            80 |
-   +---------------------+--------------+--------------+---------------|
+   Finally, the shared secret is a concatenation of the ECDHE and the
+   Kyber shared secrets.  The ECDHE shared secret is x-coordinate of the
+   ECDH shared secret elliptic curve point represented as an octet
+   string as defined in Section 7.4.2 of [RFC8446].  Its size for
+   secp256r1 is 32 bytes.  The Kyber shared secret is the value returned
+   from either encapsulation (on the server side) or decapsulation (on
+   the client side) represented as an octet string.  Its size for
+   kyber768 is 32 bytes.  The whole shared secret is 32+32=64 bytes.
 
 4.  Security Considerations
 
@@ -142,11 +157,19 @@ Table of Contents
 
    This document requests/registers a new entry to the TLS Named Group
    (or Supported Group) registry, according to the procedures in
-   Section 6 of [tlsiana].
+   Section 6 of [tlsiana].  These identifiers are to be used with the
+   point-in-time specified versions of Kyber in the third round of
+   NIST's Post-quantum Project which is specified in [kyber].  The
+   identifiers used with the final, ratified by NIST, version of Kyber
+   will be specified later with in a different draft.  [ EDNOTE: The
+   identifiers for the final, ratified version of Kyber should
+   preferrably by different that the commonly used OQS codepoints
+   (https://github.com/open-quantum-safe/openssl/blob/OQS-OpenSSL_1_1_1-
+   stable/oqs-template/oqs-kem-info.md) ]
 
    Value:  0x6400
 
-   Description:  secp256r1_kyber768
+   Description:  secp256r1_kyber768_d00
 
    DTLS-OK:  Y
 
@@ -154,31 +177,8 @@ Table of Contents
 
    Reference:  This document
 
-   Comment:  Pre-standards version of Kyber768
-
-   Value:  0x6401
-
-   Description:  secp384r1_kyber768
-
-   DTLS-OK:  Y
-
-   Recommended:  N
-
-   Reference:  This document
-
-   Comment:  Pre-standards version of Kyber768
-
-   Value:  0x6402
-
-   Description:  secp384r1_kyber1024
-
-   DTLS-OK:  Y
-
-   Recommended:  N
-
-   Reference:  This document
-
-   Comment:  Pre-standards version of Kyber1024
+   Comment:  Combining secp256r1 ECDH with pre-standards version of
+      Kyber768
 
 6.  References
 
@@ -199,23 +199,46 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
+   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
+              <https://www.rfc-editor.org/rfc/rfc8446>.
+
 6.2.  Informative References
 
-   [DSS]      Moody, D., "Digital Signature Standard (DSS)", National
+   [DSS]      Moody, D., "Recommendations for Discrete Logarithm-based
+              Cryptography:: Elliptic Curve Domain Parameters", National
               Institute of Standards and Technology report,
-              DOI 10.6028/nist.fips.186-5, 2023,
-              <https://doi.org/10.6028/nist.fips.186-5>.
+              DOI 10.6028/nist.sp.800-186, 2022,
+              <https://doi.org/10.6028/nist.sp.800-186>.
 
    [ECDSA]    American National Standards Institute, "Public Key
               Cryptography for the Financial Services Industry: The
               Elliptic Curve Digital Signature Algorithm (ECDSA)",
               ANSI ANS X9.62-2005, November 2005.
 
+   [HKDF]     Krawczyk, H. and P. Eronen, "HMAC-based Extract-and-Expand
+              Key Derivation Function (HKDF)", RFC Editor report,
+              DOI 10.17487/rfc5869, May 2010,
+              <https://doi.org/10.17487/rfc5869>.
+
    [hybrid]   Stebila, D., Fluhrer, S., and S. Gueron, "Hybrid key
               exchange in TLS 1.3", Work in Progress, Internet-Draft,
               draft-ietf-tls-hybrid-design-06, 27 February 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
               hybrid-design-06>.
+
+   [SP56A]    Barker, E., Chen, L., Roginsky, A., Vassilev, A., and R.
+              Davis, "Recommendation for pair-wise key-establishment
+              schemes using discrete logarithm cryptography", National
+              Institute of Standards and Technology report,
+              DOI 10.6028/nist.sp.800-56ar3, April 2018,
+              <https://doi.org/10.6028/nist.sp.800-56ar3>.
+
+   [SP56C]    Barker, E., Chen, L., and R. Davis, "Recommendation for
+              Key-Derivation Methods in Key-Establishment Schemes",
+              National Institute of Standards and Technology report,
+              DOI 10.6028/nist.sp.800-56cr2, August 2020,
+              <https://doi.org/10.6028/nist.sp.800-56cr2>.
 
    [tlsiana]  Salowey, J. A. and S. Turner, "IANA Registry Updates for
               TLS and DTLS", Work in Progress, Internet-Draft, draft-
