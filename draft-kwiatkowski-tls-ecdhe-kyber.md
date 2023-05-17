@@ -65,7 +65,7 @@ Experimentation and early deployments are crucial part of the migration to post-
 
 # Negotiated Groups
 
-This document defines additional supported groups which can be used for hybrid post-quantum key agreements. The hybrid key agreement for TLS 1.3 is detailed in the {{hybrid}} draft. We compose the hybrid scheme with the Kyber KEM as defined in {{kyber}} draft, and the ECDHE scheme parametrized with elliptic curves defined in ANSI X9.62 [ECDSA] and FIPS 186-5 {{?DSS=DOI.10.6028/NIST.FIPS.186-5}}.
+This document defines an additional supported group which can be used for hybrid post-quantum key agreements. The hybrid key agreement for TLS 1.3 is detailed in the {{hybrid}} draft. We compose the hybrid scheme with the Kyber KEM as defined in {{kyber}} draft, and the ECDHE scheme parametrized with elliptic curves defined in ANSI X9.62 [ECDSA], NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}} and FIPS 186-5 {{?DSS=DOI.10.6028/NIST.FIPS.186-5}}. The new group is FIPS approved as per Section 2 NIST SP 800-56C {{?DSS=DOI.10.6028/NIST.SP.800-56Cr2}} since ECDHE elliptic curve is approved by NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}}. 
 
 ## Construction
 
