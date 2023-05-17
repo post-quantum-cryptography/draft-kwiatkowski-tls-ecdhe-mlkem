@@ -5,8 +5,8 @@
 None                                                      K. Kwiatkowski
 Internet-Draft                                             PQShield, LTD
 Intended status: Informational                             P. Kampanakis
-Expires: 13 November 2023                                            AWS
-                                                             12 May 2023
+Expires: 18 November 2023                                            AWS
+                                                             17 May 2023
 
 
               Hybrid ECDHE-Kyber Key Agreement for TLSv1.3
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 November 2023.
+   This Internet-Draft will expire on 18 November 2023.
 
 Copyright Notice
 
@@ -100,12 +100,19 @@ Table of Contents
 
 3.  Negotiated Groups
 
-   This document defines additional supported groups which can be used
+   This document defines an additional supported group which can be used
    for hybrid post-quantum key agreements.  The hybrid key agreement for
    TLS 1.3 is detailed in the [hybrid] draft.  We compose the hybrid
    scheme with the Kyber KEM as defined in [kyber] draft, and the ECDHE
    scheme parametrized with elliptic curves defined in ANSI X9.62
-   [ECDSA] and FIPS 186-5 [DSS].
+   [ECDSA] and NIST SP 800-186 [DSS].
+
+   The new group allows deriving TLS session keys by using FIPS-approved
+   schemes.  NIST's special publication 800-56Cr2 [SP56C] approves the
+   usage of HKDF [HKDF] with two distinct shared secrets as long as the
+   first one is computed by a FIPS-approved key-establishment scheme.
+   Both ECDHE and a curve secp256r1 (NIST P-256) are FIPS-approved by
+   NIST SP 800-56Ar3 [SP56A] and NIST SP 800-186 [DSS] correspondingly.
 
 3.1.  Construction
 
@@ -152,18 +159,18 @@ Table of Contents
    (https://github.com/open-quantum-safe/openssl/blob/OQS-OpenSSL_1_1_1-
    stable/oqs-template/oqs-kem-info.md) ]
 
-   Value:  0x6400 Description:
+   Value:  0x6400
 
-      secp256r1_kyber768round3_d00 DTLS-OK:
+   Description:  secp256r1_kyber768round3_d00
 
-      Y Recommended:
+   DTLS-OK:  Y
 
-      N Reference:
+   Recommended:  N
 
-      This document Comment:
+   Reference:  This document
 
-      Combining secp256r1 ECDH with pre-standards version of Kyber768
-      (NIST Round 3)
+   Comment:  Combining secp256r1 ECDH with pre-standards version of
+      Kyber768 (NIST Round 3)
 
 6.  References
 
@@ -186,21 +193,40 @@ Table of Contents
 
 6.2.  Informative References
 
-   [DSS]      Moody, D., "Digital Signature Standard (DSS)", National
+   [DSS]      Moody, D., "Recommendations for Discrete Logarithm-based
+              Cryptography:: Elliptic Curve Domain Parameters", National
               Institute of Standards and Technology report,
-              DOI 10.6028/nist.fips.186-5, 2023,
-              <https://doi.org/10.6028/nist.fips.186-5>.
+              DOI 10.6028/nist.sp.800-186, 2022,
+              <https://doi.org/10.6028/nist.sp.800-186>.
 
    [ECDSA]    American National Standards Institute, "Public Key
               Cryptography for the Financial Services Industry: The
               Elliptic Curve Digital Signature Algorithm (ECDSA)",
               ANSI ANS X9.62-2005, November 2005.
 
+   [HKDF]     Krawczyk, H. and P. Eronen, "HMAC-based Extract-and-Expand
+              Key Derivation Function (HKDF)", RFC Editor report,
+              DOI 10.17487/rfc5869, May 2010,
+              <https://doi.org/10.17487/rfc5869>.
+
    [hybrid]   Stebila, D., Fluhrer, S., and S. Gueron, "Hybrid key
               exchange in TLS 1.3", Work in Progress, Internet-Draft,
               draft-ietf-tls-hybrid-design-06, 27 February 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
               hybrid-design-06>.
+
+   [SP56A]    Barker, E., Chen, L., Roginsky, A., Vassilev, A., and R.
+              Davis, "Recommendation for pair-wise key-establishment
+              schemes using discrete logarithm cryptography", National
+              Institute of Standards and Technology report,
+              DOI 10.6028/nist.sp.800-56ar3, April 2018,
+              <https://doi.org/10.6028/nist.sp.800-56ar3>.
+
+   [SP56C]    Barker, E., Chen, L., and R. Davis, "Recommendation for
+              Key-Derivation Methods in Key-Establishment Schemes",
+              National Institute of Standards and Technology report,
+              DOI 10.6028/nist.sp.800-56cr2, August 2020,
+              <https://doi.org/10.6028/nist.sp.800-56cr2>.
 
    [tlsiana]  Salowey, J. A. and S. Turner, "IANA Registry Updates for
               TLS and DTLS", Work in Progress, Internet-Draft, draft-
