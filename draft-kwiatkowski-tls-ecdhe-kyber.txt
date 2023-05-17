@@ -116,7 +116,7 @@ Table of Contents
 3.1.  Construction
 
    The name of the new supported hybrid post-quantum group is
-   secp256r1_kyber768round3_d00.
+   secp256r1_kyber768_d00.
 
    When this group is negotiated, the client's share is a fixed-size
    concatenation of the ECDHE share and Kyber's public key.  The client
@@ -169,7 +169,7 @@ Table of Contents
 
    Value:  0x6400
 
-   Description:  secp256r1_kyber768round3_d00
+   Description:  secp256r1_kyber768_d00
 
    DTLS-OK:  Y
 
@@ -178,7 +178,7 @@ Table of Contents
    Reference:  This document
 
    Comment:  Combining secp256r1 ECDH with pre-standards version of
-      Kyber768 (NIST Round 3)
+      Kyber768
 
 6.  References
 
