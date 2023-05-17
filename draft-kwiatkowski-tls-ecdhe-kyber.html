@@ -1244,26 +1244,22 @@ and NIST SP 800-186 <span>[<a href="#DSS" class="cite xref">DSS</a>]</span> corr
         </h3>
 <p id="section-3.1-1">The name of the new supported hybrid post-quantum group is secp256r1_kyber768_d00.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.1-2">When this group is negotiated, the client's share is a fixed-size concatenation of
-the ECDHE share and Kyber's public key. The client ECDHE share is the serialized value of
+the ECDHE share and Kyber's public key. The ECDHE share is the serialized value of
 the uncompressed ECDH point representation as defined in Section 4.2.8.2 of <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.
-Its size for secp256r1 is 64 bytes. The Kyber ephemeral share is the public key output of the
-KeyGen step (see <span>[<a href="#kyber" class="cite xref">kyber</a>]</span>) represented as an octet string. Its size for kyber768 is 1184 bytes.
-The whole client's share is 64+1184=1248 bytes.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+The Kyber's ephemeral share is the public key of the KeyGen step (see <span>[<a href="#kyber" class="cite xref">kyber</a>]</span>) represented
+as an octet string. The size of client share is 1248 bytes.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1-3">The server's share is a fixed-size concatenation of ECDHE share and Kyber's ciphertext
 returned from encapsulation (see <span>[<a href="#kyber" class="cite xref">kyber</a>]</span>). The server ECDHE share is the serialized
 value of the uncompressed ECDH point representation UncompressedPointRepresentation as
-defined in Section 4.2.8.2 of <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>. Its size for secp256r1 is 64 bytes. The
-server share is the Kyber's ciphertext returned from the Encapsulate step (see <span>[<a href="#kyber" class="cite xref">kyber</a>]</span>)
-represented as an octet string. Its size for kyber768 is 1088 bytes.
-The whole server's share is 64+1088=1152 bytes.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+defined in Section 4.2.8.2 of <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>. The server share is the Kyber's ciphertext
+returned from the Encapsulate step (see <span>[<a href="#kyber" class="cite xref">kyber</a>]</span>) represented as an octet string.
+The size of server's share is 1152 bytes.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 <p id="section-3.1-4">Finally, the shared secret is a concatenation of the ECDHE and the Kyber
-shared secrets. The ECDHE shared secret is x-coordinate of the ECDH
+shared secrets. The ECDHE shared secret is the x-coordinate of the ECDH
 shared secret elliptic curve point represented as an octet string as
-defined in Section 7.4.2 of <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>. Its size for secp256r1
-is 32 bytes. The Kyber shared secret is the value returned from
-either encapsulation (on the server side) or decapsulation
-(on the client side) represented as an octet string. Its size
-for kyber768 is 32 bytes. The whole shared secret is 32+32=64 bytes.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
+defined in Section 7.4.2 of <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>. The Kyber shared secret is the
+value returned from either encapsulation (on the server side) or decapsulation
+(on the client side) represented as an octet string. The size of a shared secret is 64 bytes.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
