@@ -82,7 +82,7 @@ and NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}} correspondingly.
 
 ## Construction
 
-The name of the new supported hybrid post-quantum group is secp256r1_kyber768round3_d00. 
+The name of the new supported hybrid post-quantum group is secp256r1_kyber768round3_d00.
 
 When this group is negotiated, the client's share is a fixed-size concatenation of
 the ECDHE share and Kyber's public key. The client ECDHE share is the serialized value of
