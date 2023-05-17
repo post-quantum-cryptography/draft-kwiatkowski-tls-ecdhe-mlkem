@@ -85,19 +85,17 @@ and NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}} correspondingly.
 The name of the new supported hybrid post-quantum group is secp256r1_kyber768round3_d00. 
 
 When this group is negotiated, the client's share is a fixed-size concatenation of
-the ECDHE ephemeral share and Kyber's public key. The client ECDHE ephemeral share is
-the serialized value of the uncompressed ECDH point representation
-UncompressedPointRepresentation as defined in Section 4.2.8.2 of {{!RFC8446}}.
+the ECDHE share and Kyber's public key. The client ECDHE share is the serialized value of
+the uncompressed ECDH point representation as defined in Section 4.2.8.2 of {{!RFC8446}}.
 Its size for secp256r1 is 64 bytes. The Kyber ephemeral share is the public key output of the
 KeyGen step (see {{kyber}}) represented as an octet string. Its size for kyber768 is 1184 bytes.
 The whole client's share is 64+1184=1248 bytes.
 
-The server's share is a fixed-size concatenation of ECDHE ephemeral share and
-Kyber's ciphertext returned from encapsulation (see {{kyber}}). The server ECDHE
-ephemeral share is the serialized value of the uncompressed ECDH point
-representation UncompressedPointRepresentation as defined in Section 4.2.8.2 of
-{{!RFC8446}}. Its size for secp256r1 is 64 bytes. The server share is the
-Kyber's ciphertext returned from the Encapsulate step (see {{kyber}})
+The server's share is a fixed-size concatenation of ECDHE share and Kyber's ciphertext
+returned from encapsulation (see {{kyber}}). The server ECDHE share is the serialized
+value of the uncompressed ECDH point representation UncompressedPointRepresentation as
+defined in Section 4.2.8.2 of {{!RFC8446}}. Its size for secp256r1 is 64 bytes. The
+server share is the Kyber's ciphertext returned from the Encapsulate step (see {{kyber}})
 represented as an octet string. Its size for kyber768 is 1088 bytes.
 The whole server's share is 64+1088=1152 bytes.
 
