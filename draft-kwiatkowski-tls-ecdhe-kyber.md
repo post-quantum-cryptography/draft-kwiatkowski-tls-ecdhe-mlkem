@@ -37,6 +37,7 @@ normative:
 informative:
   hybrid: I-D.ietf-tls-hybrid-design
   tlsiana: I-D.ietf-tls-rfc8447bis
+  HKDF: DOI.10.17487/RFC5869
   ECDSA:
        title: "Public Key Cryptography for the Financial Services Industry: The Elliptic Curve Digital Signature Algorithm (ECDSA)"
        author:
@@ -65,7 +66,19 @@ Experimentation and early deployments are crucial part of the migration to post-
 
 # Negotiated Groups
 
-This document defines an additional supported group which can be used for hybrid post-quantum key agreements. The hybrid key agreement for TLS 1.3 is detailed in the {{hybrid}} draft. We compose the hybrid scheme with the Kyber KEM as defined in {{kyber}} draft, and the ECDHE scheme parametrized with elliptic curves defined in ANSI X9.62 [ECDSA], NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}} and FIPS 186-5 {{?DSS=DOI.10.6028/NIST.FIPS.186-5}}. The new group is FIPS approved as per Section 2 NIST SP 800-56C {{?DSS=DOI.10.6028/NIST.SP.800-56Cr2}} since ECDHE elliptic curve is approved by NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}}. 
+This document defines an additional supported group which can be used for
+hybrid post-quantum key agreements. The hybrid key agreement for TLS 1.3 is
+detailed in the {{hybrid}} draft. We compose the hybrid scheme with the Kyber
+KEM as defined in {{kyber}} draft, and the ECDHE scheme parametrized with
+elliptic curves defined in ANSI X9.62 [ECDSA] and NIST SP 800-186
+{{?DSS=DOI.10.6028/NIST.SP.800-186}}.
+
+The new group allows deriving TLS session keys by using FIPS-approved schemes.
+NIST's special publication 800-56Cr2 {{?SP56C=DOI.10.6028/NIST.SP.800-56Cr2}}
+approves the usage of HKDF {{HKDF}} with two distinct shared secrets as long as the first
+one is computed by a FIPS-approved key-establishment scheme. Both ECDHE and a curve
+secp256r1 (NIST P-256) are FIPS-approved by NIST SP 800-56Ar3 {{?SP56A=DOI.10.6028/NIST.SP.800-56Ar3}}
+and NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}} correspondingly.
 
 ## Construction
 
@@ -107,14 +120,19 @@ This document requests/registers a new entry to the TLS Named Group
 
  Value:
  : 0x6400
+
  Description:
  : secp256r1_kyber768round3_d00
+
  DTLS-OK:
  : Y
+
  Recommended:
  : N
+
  Reference:
  : This document
+
  Comment:
  : Combining secp256r1 ECDH with pre-standards version of Kyber768 (NIST Round 3)
 
