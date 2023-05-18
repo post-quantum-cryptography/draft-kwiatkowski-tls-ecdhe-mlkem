@@ -30,6 +30,7 @@ author:
   - ins: P. Kampanakis
     name: Panos Kampanakis
     organization: AWS
+    email: kpanos@amazon.com
 
 normative:
   kyber: I-D.cfrg-schwabe-kyber
@@ -82,7 +83,7 @@ and NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}} correspondingly.
 
 ## Construction
 
-The name of the new supported hybrid post-quantum group is secp256r1_kyber768_d00.
+The name of the new supported hybrid post-quantum group is SecP256r1Kyber768Draft00.
 
 When this group is negotiated, the client's share is a fixed-size concatenation of
 the ECDHE share and Kyber's public key. The ECDHE share is the serialized value of
@@ -123,10 +124,10 @@ This document requests/registers a new entry to the TLS Named Group
  [OQS codepoints](https://github.com/open-quantum-safe/openssl/blob/OQS-OpenSSL_1_1_1-stable/oqs-template/oqs-kem-info.md) \]
 
  Value:
- : 0x6400
+ : 0x639A
 
  Description:
- : secp256r1_kyber768_d00
+ : SecP256r1Kyber768Draft00
 
  DTLS-OK:
  : Y
