@@ -89,14 +89,15 @@ When this group is negotiated, the client's share is a fixed-size concatenation 
 the ECDHE share and Kyber's public key. The ECDHE share is the serialized value of
 the uncompressed ECDH point representation as defined in Section 4.2.8.2 of {{!RFC8446}}.
 The Kyber's ephemeral share is the public key of the KeyGen step (see {{kyber}}) represented
-as an octet string. The size of client share is 1248 bytes.
+as an octet string. The size of client share is 1249 bytes (65 bytes of ECDHE part and
+1184 of Kyber part).
 
 The server's share is a fixed-size concatenation of ECDHE share and Kyber's ciphertext
 returned from encapsulation (see {{kyber}}). The server ECDHE share is the serialized
-value of the uncompressed ECDH point representation UncompressedPointRepresentation as
-defined in Section 4.2.8.2 of {{!RFC8446}}. The server share is the Kyber's ciphertext
-returned from the Encapsulate step (see {{kyber}}) represented as an octet string.
-The size of server's share is 1152 bytes.
+value of the uncompressed ECDH point representation as defined in Section 4.2.8.2
+of {{!RFC8446}}. The server share is the Kyber's ciphertext returned from the Encapsulate step
+(see {{kyber}}) represented as an octet string. The size of server's share is 1153 bytes (65 bytes
+of ECDHE part and 1088 of Kyber part).
 
 Finally, the shared secret is a concatenation of the ECDHE and the Kyber
 shared secrets. The ECDHE shared secret is the x-coordinate of the ECDH
