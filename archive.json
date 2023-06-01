@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-05-16T00:31:00.989603+00:00",
+  "timestamp": "2023-06-01T00:44:48.471524+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
   "labels": [
     {
@@ -49,7 +49,39 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 7,
+      "id": "I_kwDOJfxSy85mfrPf",
+      "title": "Sizes of key shares are off-by-one",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/issues/7",
+      "state": "CLOSED",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "I get off-by-one for the sizes of key shares.\r\n\r\nThe given size of client key share seems to be size of kyber public key\r\nplus 64 bytes, and given size of server key share seems to be the size\r\nof kyber ciphertext plus 64 bytes.\r\n\r\nHowever, the difference is stated to be UncompressedPointRepresentation\r\nfor P256 from TLS 1.3. AFACIT, that is 65 bytes (1 legacy_form byte,\r\n32 bytes for x, 32 bytes for y).\r\n\r\nSo I get that the client share should be 1249 bytes (instead of 1248\r\nbytes) and the server key share should be 1153 bytes (instead of 1152\r\nbytes).\r\n\r\nObviously something is wrong somewhere, but where?\r\n",
+      "createdAt": "2023-05-22T12:21:00Z",
+      "updatedAt": "2023-05-31T09:32:58Z",
+      "closedAt": "2023-05-31T09:32:58Z",
+      "comments": [
+        {
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Hi Kris,\r\nIndeed, I did a capture in TLS 1.3 and the `secp256r1` `keyshare` is 65bytes. So the stated lengths should be 1249 and 1153. That is what goes in the TLS keyshare on the wire of course. ",
+          "createdAt": "2023-05-22T15:37:26Z",
+          "updatedAt": "2023-05-22T15:38:40Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "@csosto-pk Thanks for checking that. Indeed, it seems I've missed ``legacy_form`` bytes. I'll fix that.",
+          "createdAt": "2023-05-22T18:19:39Z",
+          "updatedAt": "2023-05-22T18:19:39Z"
+        }
+      ]
+    }
+  ],
   "pulls": [
     {
       "number": 1,
@@ -168,24 +200,26 @@
       "id": "PR_kwDOJfxSy85Qai1T",
       "title": "Adding details about the exchanged data and keeping only one group",
       "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/pull/4",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "csosto-pk",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Details about encoding representations and sizes.",
       "createdAt": "2023-05-12T19:57:19Z",
-      "updatedAt": "2023-05-12T20:15:58Z",
+      "updatedAt": "2023-05-17T09:48:29Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
       "baseRefName": "main",
       "baseRefOid": "9e7ac6be2946b81ff5786cb25f011ba315032299",
       "headRepository": "csosto-pk/draft-kwiatkowski-tls-ecdhe-kyber",
       "headRefName": "patch-4",
       "headRefOid": "a34f5be7cb0d2805bb48ff75cb742e1bc87f46b9",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-05-17T09:48:29Z",
+      "mergedAt": "2023-05-17T09:48:28Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "38803521c89c800d56201ce2a6d3607e85e5a059"
+      },
       "comments": [],
       "reviews": []
     },
@@ -194,24 +228,26 @@
       "id": "PR_kwDOJfxSy85Qalxy",
       "title": "Added mention to FIPS",
       "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/pull/5",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "csosto-pk",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "And why this mechanism is FIPS approved",
       "createdAt": "2023-05-12T20:09:34Z",
-      "updatedAt": "2023-05-12T20:09:34Z",
+      "updatedAt": "2023-05-17T07:49:28Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
       "baseRefName": "main",
       "baseRefOid": "9e7ac6be2946b81ff5786cb25f011ba315032299",
       "headRepository": "csosto-pk/draft-kwiatkowski-tls-ecdhe-kyber",
       "headRefName": "patch-5",
       "headRefOid": "a2928f1fa2e36a0f106388c14c74b85627a95e64",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-05-17T07:49:28Z",
+      "mergedAt": "2023-05-17T07:49:28Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "02ee5d178db5818193cc0eed2ddddca1b1d31900"
+      },
       "comments": [],
       "reviews": []
     },
@@ -220,24 +256,52 @@
       "id": "PR_kwDOJfxSy85QaoZr",
       "title": "Changing title to be more intuitive",
       "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/pull/6",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "csosto-pk",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2023-05-12T20:19:03Z",
-      "updatedAt": "2023-05-12T20:19:03Z",
+      "updatedAt": "2023-05-18T07:29:08Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
       "baseRefName": "main",
       "baseRefOid": "9e7ac6be2946b81ff5786cb25f011ba315032299",
       "headRepository": "csosto-pk/draft-kwiatkowski-tls-ecdhe-kyber",
       "headRefName": "patch-6",
       "headRefOid": "223559070bcac8e1c89d8f5c728fa1ba2d7c9a88",
-      "closedAt": null,
+      "closedAt": "2023-05-18T07:29:08Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOJfxSy85Rw_AO",
+      "title": "Sizes of key shares are off-by-one",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/pull/8",
+      "state": "MERGED",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #7 ",
+      "createdAt": "2023-05-31T09:32:01Z",
+      "updatedAt": "2023-05-31T09:33:00Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
+      "baseRefName": "main",
+      "baseRefOid": "c2ac956efc69e00073511d2e326c40eefad09f4a",
+      "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
+      "headRefName": "kris/fix_1",
+      "headRefOid": "1fba3163067cbb99ed40cae0792eee0050eaf031",
+      "closedAt": "2023-05-31T09:32:57Z",
+      "mergedAt": "2023-05-31T09:32:57Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "80cb46940f50b74b480904e0d15f447d1b3aafbc"
+      },
       "comments": [],
       "reviews": []
     }
