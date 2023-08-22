@@ -19,7 +19,7 @@ keyword:
 venue:
   group: TLS
   type: Working Group
-  github: https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber
+  github: post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber
   latest: https://post-quantum-cryptography.github.io/draft-kwiatkowski-tls-ecdhe-kyber/
 
 author:
@@ -113,19 +113,19 @@ Implementers are encouraged to use implementations resistant to side-channel att
 
 # IANA Considerations
 
-This document requests/registers a new entry to the TLS Named Group
- (or Supported Group) registry, according to the procedures in
+This document requests/registers a new entry to the TLS Supported Groups
+ registry, according to the procedures in
  {{Section 6 of tlsiana}}. These identifiers are to be used with
  the point-in-time specified versions of Kyber in the third round
  of NIST's Post-quantum Project which is specified in {{kyber}}.
  The identifiers used with the final, ratified by NIST, version
  of Kyber will be specified later with in a different draft.
  \[ EDNOTE: The identifiers for the final, ratified version of
- Kyber should preferrably by different that the commonly used
+ Kyber should preferably by different that the commonly used
  [OQS codepoints](https://github.com/open-quantum-safe/openssl/blob/OQS-OpenSSL_1_1_1-stable/oqs-template/oqs-kem-info.md) \]
 
  Value:
- : 0x639A
+ : 25498 (0x639A)
 
  Description:
  : SecP256r1Kyber768Draft00
