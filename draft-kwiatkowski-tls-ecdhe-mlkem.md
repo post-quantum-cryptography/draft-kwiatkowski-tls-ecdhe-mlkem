@@ -25,7 +25,7 @@ venue:
 author:
   - ins: K. Kwiatkowski
     name: Kris Kwiatkowski
-    organization: PQShield, LTD
+    organization: PQShield
     email: kris@amongbytes.com
   - ins: P. Kampanakis
     name: Panos Kampanakis
