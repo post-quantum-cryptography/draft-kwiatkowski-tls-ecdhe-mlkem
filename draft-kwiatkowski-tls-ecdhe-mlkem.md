@@ -14,7 +14,7 @@ ipr: trust200902
 # area: AREA
 workgroup: None
 keyword:
- - MLKEM
+ - ML-KEM
  - post-quantum
 venue:
   group: TLS
@@ -56,7 +56,7 @@ a post-quantum KEM with elliptic curve Diffie-Hellman (ECDHE).
 # Introduction
 
 ## Motivation
-MLKEM is a key encapsulation method (KEM) designed to be resistant to cryptanalytic attacks with quantum computers. Standardization of MLKEM is expected to be finalized in 2024.
+ML-KEM is a key encapsulation method (KEM) designed to be resistant to cryptanalytic attacks with quantum computers. Standardization of ML-KEM is expected to be finalized in 2024.
 
 Experimentation and early deployments are crucial part of the migration to post-quantum cryptography. To promote interoperability of those deployments this document provides specification of preliminary hybrid post-quantum key agreement to be used in TLS 1.3 protocol.
 
@@ -69,7 +69,7 @@ Experimentation and early deployments are crucial part of the migration to post-
 
 This document defines an additional supported group which can be used for
 hybrid post-quantum key agreements. The hybrid key agreement for TLS 1.3 is
-detailed in the {{hybrid}} draft. We compose the hybrid scheme with the MLKEM
+detailed in the {{hybrid}} draft. We compose the hybrid scheme with the ML-KEM
 as defined in {{kyber}} draft, and the ECDHE scheme parametrized with
 elliptic curves defined in ANSI X9.62 [ECDSA] and NIST SP 800-186
 {{?DSS=DOI.10.6028/NIST.SP.800-186}}.
@@ -86,23 +86,23 @@ and NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}} correspondingly.
 The name of the new supported hybrid post-quantum group is SecP256r1MLKEM768Draft00.
 
 When this group is negotiated, the client's share is a fixed-size concatenation of
-the ECDHE share and MLKEM's public key. The ECDHE share is the serialized value of
+the ECDHE share and ML-KEM's public key. The ECDHE share is the serialized value of
 the uncompressed ECDH point representation as defined in Section 4.2.8.2 of {{!RFC8446}}.
-The MLKEM's ephemeral share is the public key of the KeyGen step (see {{kyber}}) represented
+The ML-KEM's ephemeral share is the public key of the KeyGen step (see {{kyber}}) represented
 as an octet string. The size of client share is 1249 bytes (65 bytes of ECDHE part and
-1184 of MLKEM part).
+1184 of ML-KEM part).
 
-The server's share is a fixed-size concatenation of ECDHE share and MLKEM's ciphertext
+The server's share is a fixed-size concatenation of ECDHE share and ML-KEM's ciphertext
 returned from encapsulation (see {{kyber}}). The server ECDHE share is the serialized
 value of the uncompressed ECDH point representation as defined in Section 4.2.8.2
-of {{!RFC8446}}. The server share is the MLKEM's ciphertext returned from the Encapsulate step
+of {{!RFC8446}}. The server share is the ML-KEM's ciphertext returned from the Encapsulate step
 (see {{kyber}}) represented as an octet string. The size of server's share is 1153 bytes (65 bytes
-of ECDHE part and 1088 of MLKEM part).
+of ECDHE part and 1088 of ML-KEM part).
 
-Finally, the shared secret is a concatenation of the ECDHE and the MLKEM
+Finally, the shared secret is a concatenation of the ECDHE and the ML-KEM
 shared secrets. The ECDHE shared secret is the x-coordinate of the ECDH
 shared secret elliptic curve point represented as an octet string as
-defined in Section 7.4.2 of {{!RFC8446}}. The MLKEM shared secret is the
+defined in Section 7.4.2 of {{!RFC8446}}. The ML-KEM shared secret is the
 value returned from either encapsulation (on the server side) or decapsulation
 (on the client side) represented as an octet string. The size of a shared secret is 64 bytes.
 
@@ -116,12 +116,12 @@ Implementers are encouraged to use implementations resistant to side-channel att
 This document requests/registers a new entry to the TLS Supported Groups
  registry, according to the procedures in
  {{Section 6 of tlsiana}}. These identifiers are to be used with
- the point-in-time specified versions of MLKEM in the third round
+ the point-in-time specified versions of ML-KEM in the third round
  of NIST's Post-quantum Project which is specified in {{kyber}}.
  The identifiers used with the final, ratified by NIST, version
- of MLKEM will be specified later with in a different draft.
+ of ML-KEM will be specified later with in a different draft.
  \[ EDNOTE: The identifiers for the final, ratified version of
- MLKEM should preferably by different that the commonly used
+ ML-KEM should preferably by different that the commonly used
  [OQS codepoints](https://github.com/open-quantum-safe/openssl/blob/OQS-OpenSSL_1_1_1-stable/oqs-template/oqs-kem-info.md) \]
 
  Value:
@@ -140,14 +140,14 @@ This document requests/registers a new entry to the TLS Supported Groups
  : This document
 
  Comment:
- : Combining secp256r1 ECDH with pre-standards version of MLKEM768
+ : Combining secp256r1 ECDH with pre-standards version of ML-KEM-768
 
 --- back
 
 # Change log
 
 * draft-kwiatkowski-tls-ecdhe-mlkem-02:
-  * Change Kyber name to MLKEM
+  * Change Kyber name to ML-KEM
 
 * draft-kwiatkowski-tls-ecdhe-kyber-01: Fix size of key shares generated by the client and the server
 
