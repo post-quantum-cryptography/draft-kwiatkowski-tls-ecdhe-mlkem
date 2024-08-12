@@ -146,8 +146,6 @@ This document requests/registers a new entry to the TLS Supported Groups
 
 # Change log
 
-> [**RFC Editor:** Please remove this section]
-
 * draft-kwiatkowski-tls-ecdhe-mlkem-02:
   * Change Kyber name to MLKEM
 
