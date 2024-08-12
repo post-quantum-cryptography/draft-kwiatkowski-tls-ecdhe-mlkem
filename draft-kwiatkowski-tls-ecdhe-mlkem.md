@@ -125,7 +125,7 @@ This document requests/registers a new entry to the TLS Supported Groups
  [OQS codepoints](https://github.com/open-quantum-safe/openssl/blob/OQS-OpenSSL_1_1_1-stable/oqs-template/oqs-kem-info.md) \]
 
  Value:
- : 25498 (0x639A)
+ : 25499 (0x639B)
 
  Description:
  : SecP256r1MLKEM768Draft00
