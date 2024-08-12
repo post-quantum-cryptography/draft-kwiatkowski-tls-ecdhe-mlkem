@@ -20,7 +20,7 @@ venue:
   group: TLS
   type: Working Group
   github: post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem
-  latest: https://post-quantum-cryptography.github.io/draft-kwiatkowski-tls-ecdhe-kyber/
+  latest: https://post-quantum-cryptography.github.io/draft-kwiatkowski-tls-ecdhe-mlkem/
 
 author:
   - ins: K. Kwiatkowski
