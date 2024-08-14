@@ -83,7 +83,7 @@ and NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}} correspondingly.
 
 ## Construction
 
-The name of the new supported hybrid post-quantum group is SecP256r1MLKEM768Draft00.
+The name of the new supported hybrid post-quantum group is SecP256r1MLKEM768.
 
 When this group is negotiated, the client's share is a fixed-size concatenation of
 the ECDHE share and ML-KEM's public key. The ECDHE share is the serialized value of
@@ -105,7 +105,8 @@ shared secrets. The ECDHE shared secret is the x-coordinate of the ECDH
 shared secret elliptic curve point represented as an octet string as
 defined in Section 7.4.2 of {{!RFC8446}}. The ML-KEM shared secret is the
 value returned from either encapsulation (on the server side) or decapsulation
-(on the client side) represented as an octet string. The size of a shared secret is 64 bytes.
+(on the client side) represented as an octet string. The size of a shared
+secret is 64 bytes (32 bytes of ECDHE part and 32 of ML-KEM part).
 
 # Security Considerations
 
@@ -129,7 +130,7 @@ This document requests/registers a new entry to the TLS Supported Groups
  : 25499 (0x639B)
 
  Description:
- : SecP256r1MLKEM768Draft00
+ : SecP256r1MLKEM768
 
  DTLS-OK:
  : Y
