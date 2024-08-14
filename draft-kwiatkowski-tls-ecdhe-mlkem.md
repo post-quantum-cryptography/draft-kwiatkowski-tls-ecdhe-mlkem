@@ -70,7 +70,7 @@ Experimentation and early deployments are crucial part of the migration to post-
 This document defines an additional supported group which can be used for
 hybrid post-quantum key agreements. The hybrid key agreement for TLS 1.3 is
 detailed in the {{hybrid}} draft. We compose the hybrid scheme with the ML-KEM
-as defined in {{kyber}} draft, and the ECDHE scheme parametrized with
+as defined in {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}, and the ECDHE scheme parametrized with
 elliptic curves defined in ANSI X9.62 [ECDSA] and NIST SP 800-186
 {{?DSS=DOI.10.6028/NIST.SP.800-186}}.
 
@@ -83,28 +83,30 @@ and NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}} correspondingly.
 
 ## Construction
 
-The name of the new supported hybrid post-quantum group is SecP256r1MLKEM768Draft00.
+The name of the new supported hybrid post-quantum group is SecP256r1MLKEM768.
 
 When this group is negotiated, the client's share is a fixed-size concatenation of
 the ECDHE share and ML-KEM's public key. The ECDHE share is the serialized value of
 the uncompressed ECDH point representation as defined in Section 4.2.8.2 of {{!RFC8446}}.
-The ML-KEM's ephemeral share is the public key of the KeyGen step (see {{kyber}}) represented
-as an octet string. The size of client share is 1249 bytes (65 bytes of ECDHE part and
-1184 of ML-KEM part).
+The ML-KEM's ephemeral share is the public key of the key generation step (see
+{{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}, section 7.1) represented as an octet string. The size
+of client share is 1249 bytes (65 bytes of ECDHE part and 1184 of ML-KEM part).
 
 The server's share is a fixed-size concatenation of ECDHE share and ML-KEM's ciphertext
-returned from encapsulation (see {{kyber}}). The server ECDHE share is the serialized
-value of the uncompressed ECDH point representation as defined in Section 4.2.8.2
-of {{!RFC8446}}. The server share is the ML-KEM's ciphertext returned from the Encapsulate step
-(see {{kyber}}) represented as an octet string. The size of server's share is 1153 bytes (65 bytes
-of ECDHE part and 1088 of ML-KEM part).
+returned from encapsulation (see {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}, section 7.2).
+The server ECDHE share is the serialized value of the uncompressed ECDH point representation
+as defined in Section 4.2.8.2 of {{!RFC8446}}. The server share is the ML-KEM's ciphertext
+returned from the Encapsulate step (see {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}, section 7.2)
+represented as an octet string. The size of server's share is 1153 bytes (65 bytes of ECDHE
+part and 1088 of ML-KEM part).
 
 Finally, the shared secret is a concatenation of the ECDHE and the ML-KEM
 shared secrets. The ECDHE shared secret is the x-coordinate of the ECDH
 shared secret elliptic curve point represented as an octet string as
 defined in Section 7.4.2 of {{!RFC8446}}. The ML-KEM shared secret is the
 value returned from either encapsulation (on the server side) or decapsulation
-(on the client side) represented as an octet string. The size of a shared secret is 64 bytes.
+(on the client side) represented as an octet string. The size of a shared
+secret is 64 bytes (32 bytes of ECDHE part and 32 of ML-KEM part).
 
 # Security Considerations
 
@@ -117,7 +119,7 @@ This document requests/registers a new entry to the TLS Supported Groups
  registry, according to the procedures in
  {{Section 6 of tlsiana}}. These identifiers are to be used with
  the point-in-time specified versions of ML-KEM in the third round
- of NIST's Post-quantum Project which is specified in {{kyber}}.
+ of NIST's Post-quantum Project which is specified in {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}.
  The identifiers used with the final, ratified by NIST, version
  of ML-KEM will be specified later with in a different draft.
  \[ EDNOTE: The identifiers for the final, ratified version of
@@ -128,7 +130,7 @@ This document requests/registers a new entry to the TLS Supported Groups
  : 25499 (0x639B)
 
  Description:
- : SecP256r1MLKEM768Draft00
+ : SecP256r1MLKEM768
 
  DTLS-OK:
  : Y
