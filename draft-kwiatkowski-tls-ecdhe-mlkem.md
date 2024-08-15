@@ -12,13 +12,14 @@ consensus: true
 v: 3
 ipr: trust200902
 # area: AREA
-workgroup: None
+workgroup: "Transport Layer Security"
 keyword:
  - ML-KEM
  - post-quantum
 venue:
-  group: TLS
-  type: Working Group
+  group: "Transport Layer Security"
+  type: "Working Group"
+  mail: "tls@ietf.org"
   github: post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem
   latest: https://post-quantum-cryptography.github.io/draft-kwiatkowski-tls-ecdhe-mlkem/
 
@@ -53,9 +54,9 @@ a post-quantum KEM with elliptic curve Diffie-Hellman (ECDHE).
 # Introduction
 
 ## Motivation
-ML-KEM is a key encapsulation method (KEM) designed to be resistant to cryptanalytic attacks with quantum computers. Standardization of ML-KEM is expected to be finalized in 2024.
+ML-KEM is a key encapsulation method (KEM) designed to be resistant to cryptanalytic attacks with quantum computers.
 
-Experimentation and early deployments are crucial part of the migration to post-quantum cryptography. To promote interoperability of those deployments this document provides specification of preliminary hybrid post-quantum key agreement to be used in TLS 1.3 protocol.
+Experimentation and early deployments are crucial part of the migration to post-quantum cryptography. To promote interoperability of those deployments this document provides specification of hybrid post-quantum key agreement to be used in TLS 1.3 protocol.
 
 
 # Conventions and Definitions
@@ -74,9 +75,12 @@ elliptic curves defined in ANSI X9.62 [ECDSA] and NIST SP 800-186
 The new group allows deriving TLS session keys by using FIPS-approved schemes.
 NIST's special publication 800-56Cr2 {{?SP56C=DOI.10.6028/NIST.SP.800-56Cr2}}
 approves the usage of HKDF {{HKDF}} with two distinct shared secrets as long as the first
-one is computed by a FIPS-approved key-establishment scheme. Both ECDHE and a curve
-secp256r1 (NIST P-256) are FIPS-approved by NIST SP 800-56Ar3 {{?SP56A=DOI.10.6028/NIST.SP.800-56Ar3}}
-and NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}} correspondingly.
+one is computed by a FIPS-approved key-establishment scheme. This draft specifies
+a new supported group in which both shared secretes are computed by FIPS-approved mechanisms.
+The first one is ECDHE and a curve secp256r1 (NIST P-256) are FIPS-approved by NIST
+SP 800-56Ar3 {{?SP56A=DOI.10.6028/NIST.SP.800-56Ar3}} and NIST SP 800-186
+{{?DSS=DOI.10.6028/NIST.SP.800-186}} correspondingly. The second one is ML-KEM-768 that
+is FIPS-approved by {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}.
 
 ## Construction
 
@@ -113,15 +117,8 @@ Implementers are encouraged to use implementations resistant to side-channel att
 # IANA Considerations
 
 This document requests/registers a new entry to the TLS Supported Groups
- registry, according to the procedures in
- {{Section 6 of tlsiana}}. These identifiers are to be used with
- the point-in-time specified versions of ML-KEM in the third round
- of NIST's Post-quantum Project which is specified in {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}.
- The identifiers used with the final, ratified by NIST, version
- of ML-KEM will be specified later with in a different draft.
- \[ EDNOTE: The identifiers for the final, ratified version of
- ML-KEM should preferably by different that the commonly used
- [OQS codepoints](https://github.com/open-quantum-safe/openssl/blob/OQS-OpenSSL_1_1_1-stable/oqs-template/oqs-kem-info.md) \]
+ registry, according to the procedures in {{Section 6 of tlsiana}}. These identifiers are to be used with
+ the final, ratified by NIST, version of ML-KEM which is specified in {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}.
 
  Value:
  : 25499 (0x639B)
@@ -139,7 +136,7 @@ This document requests/registers a new entry to the TLS Supported Groups
  : This document
 
  Comment:
- : Combining secp256r1 ECDH with pre-standards version of ML-KEM-768
+ : Combining secp256r1 ECDH with the ML-KEM-768
 
 --- back
 
