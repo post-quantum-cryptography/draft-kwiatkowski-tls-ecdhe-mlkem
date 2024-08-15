@@ -32,9 +32,6 @@ author:
     organization: AWS
     email: kpanos@amazon.com
 
-normative:
-  kyber: I-D.cfrg-schwabe-kyber
-
 informative:
   hybrid: I-D.ietf-tls-hybrid-design
   tlsiana: I-D.ietf-tls-rfc8447bis
