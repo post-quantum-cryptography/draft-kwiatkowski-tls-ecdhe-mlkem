@@ -54,10 +54,9 @@ a post-quantum KEM with elliptic curve Diffie-Hellman (ECDHE).
 # Introduction
 
 ## Motivation
-ML-KEM is a key encapsulation method (KEM) designed to be resistant to cryptanalytic attacks with quantum computers.
+ML-KEM is a key encapsulation method (KEM) that is designed to withstand cryptanalytic attacks from quantum computers.
 
-Experimentation and early deployments are crucial part of the migration to post-quantum cryptography. To promote interoperability of those deployments this document provides specification of hybrid post-quantum key agreement to be used in TLS 1.3 protocol.
-
+Experimentation and early deployments are crucial steps in transitioning to post-quantum cryptography. This document specifies a hybrid post-quantum key agreement for use in the TLS 1.3 protocol to promote interoperability of these deployments.
 
 # Conventions and Definitions
 
@@ -65,22 +64,21 @@ Experimentation and early deployments are crucial part of the migration to post-
 
 # Negotiated Groups
 
-This document defines an additional supported group which can be used for
-hybrid post-quantum key agreements. The hybrid key agreement for TLS 1.3 is
-detailed in the {{hybrid}} draft. We compose the hybrid scheme with the ML-KEM
-as defined in {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}, and the ECDHE scheme parametrized with
-elliptic curves defined in ANSI X9.62 [ECDSA] and NIST SP 800-186
+This document introduces a new supported group for hybrid post-quantum key
+agreements in TLS 1.3. The hybrid key agreement is detailed in the {{hybrid}} draft,
+which combines the ML-KEM as defined in {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}, with the ECDHE
+scheme using elliptic curves from ANSI X9.62 [ECDSA] and NIST SP 800-186
 {{?DSS=DOI.10.6028/NIST.SP.800-186}}.
 
-The new group allows deriving TLS session keys by using FIPS-approved schemes.
-NIST's special publication 800-56Cr2 {{?SP56C=DOI.10.6028/NIST.SP.800-56Cr2}}
-approves the usage of HKDF {{HKDF}} with two distinct shared secrets as long as the first
-one is computed by a FIPS-approved key-establishment scheme. This draft specifies
-a new supported group in which both shared secretes are computed by FIPS-approved mechanisms.
-The first one is ECDHE and a curve secp256r1 (NIST P-256) are FIPS-approved by NIST
-SP 800-56Ar3 {{?SP56A=DOI.10.6028/NIST.SP.800-56Ar3}} and NIST SP 800-186
-{{?DSS=DOI.10.6028/NIST.SP.800-186}} correspondingly. The second one is ML-KEM-768 that
-is FIPS-approved by {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}.
+The new group enables the derivation of TLS session keys using FIPS-approved schemes. NIST's
+special publication 800-56Cr2 {{?SP56C=DOI.10.6028/NIST.SP.800-56Cr2}} approves the usage of HKDF
+{{HKDF}} with two distinct shared secrets, with the condition that the first one is computed by
+a FIPS-approved key-establishment scheme. This draft specifies a new supported group where both
+shared secrets are calculated by FIPS-approved mechanisms. The first one involves ECDHE with
+a FIPS-approved curve secp256r1 (NIST P-256) specified by NIST SP 800-56Ar3
+{{?SP56A=DOI.10.6028/NIST.SP.800-56Ar3}} and NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}}.
+The second shared secret is obtained from the FIPS-approved ML-KEM-768 as defined in
+{{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}.
 
 ## Construction
 
