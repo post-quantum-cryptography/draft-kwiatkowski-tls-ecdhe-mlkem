@@ -140,7 +140,7 @@ This document requests/registers a new entry to the TLS Supported Groups
 
 # Change log
 
-* draft-kwiatkowski-tls-ecdhe-mlkem-02:
+* draft-kwiatkowski-tls-ecdhe-mlkem-00:
   * Change Kyber name to ML-KEM
   * Swap reference to I-D.cfrg-schwabe-kyber with FIPS-203
   * Change codepoint. New value is equal to old value + 1.
