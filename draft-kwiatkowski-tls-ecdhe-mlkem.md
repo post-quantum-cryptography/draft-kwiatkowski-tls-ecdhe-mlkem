@@ -32,8 +32,21 @@ author:
     name: Panos Kampanakis
     organization: AWS
     email: kpanos@amazon.com
+  - ins: B.E. Westerbaan
+    name: Bas Westerbaan
+    organization: Cloudflare
+    email: bas@cloudflare.com
+  - ins: D. Stebila
+    name: Douglas Stebila
+    organization: University of Waterloo
+    email: dstebila@waterloo.ca
+
+normative:
+  rfc7748:
+  FIPS203: DOI.10.6028/NIST.FIPS.203
 
 informative:
+  xyber: I-D.tls-westerbaan-xyber768d00-03
   hybrid: I-D.ietf-tls-hybrid-design
   tlsiana: I-D.ietf-tls-rfc8447bis
   HKDF: DOI.10.17487/RFC5869
@@ -46,7 +59,7 @@ informative:
          ANSI: ANS X9.62-2005
 --- abstract
 
-This draft defines a hybrid key agreement for TLS 1.3 that combines
+This draft defines X25519MLKEM768 and SecP256r1MLKEM768 two hybrid key agreements for TLS 1.3 that combines
 a post-quantum KEM with elliptic curve Diffie-Hellman (ECDHE).
 
 --- middle
@@ -54,9 +67,10 @@ a post-quantum KEM with elliptic curve Diffie-Hellman (ECDHE).
 # Introduction
 
 ## Motivation
-ML-KEM is a key encapsulation method (KEM) that is designed to withstand cryptanalytic attacks from quantum computers.
-
-Experimentation and early deployments are crucial steps in transitioning to post-quantum cryptography. This document specifies a hybrid post-quantum key agreement for use in the TLS 1.3 protocol to promote interoperability of these deployments.
+ML-KEM is a key encapsulation method (KEM) that is designed to
+withstand cryptanalytic attacks from quantum computers. {{FIPS203}}
+In 2024, X25519Kyber768Draft00 {{xyber}} a hybrid of Kyber, an earlier version of ML-KEM, and X25519 {{xyber}}
+is the most widely deployed PQ/T hybrid.
 
 # Conventions and Definitions
 
@@ -64,59 +78,77 @@ Experimentation and early deployments are crucial steps in transitioning to post
 
 # Negotiated Groups
 
-This document introduces a new supported group for hybrid post-quantum key
-agreements in TLS 1.3. The hybrid key agreement is detailed in the {{hybrid}} draft,
-which combines the ML-KEM as defined in {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}, with the ECDHE
-scheme using elliptic curves from ANSI X9.62 [ECDSA] and NIST SP 800-186
-{{?DSS=DOI.10.6028/NIST.SP.800-186}}.
+This document introduces two new supported groups for hybrid post-quantum key
+agreements in TLS 1.3: X25519MLKEM768 and SecP256r1MLKEM768.
+Both combine ML-KEM-768 with ECDH in the manner of {{hybrid}}.
+The first uses X25519 {{rfc7748}} as elliptic curve to match X25519Kyber768Draft00.
+The second uses secp256r1 (NIST P-256) {{ECDSA}} {{?DSS=DOI.10.6028/NIST.SP.800-186}}.
 
-The new group enables the derivation of TLS session keys using FIPS-approved schemes. NIST's
+Both groups enables the derivation of TLS session keys using FIPS-approved schemes. NIST's
 special publication 800-56Cr2 {{?SP56C=DOI.10.6028/NIST.SP.800-56Cr2}} approves the usage of HKDF
 {{HKDF}} with two distinct shared secrets, with the condition that the first one is computed by
-a FIPS-approved key-establishment scheme. This draft specifies a new supported group where both
-shared secrets are calculated by FIPS-approved mechanisms. The first one involves ECDHE with
-a FIPS-approved curve secp256r1 (NIST P-256) specified by NIST SP 800-56Ar3
-{{?SP56A=DOI.10.6028/NIST.SP.800-56Ar3}} and NIST SP 800-186 {{?DSS=DOI.10.6028/NIST.SP.800-186}}.
-The second shared secret is obtained from the FIPS-approved ML-KEM-768 as defined in
-{{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}.
+a FIPS-approved key-establishment scheme. FIPS also requires a certified implementation
+of the scheme, which will remain more ubiqutous for secp256r1 in the coming years.
+
+For this reason we put the ML-KEM-768 shared secret first in X25519MLKEM768,
+and the secp256r1 shared secret first in SecP256r1MLKEM768.
 
 ## Construction
 
-The name of the new supported hybrid post-quantum group is SecP256r1MLKEM768.
+### Client share
+When the X25519MLKEM768 group is negotiated, the client's key_exchange value
+is the concatenation of the client's ML-KEM-768 encapsulation key
+and the client's X25519 ephemeral share.
+The size of the client share is 1216 bytes (1184 bytes for the ML-KEM part and 32 bytes for X25519.)
 
-When this group is negotiated, the client's share is a fixed-size concatenation of
-the ECDHE share and ML-KEM's public key. The ECDHE share is the serialized value of
+When the SecP256r1MLKEM768 group is negotiated, the client's key_exchange value
+is the concatenation of the secp256r1 ephemeral share and ML-KEM-768 encapsulation key.
+The ECDHE share is the serialized value is the serialized value of
 the uncompressed ECDH point representation as defined in Section 4.2.8.2 of {{!RFC8446}}.
-The ML-KEM's ephemeral share is the public key of the key generation step (see
-{{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}, section 7.1) represented as an octet string. The size
-of client share is 1249 bytes (65 bytes of ECDHE part and 1184 of ML-KEM part).
+The size of the client share is 1249 bytes (65 bytes for the secp256r1 part and 1184 bytes for ML-KEM.)
 
-The server's share is a fixed-size concatenation of ECDHE share and ML-KEM's ciphertext
-returned from encapsulation (see {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}, section 7.2).
-The server ECDHE share is the serialized value of the uncompressed ECDH point representation
-as defined in Section 4.2.8.2 of {{!RFC8446}}. The server share is the ML-KEM's ciphertext
-returned from the Encapsulate step (see {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}, section 7.2)
-represented as an octet string. The size of server's share is 1153 bytes (65 bytes of ECDHE
-part and 1088 of ML-KEM part).
+### Server share
+When the X25519MLKEM768 group is negotiated, the server's key exchange
+value is the concatenation of an ML-KEM ciphertext returned from encapsulation
+to the client's encapsulation key, and the server's ephemeral X25519 share.
+The size of the server share is 1120 bytes (1088 bytes for the ML-KEM part and 32 bytes for X25519.)
 
-Finally, the shared secret is a concatenation of the ECDHE and the ML-KEM
-shared secrets. The ECDHE shared secret is the x-coordinate of the ECDH
+When the SecP256r1MLKEM768 group is negotiated, the server's key exchange
+value is the concatenation of the server's ephemeral secp256r1 share encoded
+in the same way as the client share
+and an ML-KEM ciphertext returned from encapsulation to the client's encapsulation key.
+The size of the server share is 1153 bytes (1088 bytes for the ML-KEM part and 65 bytes for secp256r1.)
+
+For both groups, the server MUST perform the encapsulation key check
+described in Section 7.3 of {{FIPS203}} on the client's encapsulation
+key, and abort with an illegal_parameter alert if it fails.
+
+### Shared secret
+For X25519MLKEM768, the shared secret is the concatenation of the ML-KEM
+shared secret and the X25519 shared secret. The shared secret is 64 bytes
+(32 bytes for each part).
+
+For SecP256r1MLKEM768, the shared secret is the concatenation of the
+ECDHE and ML-KEM shared secret. The ECDHE shared secret is the x-coordinate of the ECDH
 shared secret elliptic curve point represented as an octet string as
-defined in Section 7.4.2 of {{!RFC8446}}. The ML-KEM shared secret is the
-value returned from either encapsulation (on the server side) or decapsulation
-(on the client side) represented as an octet string. The size of a shared
-secret is 64 bytes (32 bytes of ECDHE part and 32 of ML-KEM part).
+defined in Section 7.4.2 of {{!RFC8446}}.
+The size of the shared secret is 64 bytes (32 bytes for each part).
 
 # Security Considerations
 
 The same security considerations as those described in {{hybrid}} apply to the approach used by this document.
+The security analysis relies crucially on the TLS 1.3 message transcript, and one cannot assume a similar
+hybridisation is secure in other protocols.
+
 Implementers are encouraged to use implementations resistant to side-channel attacks, especially those that can be applied by remote attackers.
 
 # IANA Considerations
 
-This document requests/registers a new entry to the TLS Supported Groups
+This document requests/registers two new entries to the TLS Supported Groups
  registry, according to the procedures in {{Section 6 of tlsiana}}. These identifiers are to be used with
  the final, ratified by NIST, version of ML-KEM which is specified in {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}.
+
+## SecP256r1MLKEM768
 
  Value:
  : 25499 (0x639B)
@@ -134,11 +166,34 @@ This document requests/registers a new entry to the TLS Supported Groups
  : This document
 
  Comment:
- : Combining secp256r1 ECDH with the ML-KEM-768
+ : Combining secp256r1 ECDH with ML-KEM-768
+
+## X25519MLKEM768
+
+ Value:
+ : 25500 (0x639C)
+
+ Description:
+ : X25519MLKEM768
+
+ DTLS-OK:
+ : Y
+
+ Recommended:
+ : N
+
+ Reference:
+ : This document
+
+ Comment:
+ : Combining X25519 ECDH with ML-KEM-768
 
 --- back
 
 # Change log
+
+* draft-kwiatkowski-tls-ecdhe-mlkem-01:
+  * Add X25519MLKEM768
 
 * draft-kwiatkowski-tls-ecdhe-mlkem-00:
   * Change Kyber name to ML-KEM
