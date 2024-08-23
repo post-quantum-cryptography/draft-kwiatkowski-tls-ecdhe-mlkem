@@ -84,7 +84,7 @@ Both combine ML-KEM-768 with ECDH in the manner of {{hybrid}}.
 The first uses X25519 {{rfc7748}} as elliptic curve to match X25519Kyber768Draft00.
 The second uses secp256r1 (NIST P-256) {{ECDSA}} {{?DSS=DOI.10.6028/NIST.SP.800-186}}.
 
-Both groups enables the derivation of TLS session keys using FIPS-approved schemes. NIST's
+Both groups enable the derivation of TLS session keys using FIPS-approved schemes. NIST's
 special publication 800-56Cr2 {{?SP56C=DOI.10.6028/NIST.SP.800-56Cr2}} approves the usage of HKDF
 {{HKDF}} with two distinct shared secrets, with the condition that the first one is computed by
 a FIPS-approved key-establishment scheme. FIPS also requires a certified implementation
