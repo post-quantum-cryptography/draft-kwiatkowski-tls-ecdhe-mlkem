@@ -171,7 +171,7 @@ This document requests/registers two new entries to the TLS Supported Groups
 ## X25519MLKEM768
 
  Value:
- : 25500 (0x639C)
+ : 4588 (0x11EC)
 
  Description:
  : X25519MLKEM768
