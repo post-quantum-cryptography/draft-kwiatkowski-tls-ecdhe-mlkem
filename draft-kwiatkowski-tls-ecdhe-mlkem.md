@@ -149,7 +149,7 @@ Implementers are encouraged to use implementations resistant to side-channel att
 
 This document requests/registers two new entries to the TLS Supported Groups
  registry, according to the procedures in {{Section 6 of tlsiana}}. These identifiers are to be used with
- the final, ratified by NIST, version of ML-KEM which is specified in {{?FIPS-203=DOI.10.6028/NIST.FIPS.203}}.
+ the final, ratified by NIST, version of ML-KEM which is specified in {{FIPS203}}.
 
 ## SecP256r1MLKEM768
 
