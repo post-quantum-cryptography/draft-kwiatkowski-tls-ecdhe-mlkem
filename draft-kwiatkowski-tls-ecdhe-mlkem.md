@@ -14,8 +14,11 @@ ipr: trust200902
 # area: AREA
 workgroup: "Transport Layer Security"
 keyword:
+ - ECDH
+ - hybrid
  - ML-KEM
  - post-quantum
+ - x25519
 venue:
   group: "Transport Layer Security"
   type: "Working Group"
