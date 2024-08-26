@@ -62,8 +62,8 @@ informative:
          ANSI: ANS X9.62-2005
 --- abstract
 
-This draft defines X25519MLKEM768 and SecP256r1MLKEM768, two hybrid key agreements for TLS 1.3 that combines
-a post-quantum KEM with elliptic curve Diffie-Hellman (ECDHE).
+This draft defines two hybrid key agreements for TLS 1.3: X25519MLKEM768 and SecP256r1MLKEM768, which combine
+a post-quantum KEM with an elliptic curve Diffie-Hellman (ECDHE).
 
 --- middle
 
