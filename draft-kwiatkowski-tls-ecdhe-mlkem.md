@@ -154,7 +154,7 @@ This document requests/registers two new entries to the TLS Supported Groups
 ## SecP256r1MLKEM768
 
  Value:
- : 25499 (0x639B)
+ : 4587 (0x11EB)
 
  Description:
  : SecP256r1MLKEM768
