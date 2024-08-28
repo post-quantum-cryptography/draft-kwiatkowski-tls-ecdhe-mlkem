@@ -201,9 +201,16 @@ ratified by NIST, version of ML-KEM which is specified in {{FIPS203}}.
  Comment:
  : Combining X25519 ECDH with ML-KEM-768
 
+## Obsoleted Supported Groups
+
+This document obsoletes 25497 and 25498 in the TLS Supported Groups registry.
+
 --- back
 
 # Change log
+
+* draft-kwiatkowski-tls-ecdhe-mlkem-02:
+  * Adds section that mentions supported groups that this document obsoletes.
 
 * draft-kwiatkowski-tls-ecdhe-mlkem-01:
   * Add X25519MLKEM768
