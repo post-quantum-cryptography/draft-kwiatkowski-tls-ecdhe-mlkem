@@ -131,7 +131,7 @@ to the client's encapsulation key. The size of the server share is 1153 bytes (1
 for the ML-KEM part and 65 bytes for secp256r1).
 
 For both groups, the server MUST perform the encapsulation key check
-described in Section 7.3 of {{FIPS203}} on the client's encapsulation
+described in Section 7.2 of {{FIPS203}} on the client's encapsulation
 key, and abort with an illegal_parameter alert if it fails.
 
 ### Shared secret
