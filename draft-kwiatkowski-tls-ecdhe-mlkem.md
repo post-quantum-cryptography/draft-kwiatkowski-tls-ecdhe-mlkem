@@ -211,6 +211,7 @@ This document obsoletes 25497 and 25498 in the TLS Supported Groups registry.
 
 * draft-kwiatkowski-tls-ecdhe-mlkem-02:
   * Adds section that mentions supported groups that this document obsoletes.
+  * Fix a reference to encapsulation in the FIPS 203.
 
 * draft-kwiatkowski-tls-ecdhe-mlkem-01:
   * Add X25519MLKEM768
