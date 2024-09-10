@@ -1,0 +1,3 @@
+# Automatically generated CODEOWNERS
+# Regenerate with `make update-codeowners`
+draft-kwiatkowski-tls-ecdhe-mlkem.md kris@amongbytes.com kpanos@amazon.com bas@cloudflare.com dstebila@waterloo.ca
