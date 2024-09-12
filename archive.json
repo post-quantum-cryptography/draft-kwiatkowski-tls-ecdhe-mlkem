@@ -1,7 +1,7 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-06-01T00:44:48.471524+00:00",
-  "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
+  "timestamp": "2024-09-12T01:15:11.059776+00:00",
+  "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
       "name": "bug",
@@ -54,7 +54,7 @@
       "number": 7,
       "id": "I_kwDOJfxSy85mfrPf",
       "title": "Sizes of key shares are off-by-one",
-      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/issues/7",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/issues/7",
       "state": "CLOSED",
       "author": "kriskwiatkowski",
       "authorAssociation": "MEMBER",
@@ -80,6 +80,220 @@
           "updatedAt": "2023-05-22T18:19:39Z"
         }
       ]
+    },
+    {
+      "number": 11,
+      "id": "I_kwDOJfxSy851_m9-",
+      "title": "Change name from Kyber to MLKEM",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/issues/11",
+      "state": "CLOSED",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-11-06T16:54:08Z",
+      "updatedAt": "2024-08-14T14:18:06Z",
+      "closedAt": "2024-08-14T14:18:06Z",
+      "comments": [
+        {
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@kriskwiatkowski , I don't think we should any changes to [draft-kwiatkowski-tls-ecdhe-kyber](https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber). This draft was to only get a temporary identifier to negotiate in TLS 1.3. This draft serves as the necessary \"stable reference\" to get the identifier through the \"Expert Review process\". It should not be considered as a draft that will keep getting updated and ratified.\r\n\r\n[draft-ietf-tls-hybrid-design](https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/) was agreed in the TLS WG to be the standards draft which will give us the identifiers for the final ML-KEM spec like `secp392-mlkem768` or `secp392-mlkem1024` or `x25519-mlkem768`. ",
+          "createdAt": "2023-11-07T03:14:20Z",
+          "updatedAt": "2023-11-07T03:19:02Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "The temporary codepoint is assigned to version -01 of this draft. That's done now.\r\n\r\nIf we are going to get a codepoint for final version of MLKEM thru draft-ietf-tls-hybrid-design, than that's fine. Otherwise I would like to try to use this draft to get it.",
+          "createdAt": "2023-11-07T06:02:30Z",
+          "updatedAt": "2023-11-07T06:03:25Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "The  draft-ietf-tls-hybrid-design will keep only secp256+mlkem768 and x25519+mlkem768. I think now it makes sense to update the Kyber -> MLKEM\r\n\r\nhttps://www.ietf.org/archive/id/draft-ietf-tls-hybrid-design-09.html#name-defined-hybrid-groups\r\n\r\n@csosto-pk good for you?",
+          "createdAt": "2024-03-18T23:50:45Z",
+          "updatedAt": "2024-03-18T23:51:26Z"
+        },
+        {
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "draft-kwiatkowski-tls-ecdhe-kyber currently only has SecP256r1Kyber768Draft00.\r\n\r\nSince that one with ml-kem, our course, will make it to [draft-ietf-tls-hybrid-design-09.html#name-defined-hybrid-groups](https://www.ietf.org/archive/id/draft-ietf-tls-hybrid-design-09.html#name-defined-hybrid-groups), what new OIDs were you thinking to include draft-kwiatkowski-tls-ecdhe-kyber?",
+          "createdAt": "2024-03-19T02:01:08Z",
+          "updatedAt": "2024-03-19T02:02:09Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "As I understood today (I'm at IETF), the [draft-ietf-tls-hybrid-design-09.html](https://www.ietf.org/archive/id/draft-ietf-tls-hybrid-design-09.html#name-defined-hybrid-groups) would prefer to refer to MLKEM rather then Kyber. For this we need to update this draft and refer to FIPS-203 rather than draft-cfrg-schwabe-kyber-02. Those are two different schemes, hence new codepoint is needed.",
+          "createdAt": "2024-03-19T03:10:41Z",
+          "updatedAt": "2024-03-19T03:10:41Z"
+        },
+        {
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I don't think we do. The codepoint we got already in https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-8 which points to https://datatracker.ietf.org/doc/draft-kwiatkowski-tls-ecdhe-kyber/01/ for SecP256r1Kyber768Draft00 is based on Kyber768 Round 3 (draft-cfrg-schwabe-kyber-02). It is assigned and early adopters deployed it.\r\n\r\nNow draft-ietf-tls-hybrid-design will get two \"permanent codepoints\" for x25519+MLKEM768 and P256+MLKEM768. So, we will have the \"final codepoints\" from that. Why would we update draft-kwiatkowski-tls-ecdhe-kyber to get codepoints for P256+MLKEM768 since draft-ietf-tls-hybrid-design will do it anyway?\r\n \r\nAm I misunderstanding you?",
+          "createdAt": "2024-03-19T03:24:00Z",
+          "updatedAt": "2024-03-19T03:24:00Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "I think it is expected that draft-kwiatkowski-tls-ecdhe-kyber will be updated and used to get \"permanent codepoint\" for MLKEM (same for the X25519). \r\nThen [draft-ietf-tls-hybrid-design](https://www.ietf.org/archive/id/draft-ietf-tls-hybrid-design-09.html#name-defined-hybrid-groups) includes updated version with MLKEM codepoint.",
+          "createdAt": "2024-03-19T03:27:16Z",
+          "updatedAt": "2024-03-19T03:28:24Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Sorry, I'm assuming Kyber and final version of MLKEM won't be compatible. No change is required if they are compatible (obviously).",
+          "createdAt": "2024-03-19T07:13:51Z",
+          "updatedAt": "2024-03-19T07:13:51Z"
+        },
+        {
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I was under the impression that from the beginning [draft-ietf-tls-hybrid-design](https://www.ietf.org/archive/id/draft-ietf-tls-hybrid-design-09.html#name-defined-hybrid-groups) was going to get the final `x25519+MLKEM768` and `P256+MLKEM768` OIDs for TLS. I am pretty sure that was the consensus on the list too, but maybe I am misremembering. \r\n\r\nIf that is not the case, then indeed another draft needs to get them. \r\n\r\nAre you sure it was said in the meeting that draft-ietf-tls-hybrid-design will not get the final OIDs? I think I will try to go back to the recording too.",
+          "createdAt": "2024-03-19T13:32:28Z",
+          "updatedAt": "2024-03-19T13:32:28Z"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOJfxSy851_nIi",
+      "title": "Add secp384mlkem1024 combination",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/issues/12",
+      "state": "CLOSED",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-11-06T16:54:32Z",
+      "updatedAt": "2023-11-07T05:45:28Z",
+      "closedAt": "2023-11-07T05:45:28Z",
+      "comments": [
+        {
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@kriskwiatkowski , I don't think we need to add secp384mlkem768 to [draft-kwiatkowski-tls-ecdhe-kyber](https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber). This draft was to only get a temporary identifier to negotiate in TLS 1.3 until we have the final ML-KEM. I don't think we need another temporary one for ML-KEM-768. We can wait to get secp384mlkem768 from [draft-ietf-tls-hybrid-design](https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/).",
+          "createdAt": "2023-11-07T03:08:07Z",
+          "updatedAt": "2023-11-07T03:08:40Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "ok",
+          "createdAt": "2023-11-07T05:45:28Z",
+          "updatedAt": "2023-11-07T05:45:28Z"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOJfxSy86Sqys4",
+      "title": "Other combinations",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/issues/13",
+      "state": "OPEN",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "As MLKEM is out (soon), the good question now is - do we want to include codepoints for more combinations than P256-MLKEM768?\r\n\r\nI think P256-MLKEM768 should stay, but I don't have a clear opinion about use cases for other combinations. ",
+      "createdAt": "2024-08-12T11:05:21Z",
+      "updatedAt": "2024-08-12T11:05:21Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 14,
+      "id": "I_kwDOJfxSy86S_HQU",
+      "title": "FIPS-203 reference",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/issues/14",
+      "state": "CLOSED",
+      "author": "csosto-pk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "We need to replace I-D.cfrg-schwabe-kyber with the FIPS-203 doc reference\r\n\r\n```\r\n        <reference anchor=\"FIPS203\" target=\"https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.ipd.pdf\">\r\n          <front>\r\n            <title>Module-Lattice-Based Key-Encapsulation Mechanism Standard</title>\r\n            <author>\r\n              <organization>National Institute of Standards and Technology (NIST)</organization>\r\n            </author>\r\n            <date year=\"2024\" month=\"August\" day=\"13\"/>\r\n          </front>\r\n          <seriesInfo name=\"NIST\" value=\"Federal Information Processing Standards\"/>\r\n        </reference>\r\n```",
+      "createdAt": "2024-08-14T14:29:46Z",
+      "updatedAt": "2024-08-14T15:08:08Z",
+      "closedAt": "2024-08-14T15:08:08Z",
+      "comments": []
+    },
+    {
+      "number": 16,
+      "id": "I_kwDOJfxSy86S_Mzz",
+      "title": "Double check if size of public key and ciphertext are according to FIPS-203",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/issues/16",
+      "state": "CLOSED",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-08-14T14:37:06Z",
+      "updatedAt": "2024-08-14T15:09:07Z",
+      "closedAt": "2024-08-14T15:09:07Z",
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Seems sizes in the this IETF draft are same as in the Table 2 of FIPS-203 (for ML-KEM-768)",
+          "createdAt": "2024-08-14T15:04:21Z",
+          "updatedAt": "2024-08-14T15:04:21Z"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "I_kwDOJfxSy86S_NSd",
+      "title": "Build doesn't work",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/issues/17",
+      "state": "OPEN",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "For some reason, the build is broken. Investigate",
+      "createdAt": "2024-08-14T14:37:44Z",
+      "updatedAt": "2024-08-14T14:37:44Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 19,
+      "id": "I_kwDOJfxSy86TOw_i",
+      "title": "Public key validation",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/issues/19",
+      "state": "CLOSED",
+      "author": "bwesterb",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Perhaps good to spend a few words on what to do if the public key doesn't pass the new public key validation check. That'd be similar to sending a key share of the wrong size, and the appropriate thing to do would be to send a bad_parameter alert.",
+      "createdAt": "2024-08-16T11:53:02Z",
+      "updatedAt": "2024-08-26T01:28:30Z",
+      "closedAt": "2024-08-26T01:28:30Z",
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Good point! Will do",
+          "createdAt": "2024-08-18T15:22:31Z",
+          "updatedAt": "2024-08-18T15:22:31Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Draft now contains following text:\r\n\r\n```\r\nFor both groups, the server MUST perform the encapsulation key check\r\ndescribed in Section 7.3 of {{FIPS203}} on the client's encapsulation\r\nkey, and abort with an illegal_parameter alert if it fails.\r\n```",
+          "createdAt": "2024-08-26T01:28:26Z",
+          "updatedAt": "2024-08-26T01:28:26Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -87,7 +301,7 @@
       "number": 1,
       "id": "PR_kwDOJfxSy85QTJYY",
       "title": "Updated IANA section",
-      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/pull/1",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/1",
       "state": "MERGED",
       "author": "csosto-pk",
       "authorAssociation": "CONTRIBUTOR",
@@ -96,7 +310,7 @@
       "body": "Reused OQS OpenSSL identifiers and added clarity and comments in the IANA fields.",
       "createdAt": "2023-05-11T14:29:15Z",
       "updatedAt": "2023-05-12T21:06:06Z",
-      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "f6e0784328df6e4442c256a92c66314b61c7073a",
       "headRepository": "csosto-pk/draft-kwiatkowski-tls-ecdhe-kyber",
@@ -115,7 +329,7 @@
       "number": 2,
       "id": "PR_kwDOJfxSy85QTJtK",
       "title": "Added secp521r1_kyber1024",
-      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/pull/2",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/2",
       "state": "CLOSED",
       "author": "csosto-pk",
       "authorAssociation": "CONTRIBUTOR",
@@ -124,7 +338,7 @@
       "body": "Added secp521r1_kyber1024. \r\n\r\nBut we may not need secp521r1_kyber1024 in there if this is just a temporary code point. I don't see a new for it right now. Maybe we should just push for just a final codepoint after Kyber is ratified, not now. ",
       "createdAt": "2023-05-11T14:30:01Z",
       "updatedAt": "2023-05-12T20:12:48Z",
-      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "f6e0784328df6e4442c256a92c66314b61c7073a",
       "headRepository": "csosto-pk/draft-kwiatkowski-tls-ecdhe-kyber",
@@ -149,7 +363,7 @@
       "number": 3,
       "id": "PR_kwDOJfxSy85QTNvf",
       "title": "Clarification about codepoints",
-      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/pull/3",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/3",
       "state": "MERGED",
       "author": "csosto-pk",
       "authorAssociation": "CONTRIBUTOR",
@@ -158,7 +372,7 @@
       "body": "Clarification that these codepoints are point-in-time, not the final ones for Kyber",
       "createdAt": "2023-05-11T14:39:25Z",
       "updatedAt": "2023-05-12T08:15:19Z",
-      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "f6e0784328df6e4442c256a92c66314b61c7073a",
       "headRepository": "csosto-pk/draft-kwiatkowski-tls-ecdhe-kyber",
@@ -199,7 +413,7 @@
       "number": 4,
       "id": "PR_kwDOJfxSy85Qai1T",
       "title": "Adding details about the exchanged data and keeping only one group",
-      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/pull/4",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/4",
       "state": "MERGED",
       "author": "csosto-pk",
       "authorAssociation": "CONTRIBUTOR",
@@ -208,7 +422,7 @@
       "body": "Details about encoding representations and sizes.",
       "createdAt": "2023-05-12T19:57:19Z",
       "updatedAt": "2023-05-17T09:48:29Z",
-      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "9e7ac6be2946b81ff5786cb25f011ba315032299",
       "headRepository": "csosto-pk/draft-kwiatkowski-tls-ecdhe-kyber",
@@ -227,7 +441,7 @@
       "number": 5,
       "id": "PR_kwDOJfxSy85Qalxy",
       "title": "Added mention to FIPS",
-      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/pull/5",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/5",
       "state": "MERGED",
       "author": "csosto-pk",
       "authorAssociation": "CONTRIBUTOR",
@@ -236,7 +450,7 @@
       "body": "And why this mechanism is FIPS approved",
       "createdAt": "2023-05-12T20:09:34Z",
       "updatedAt": "2023-05-17T07:49:28Z",
-      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "9e7ac6be2946b81ff5786cb25f011ba315032299",
       "headRepository": "csosto-pk/draft-kwiatkowski-tls-ecdhe-kyber",
@@ -255,7 +469,7 @@
       "number": 6,
       "id": "PR_kwDOJfxSy85QaoZr",
       "title": "Changing title to be more intuitive",
-      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/pull/6",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/6",
       "state": "CLOSED",
       "author": "csosto-pk",
       "authorAssociation": "CONTRIBUTOR",
@@ -264,7 +478,7 @@
       "body": "",
       "createdAt": "2023-05-12T20:19:03Z",
       "updatedAt": "2023-05-18T07:29:08Z",
-      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "9e7ac6be2946b81ff5786cb25f011ba315032299",
       "headRepository": "csosto-pk/draft-kwiatkowski-tls-ecdhe-kyber",
@@ -281,7 +495,7 @@
       "number": 8,
       "id": "PR_kwDOJfxSy85Rw_AO",
       "title": "Sizes of key shares are off-by-one",
-      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/pull/8",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/8",
       "state": "MERGED",
       "author": "kriskwiatkowski",
       "authorAssociation": "MEMBER",
@@ -290,10 +504,10 @@
       "body": "Closes #7 ",
       "createdAt": "2023-05-31T09:32:01Z",
       "updatedAt": "2023-05-31T09:33:00Z",
-      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "c2ac956efc69e00073511d2e326c40eefad09f4a",
-      "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber",
+      "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "headRefName": "kris/fix_1",
       "headRefOid": "1fba3163067cbb99ed40cae0792eee0050eaf031",
       "closedAt": "2023-05-31T09:32:57Z",
@@ -304,6 +518,452 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDOJfxSy85YdujP",
+      "title": "Fix GitHub link, fix registry name, fix typo, add decimal value",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/9",
+      "state": "MERGED",
+      "author": "Lekensteyn",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Hi! While going through the IANA registry I ran into this document.\r\n\r\nThe GitHub `venue` code is expanded here, as you can see it already prepends `https://github.com/`, so we can remove that:\r\nhttps://github.com/cabo/kramdown-rfc/blob/930935b2c42f5d453ed29baa474502bb3a58d39a/data/kramdown-rfc2629.erb#L126-L129",
+      "createdAt": "2023-08-22T07:48:56Z",
+      "updatedAt": "2023-09-26T11:34:55Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "bb9ff12c10919911a659d1d2b85ad9cf2a1635af",
+      "headRepository": "Lekensteyn/draft-kwiatkowski-tls-ecdhe-kyber",
+      "headRefName": "minor-fixes",
+      "headRefOid": "27e393766ba6d3f2795e5b6cc6736b9ebc12e149",
+      "closedAt": "2023-09-26T11:34:55Z",
+      "mergedAt": "2023-09-26T11:34:55Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "ced5ed70bd9e2bb554ea73e1c5a2727fa225e94e"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOJfxSy85etn-9",
+      "title": "Kyber -> ML-KEM",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/10",
+      "state": "MERGED",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "* Swapped all mentiones of \"Kyber\" to \"ML-KEM\"\r\n* Changed document name to draft-kwiatkowski-tls-ecdhe-mlkem\r\n* Updated the code point - just incremented a value (we can't use same as for SecP256r1Kyber768Draft00)\r\n\r\nThe build is not working well, it seems unrelated to this change. I'll fix it in a separate MR.\r\n\r\nCloses #11",
+      "createdAt": "2023-11-06T16:51:09Z",
+      "updatedAt": "2024-08-14T14:32:12Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "ced5ed70bd9e2bb554ea73e1c5a2727fa225e94e",
+      "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "headRefName": "kris/mlkem",
+      "headRefOid": "13820a8ed3cc5920bf22942663116ce8ea9d6df9",
+      "closedAt": "2024-08-14T14:18:05Z",
+      "mergedAt": "2024-08-14T14:18:05Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "097955264cfeaaa5a6ce0a854d9e11cd26752062"
+      },
+      "comments": [
+        {
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@kriskwiatkowski I suggest to not submit the new version of the draft which include ML-KEM to the IETF for the reason explained in https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/issues/11#issuecomment-1797476565 .",
+          "createdAt": "2023-11-07T03:15:38Z",
+          "updatedAt": "2023-11-07T03:15:38Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Thanks @csosto-pk, it wasn't clear to me if identifires will be provided in [draft-ietf-tls-hybrid-design](https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/) or external documents.",
+          "createdAt": "2023-11-08T08:57:48Z",
+          "updatedAt": "2023-11-08T08:57:48Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Reopening as discussed",
+          "createdAt": "2024-08-12T09:59:03Z",
+          "updatedAt": "2024-08-12T09:59:03Z"
+        },
+        {
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "We need to replace I-D.cfrg-schwabe-kyber with the FIPS-203 doc reference too\r\n\r\n```\r\n        <reference anchor=\"FIPS203\" target=\"https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.ipd.pdf\">\r\n          <front>\r\n            <title>Module-Lattice-Based Key-Encapsulation Mechanism Standard</title>\r\n            <author>\r\n              <organization>National Institute of Standards and Technology (NIST)</organization>\r\n            </author>\r\n            <date year=\"2024\" month=\"August\" day=\"13\"/>\r\n          </front>\r\n          <seriesInfo name=\"NIST\" value=\"Federal Information Processing Standards\"/>\r\n        </reference>\r\n```",
+          "createdAt": "2024-08-14T14:30:24Z",
+          "updatedAt": "2024-08-14T14:30:24Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Yup, that\u2019s exactly what I\u2019m doing right now\r\n\r\n-- \r\nKris Kwiatkowski\r\nCryptography Dev\r\n\r\n\r\n\r\n\r\n> On 14 Aug 2024, at 09:30, Panos K. ***@***.***> wrote:\r\n> \r\n> \r\n> We need to replace I-D.cfrg-schwabe-kyber with the FIPS-203 doc reference too\r\n> <reference anchor=\"FIPS203\" target=\"https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.ipd.pdf\">\r\n> <front>\r\n> <title>Module-Lattice-Based Key-Encapsulation Mechanism Standard</title>\r\n> <author>\r\n> <organization>National Institute of Standards and Technology (NIST)</organization>\r\n> </author>\r\n> <date year=\"2024\" month=\"August\" day=\"13\"/>\r\n> </front>\r\n> <seriesInfo name=\"NIST\" value=\"Federal Information Processing Standards\"/>\r\n> </reference>\r\n> \r\n> \u2014\r\n> Reply to this email directly, view it on GitHub, or unsubscribe.\r\n> You are receiving this because you modified the open/close state.Message ID: ***@***.***>\r\n\r\n",
+          "createdAt": "2024-08-14T14:32:10Z",
+          "updatedAt": "2024-08-14T14:32:10Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJfxSy85mU1r0",
+          "commit": {
+            "abbreviatedOid": "a3937fa"
+          },
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "I suggest to revert this commit. The reason as stated in https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber/issues/11#issuecomment-1797476565 \r\n\r\n[draft-kwiatkowski-tls-ecdhe-kyber](https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-kyber) was to only get a temporary identifier to negotiate in TLS 1.3. This draft serves as the necessary \"stable reference\" to get the identifier through the \"Expert Review process\". It should not be considered as a draft that will keep getting updated and ratified.\r\n\r\n[draft-ietf-tls-hybrid-design](https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/) was agreed in the TLS WG to be the standards draft which will give us the identifiers for the final ML-KEM spec like `secp392-mlkem768` or `secp392-mlkem1024` or `x25519-mlkem768`. ",
+          "createdAt": "2023-11-07T03:18:39Z",
+          "updatedAt": "2023-11-07T03:18:39Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "id": "PR_kwDOJfxSy854XqzE",
+      "title": "Replace reference I-D.cfrg-schwabe-kyber with FIPS-203",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/15",
+      "state": "MERGED",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #14",
+      "createdAt": "2024-08-14T14:34:15Z",
+      "updatedAt": "2024-08-14T15:08:08Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "097955264cfeaaa5a6ce0a854d9e11cd26752062",
+      "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "headRefName": "kris/ref",
+      "headRefOid": "42fce9960899388aa1c9de9e46be5568638390b5",
+      "closedAt": "2024-08-14T15:08:08Z",
+      "mergedAt": "2024-08-14T15:08:08Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "a772c7ed8509a88abdb80a8714f83c053ac8dc10"
+      },
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "@csosto-pk good for you?",
+          "createdAt": "2024-08-14T14:40:46Z",
+          "updatedAt": "2024-08-14T14:40:46Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 18,
+      "id": "PR_kwDOJfxSy854ejAw",
+      "title": "Remove all mentions of temporary codepoint",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/18",
+      "state": "MERGED",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-08-15T15:04:13Z",
+      "updatedAt": "2024-08-16T01:58:11Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "91e9f22e2b6e92ee6ec1e7ce904d65ffb40ee044",
+      "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "headRefName": "kris/final_03",
+      "headRefOid": "21fdfc8b805c446fabeb47290582d27da4c2a84e",
+      "closedAt": "2024-08-16T01:58:07Z",
+      "mergedAt": "2024-08-16T01:58:07Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "da9a7bafb875c3992d3d0d827d8d8df9f557d557"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJfxSy86FjSlE",
+          "commit": {
+            "abbreviatedOid": "21fdfc8"
+          },
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-08-15T15:13:21Z",
+          "updatedAt": "2024-08-15T15:13:21Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "id": "PR_kwDOJfxSy855PQn4",
+      "title": "Add X25519MLKEM768",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/20",
+      "state": "MERGED",
+      "author": "bwesterb",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-08-23T11:56:40Z",
+      "updatedAt": "2024-08-26T01:52:24Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "019af17b65bdf5d8606605023976f998b421912e",
+      "headRepository": "bwesterb/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "headRefName": "bas/merge",
+      "headRefOid": "e20d0f287bcd63e70e8f692f234206437cae831e",
+      "closedAt": "2024-08-26T01:21:39Z",
+      "mergedAt": "2024-08-26T01:21:39Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "c3028444bac5280b71d364b1a374072f46447225"
+      },
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Perfect! Thanks.\r\nI'll start requesting codepoints now.",
+          "createdAt": "2024-08-26T01:21:04Z",
+          "updatedAt": "2024-08-26T01:52:24Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJfxSy86GiCuq",
+          "commit": {
+            "abbreviatedOid": "174a5d9"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-23T12:04:56Z",
+          "updatedAt": "2024-08-23T12:08:10Z",
+          "comments": [
+            {
+              "originalPosition": 27,
+              "body": "```suggestion\r\nThis draft defines X25519MLKEM768 and SecP256r1MLKEM768, two hybrid key agreements for TLS 1.3 that combines\r\n```",
+              "createdAt": "2024-08-23T12:04:56Z",
+              "updatedAt": "2024-08-23T12:08:10Z"
+            },
+            {
+              "originalPosition": 61,
+              "body": "```suggestion\r\nBoth groups enable the derivation of TLS session keys using FIPS-approved schemes. NIST's\r\n```",
+              "createdAt": "2024-08-23T12:05:32Z",
+              "updatedAt": "2024-08-23T12:08:10Z"
+            },
+            {
+              "originalPosition": 89,
+              "body": "```suggestion\r\nThe ECDHE share is the serialized value of\r\n```",
+              "createdAt": "2024-08-23T12:06:44Z",
+              "updatedAt": "2024-08-23T12:08:10Z"
+            },
+            {
+              "originalPosition": 168,
+              "body": "```suggestion\r\n : 25500 (0x639C)\r\n```\r\n\r\ndidn\u2019t we discuss 0x11ec?",
+              "createdAt": "2024-08-23T12:08:05Z",
+              "updatedAt": "2024-08-23T12:08:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86GiNfp",
+          "commit": {
+            "abbreviatedOid": "174a5d9"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-23T12:29:38Z",
+          "updatedAt": "2024-08-23T12:29:39Z",
+          "comments": [
+            {
+              "originalPosition": 168,
+              "body": "First time I heard that one.",
+              "createdAt": "2024-08-23T12:29:38Z",
+              "updatedAt": "2024-08-23T12:29:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86GjY7A",
+          "commit": {
+            "abbreviatedOid": "e31002e"
+          },
+          "author": "jschanck",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-23T14:41:59Z",
+          "updatedAt": "2024-08-23T14:41:59Z",
+          "comments": [
+            {
+              "originalPosition": 168,
+              "body": "I floated 0x11ec  it on Signal. It looks like \"0x concat ec\". I'm not attached to it.",
+              "createdAt": "2024-08-23T14:41:59Z",
+              "updatedAt": "2024-08-23T14:41:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86Gjjuj",
+          "commit": {
+            "abbreviatedOid": "174a5d9"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-23T15:02:22Z",
+          "updatedAt": "2024-08-23T15:02:23Z",
+          "comments": [
+            {
+              "originalPosition": 168,
+              "body": "Ah! Sorry, missed that. I like it.",
+              "createdAt": "2024-08-23T15:02:22Z",
+              "updatedAt": "2024-08-23T15:02:23Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "id": "PR_kwDOJfxSy856iG8B",
+      "title": "Fix FIPS 203 section reference",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/21",
+      "state": "MERGED",
+      "author": "davidben",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The encapsulation key check (and the rest of encapsulation) is defined in 7.2, not 7.3.",
+      "createdAt": "2024-09-05T14:09:19Z",
+      "updatedAt": "2024-09-09T00:03:49Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "b4af26cefb9519215a0a6664b4bbb5abb7876a8f",
+      "headRepository": "davidben/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "headRefName": "encap-section",
+      "headRefOid": "192d557f90b05025f036a48313a13954ad1c1ae0",
+      "closedAt": "2024-09-09T00:03:48Z",
+      "mergedAt": "2024-09-09T00:03:48Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "2128d6c2aa2d5bf1572c01f636a05ec0417b0c81"
+      },
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Thanks, Mate!",
+          "createdAt": "2024-09-09T00:03:46Z",
+          "updatedAt": "2024-09-09T00:03:46Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJfxSy86IFtWN",
+          "commit": {
+            "abbreviatedOid": "192d557"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-09-05T14:12:21Z",
+          "updatedAt": "2024-09-05T14:12:21Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "id": "PR_kwDOJfxSy8562UbA",
+      "title": "Add P-384 combined with ML-KEM-1024",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/22",
+      "state": "MERGED",
+      "author": "tomato42",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-09-09T12:58:09Z",
+      "updatedAt": "2024-09-10T17:20:11Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "7dbf6e02a5c0e3e000f9ea844718ebe7983e9057",
+      "headRepository": "tomato42/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "headRefName": "ml-kem-1024",
+      "headRefOid": "615782a165b38ab151faf361ef8a869bfe50d04c",
+      "closedAt": "2024-09-10T17:13:25Z",
+      "mergedAt": "2024-09-10T17:13:25Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "af0f1eeaa1d7cde20b8130665a58f0e3b00f0241"
+      },
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Thanks, I suggest we wait with IANA request until it we know if code point should be \"recommended\" or not.",
+          "createdAt": "2024-09-10T17:13:04Z",
+          "updatedAt": "2024-09-10T17:13:04Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJfxSy86Ikyxq",
+          "commit": {
+            "abbreviatedOid": "ac4322d"
+          },
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "First pass",
+          "createdAt": "2024-09-10T04:40:43Z",
+          "updatedAt": "2024-09-10T04:57:33Z",
+          "comments": [
+            {
+              "originalPosition": 103,
+              "body": "three",
+              "createdAt": "2024-09-10T04:40:44Z",
+              "updatedAt": "2024-09-10T04:57:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86IrARM",
+          "commit": {
+            "abbreviatedOid": "ac4322d"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-10T16:05:59Z",
+          "updatedAt": "2024-09-10T16:05:59Z",
+          "comments": [
+            {
+              "originalPosition": 103,
+              "body": "right, fixed.",
+              "createdAt": "2024-09-10T16:05:59Z",
+              "updatedAt": "2024-09-10T16:05:59Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
