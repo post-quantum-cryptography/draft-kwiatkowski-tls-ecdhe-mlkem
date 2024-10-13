@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-10T01:18:06.558755+00:00",
+  "timestamp": "2024-10-13T01:23:39.552574+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -960,6 +960,409 @@
               "body": "right, fixed.",
               "createdAt": "2024-09-10T16:05:59Z",
               "updatedAt": "2024-09-10T16:05:59Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "id": "PR_kwDOJfxSy85-XYbi",
+      "title": "document that error checking still needs to be performed",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/23",
+      "state": "OPEN",
+      "author": "tomato42",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "All algorithms have inputs that are publicly invalid (be it ECDH, X25519, or ML-KEM), document that this error checking still needs to be performed and how errors need to be handled.",
+      "createdAt": "2024-10-11T17:06:25Z",
+      "updatedAt": "2024-10-12T20:02:59Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "f5275e17fa023de364e4c696528b40152d43ce02",
+      "headRepository": "tomato42/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "headRefName": "alerts",
+      "headRefOid": "a5bdbb7d743c241796e546dfca9a6d4a881b1b11",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJfxSy86M3N1k",
+          "commit": {
+            "abbreviatedOid": "cf6bf45"
+          },
+          "author": "davidben",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Good catch! Left some minor nitpicks.",
+          "createdAt": "2024-10-11T17:32:06Z",
+          "updatedAt": "2024-10-11T17:35:49Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\nFor all groups, both client and server MUST check if the peer's key share\r\n```",
+              "createdAt": "2024-10-11T17:32:06Z",
+              "updatedAt": "2024-10-11T17:35:50Z"
+            },
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nin Section 7.3 of {{FIPS203}} on the server's encapsulated key,\r\n```",
+              "createdAt": "2024-10-11T17:32:31Z",
+              "updatedAt": "2024-10-11T17:35:50Z"
+            },
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nfor the classical part, as described in {{Section 4.2.8.2 of !RFC8446}},\r\n```\r\n\r\n(The Markdown thing is clever and knows how to linkify `{{Section X of Y}}` when Y is an IETF document.)",
+              "createdAt": "2024-10-11T17:33:15Z",
+              "updatedAt": "2024-10-11T17:35:50Z"
+            },
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\ncheck described in {{Section 7.4.2 of !RFC8446}} and abort the\r\n```",
+              "createdAt": "2024-10-11T17:33:27Z",
+              "updatedAt": "2024-10-11T17:35:50Z"
+            },
+            {
+              "originalPosition": 8,
+              "body": "This might need a \"where applicable\" or \"For all groups that use secp256r1 or secp384r1\" or something like that, since it doesn't apply to the X25519 one.",
+              "createdAt": "2024-10-11T17:34:47Z",
+              "updatedAt": "2024-10-11T17:35:50Z"
+            },
+            {
+              "originalPosition": 23,
+              "body": "Similarly, this might want a \"where applicable\" or a reference to X25519 or something.",
+              "createdAt": "2024-10-11T17:35:18Z",
+              "updatedAt": "2024-10-11T17:35:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M3VOj",
+          "commit": {
+            "abbreviatedOid": "cf6bf45"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T17:52:29Z",
+          "updatedAt": "2024-10-11T17:52:30Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "That's a more generic issue with the document.... I can fix it, but if we decide that this should be done, I think a separate patch that fixes it everywhere will be better.",
+              "createdAt": "2024-10-11T17:52:30Z",
+              "updatedAt": "2024-10-11T17:52:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M3VR7",
+          "commit": {
+            "abbreviatedOid": "cf6bf45"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T17:52:39Z",
+          "updatedAt": "2024-10-11T17:52:39Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "same as in the other case",
+              "createdAt": "2024-10-11T17:52:39Z",
+              "updatedAt": "2024-10-11T17:52:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M3V2z",
+          "commit": {
+            "abbreviatedOid": "cf6bf45"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T17:54:20Z",
+          "updatedAt": "2024-10-11T17:54:20Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "no, it does: an all zero key share for X25519 is invalid too",
+              "createdAt": "2024-10-11T17:54:20Z",
+              "updatedAt": "2024-10-11T17:54:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M3WxY",
+          "commit": {
+            "abbreviatedOid": "cf6bf45"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T17:56:55Z",
+          "updatedAt": "2024-10-11T17:56:55Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "No, section 7.4.2 asks for an all-zero check on X25519 and X448 too\r\n(I mean, we can argue if it's necessary given the properties of X25519, but since it's already in for the pure X25519, I don't think we should change the semantics for the hybrid)",
+              "createdAt": "2024-10-11T17:56:55Z",
+              "updatedAt": "2024-10-11T17:56:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M3W9w",
+          "commit": {
+            "abbreviatedOid": "cf6bf45"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T17:57:27Z",
+          "updatedAt": "2024-10-11T17:57:27Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "done",
+              "createdAt": "2024-10-11T17:57:27Z",
+              "updatedAt": "2024-10-11T17:57:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M3W-w",
+          "commit": {
+            "abbreviatedOid": "cf6bf45"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T17:57:30Z",
+          "updatedAt": "2024-10-11T17:57:30Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "fixed",
+              "createdAt": "2024-10-11T17:57:30Z",
+              "updatedAt": "2024-10-11T17:57:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M3fAD",
+          "commit": {
+            "abbreviatedOid": "56dd7b0"
+          },
+          "author": "davidben",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T18:20:31Z",
+          "updatedAt": "2024-10-11T18:23:27Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "It is, but section 4.2.8.2 doesn't discuss the all zero key share. That comes from 7.4.2. Though I suppose the section does actually discuss X25519. It just doesn't prescribe any checks at all.\r\n\r\nHow about:\r\n\r\n> For all groups, both the client and server must process the classical part as described in ..., including all validity checks.",
+              "createdAt": "2024-10-11T18:20:31Z",
+              "updatedAt": "2024-10-11T18:23:27Z"
+            },
+            {
+              "originalPosition": 23,
+              "body": "No, that's the opposite what I'm saying. I'm saying this text makes sense for X25519, but it's off for P-256 and P-384 because 7.4.2 does not describe any checks for P-256 and P-384. Perhaps:\r\n\r\n> For all groups, both client and server MUST calculate the classical part of the shared secret as described in ..., including the shared secret check for X25519.",
+              "createdAt": "2024-10-11T18:23:23Z",
+              "updatedAt": "2024-10-11T18:24:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M3qr0",
+          "commit": {
+            "abbreviatedOid": "56dd7b0"
+          },
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T18:54:50Z",
+          "updatedAt": "2024-10-11T18:54:50Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "Yeah, I didn't know about that. But don't worry, let's not pollute this PR with unrelated changes. I'll do it in a separate PR.",
+              "createdAt": "2024-10-11T18:54:50Z",
+              "updatedAt": "2024-10-11T18:54:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M3s1W",
+          "commit": {
+            "abbreviatedOid": "cf6bf45"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T19:01:10Z",
+          "updatedAt": "2024-10-11T19:01:10Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "ok",
+              "createdAt": "2024-10-11T19:01:10Z",
+              "updatedAt": "2024-10-11T19:01:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M3uq9",
+          "commit": {
+            "abbreviatedOid": "cf6bf45"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T19:06:31Z",
+          "updatedAt": "2024-10-11T19:06:32Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "ok, done",
+              "createdAt": "2024-10-11T19:06:31Z",
+              "updatedAt": "2024-10-11T19:06:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M3u5-",
+          "commit": {
+            "abbreviatedOid": "cf6bf45"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T19:07:15Z",
+          "updatedAt": "2024-10-11T19:07:15Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "ok, then fixed for the new additions",
+              "createdAt": "2024-10-11T19:07:15Z",
+              "updatedAt": "2024-10-11T19:07:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M3u8x",
+          "commit": {
+            "abbreviatedOid": "cf6bf45"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T19:07:23Z",
+          "updatedAt": "2024-10-11T19:07:23Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "and fixed",
+              "createdAt": "2024-10-11T19:07:23Z",
+              "updatedAt": "2024-10-11T19:07:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M3vh1",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T19:09:08Z",
+          "updatedAt": "2024-10-11T19:12:57Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "I don't think this is needed.\r\n\r\nWe already state above:\r\n```\r\nFor all groups, the server MUST perform the encapsulation key check\r\ndescribed in Section 7.2 of {{FIPS203}} on the client's encapsulation\r\nkey, and abort with an illegal_parameter alert if it fails.\r\n```\r\n\r\nThe size of encapulation key is already checked there (step 1). Hence here we should just say that size of P256 and 25519 must also be checked. \r\n\r\nFor classical part you added a text ``including all validity checks``. \r\n\r\nThat should be enough.",
+              "createdAt": "2024-10-11T19:12:36Z",
+              "updatedAt": "2024-10-11T19:12:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M30Fv",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T19:23:09Z",
+          "updatedAt": "2024-10-11T19:23:09Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "but that's encapsulation key check: i.e. PQC part only, and the NIST curves have 2 representations that an overly accepting implementation can process: uncompressed and compressed, so length checks have sense either way",
+              "createdAt": "2024-10-11T19:23:09Z",
+              "updatedAt": "2024-10-11T19:23:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M5qYH",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "FiloSottile",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-12T15:13:20Z",
+          "updatedAt": "2024-10-12T15:13:21Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "This boils down to checking the ciphertext is 1184 bytes long, and is anyway implied as part of ML-KEM.Decaps, right?\r\n\r\nIf the point is helping the implementor, I think explicitly stating it in terms of a size check would be less confusion, because Section 7.3 has details of the dk check, which is not applicable here.",
+              "createdAt": "2024-10-12T15:13:21Z",
+              "updatedAt": "2024-10-12T15:13:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M7ciD",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-12T20:02:58Z",
+          "updatedAt": "2024-10-12T20:02:59Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I'm thinking of it more in terms of: when you're calling the decaps() method, remember that it can fail, if it does, report that error with an `illegal_parameter`.\r\n\r\nyes, the client key shouldn't have become malformed in memory, yes, the ciphertext passed to the method should already be correct size, but having that additional check shouldn't really be an issue",
+              "createdAt": "2024-10-12T20:02:58Z",
+              "updatedAt": "2024-10-12T20:02:59Z"
             }
           ]
         }
