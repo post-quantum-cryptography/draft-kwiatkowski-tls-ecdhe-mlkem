@@ -155,7 +155,7 @@ described in Section 7.2 of {{FIPS203}} on the client's encapsulation
 key, and abort with an illegal_parameter alert if it fails.
 
 For all groups, the client MUST check if the ciphertext length matches
-the selectd group, and abort with an illegal_parameter alert if it fails.
+the selected group, and abort with an illegal_parameter alert if it fails.
 If ML-KEM decapsulation fails for any other reason, the connection MUST
 be aborted with an internal_error alert.
 
@@ -186,7 +186,7 @@ For all groups, both client and server MUST calculate the ECDH part of the
 shared secret as described in {{Section 7.4.2 of !RFC8446}}, including
 the shared secret check as described in Section 5.7.1.2 of {{!SP56A}}
 or the all-zero shared secret check (depending on the curve), and abort the
-connection with an illegal_parameter if it fails.
+connection with an illegal_parameter alert if it fails.
 
 # Security Considerations
 
