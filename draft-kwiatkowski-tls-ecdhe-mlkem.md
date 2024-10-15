@@ -47,6 +47,7 @@ author:
 normative:
   rfc7748:
   FIPS203: DOI.10.6028/NIST.FIPS.203
+  SP56A: DOI.10.6028/NIST.SP.800-56Ar3
   SP56C: DOI.10.6028/NIST.SP.800-56Cr2
 
 informative:
@@ -153,6 +154,15 @@ For all groups, the server MUST perform the encapsulation key check
 described in Section 7.2 of {{FIPS203}} on the client's encapsulation
 key, and abort with an illegal_parameter alert if it fails.
 
+For all groups, the client MUST check if the ciphertext length matches
+the selectd group, and abort with an illegal_parameter alert if it fails.
+If ML-KEM decapsulation fails for any other reason, the connection MUST
+be aborted with an internal_error alert.
+
+For all groups, both client and server MUST process the ECDH part
+as described in {{Section 4.2.8.2 of !RFC8446}}, including all validity checks,
+and abort with an illegal_parameter alert if it fails.
+
 ### Shared secret
 
 For X25519MLKEM768, the shared secret is the concatenation of the ML-KEM
@@ -171,6 +181,12 @@ shared secret elliptic curve point represented as an octet string as
 defined in Section 7.4.2 of {{!RFC8446}}.
 The size of the shared secret is 80 bytes (48 bytes for the ECDH part and
 32 bytes for the ML-KEM part).
+
+For all groups, both client and server MUST calculate the ECDH part of the
+shared secret as described in {{Section 7.4.2 of !RFC8446}}, including
+the shared secret check as described in Section 5.7.1.2 of {{!SP56A}}
+or the all-zero shared secret check (depending on the curve), and abort the
+connection with an illegal_parameter if it fails.
 
 # Security Considerations
 
