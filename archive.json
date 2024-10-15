@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-13T01:23:39.552574+00:00",
+  "timestamp": "2024-10-15T01:19:32.368803+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -977,13 +977,13 @@
       "labels": [],
       "body": "All algorithms have inputs that are publicly invalid (be it ECDH, X25519, or ML-KEM), document that this error checking still needs to be performed and how errors need to be handled.",
       "createdAt": "2024-10-11T17:06:25Z",
-      "updatedAt": "2024-10-12T20:02:59Z",
+      "updatedAt": "2024-10-14T17:02:17Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "f5275e17fa023de364e4c696528b40152d43ce02",
       "headRepository": "tomato42/draft-kwiatkowski-tls-ecdhe-mlkem",
       "headRefName": "alerts",
-      "headRefOid": "a5bdbb7d743c241796e546dfca9a6d4a881b1b11",
+      "headRefOid": "639a846c32f7f2b3bf50fdf2e1251a0deb6de75c",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -1363,6 +1363,606 @@
               "body": "I'm thinking of it more in terms of: when you're calling the decaps() method, remember that it can fail, if it does, report that error with an `illegal_parameter`.\r\n\r\nyes, the client key shouldn't have become malformed in memory, yes, the ciphertext passed to the method should already be correct size, but having that additional check shouldn't really be an issue",
               "createdAt": "2024-10-12T20:02:58Z",
               "updatedAt": "2024-10-12T20:02:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M_iTm",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T06:28:32Z",
+          "updatedAt": "2024-10-14T06:28:32Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "classical -> ECDH",
+              "createdAt": "2024-10-14T06:28:32Z",
+              "updatedAt": "2024-10-14T06:28:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M_p2p",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T06:43:38Z",
+          "updatedAt": "2024-10-14T06:43:39Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "Nop, we already described a check for both parts - MLKEM and ECDH, both on the client and server.\r\n\r\n* PQ: The server validates a KEM public key, including checking the byte length. The client must validate the ciphertext, including checking the length.\r\n* ECDH: With your change, we already have to \"MUST process the classical part as described in {{Section 4.2.8.2 of !RFC8446}}\". That should be enough.\r\n\r\nBoth checks, if done correctly, imply that the length of the peer's key share is correct. That's it, nothing else is needed. I think the general message should be clear\u2014both the ECDH and PQ parts MUST be validated separately, as they are two completely different systems. Performing any checks on concatenation doesn't provide any guarantee.\r\n\r\nThe implementation must check if the blob with the peer's keys is long enough to avoid buffer overread. But that's unrelated.",
+              "createdAt": "2024-10-14T06:43:39Z",
+              "updatedAt": "2024-10-14T06:57:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M_qvR",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T06:46:01Z",
+          "updatedAt": "2024-10-14T06:46:02Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "classical -> ECDH",
+              "createdAt": "2024-10-14T06:46:01Z",
+              "updatedAt": "2024-10-14T06:46:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86M_szn",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T06:51:36Z",
+          "updatedAt": "2024-10-14T06:51:36Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I think I agree with Fillipo. The length of the ciphertext is the only thing that's required, no need to check 'dk'. Section 7.3 of FIPS203 asks to perform additional hash on a secret key, which is both not needed and may hurt performance.",
+              "createdAt": "2024-10-14T06:51:36Z",
+              "updatedAt": "2024-10-14T06:51:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NBw1R",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T10:16:24Z",
+          "updatedAt": "2024-10-14T10:16:25Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "> Section 7.3 of FIPS203 asks to perform additional hash on a secret key, which is both not needed and may hurt performance.\r\n\r\nwhile that may be your opinion, the fact it's specified there makes it mandatory for software running in FIPS mode, thus the operation can fail",
+              "createdAt": "2024-10-14T10:16:24Z",
+              "updatedAt": "2024-10-14T10:16:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NB45c",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T10:24:35Z",
+          "updatedAt": "2024-10-14T10:24:36Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "This is correct. If FIPS is required, then the check must be implemented. But it doesn't have to if FIPS is not required. This text suggests that check must be implemented even if FIPS is not required.",
+              "createdAt": "2024-10-14T10:24:35Z",
+              "updatedAt": "2024-10-14T10:24:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NCDq8",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "FiloSottile",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T10:32:03Z",
+          "updatedAt": "2024-10-14T10:32:03Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I interpret the proposed text differently, as \"the ciphertext check described in Section 7.3 of {{FIPS203}}\" is only the ciphertext part, not the dk part. As a meta-point, this suggests this paragraph is confusing.\r\n\r\nAlso note that the check is not in fact mandatory in FIPS approved modes:\r\n\r\n> checking of the decapsulation key need not be performed by the decapsulating party, nor with every execution of ML-KEM.Decaps\r\n\r\nIf the ciphertext length is correct, ML-KEM.Decaps *can't* fail. If it fails because a dk check fails, illegal_parameter is the wrong alert anyway, because that suggests an internal error.",
+              "createdAt": "2024-10-14T10:32:03Z",
+              "updatedAt": "2024-10-14T10:32:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NCpBy",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T11:11:43Z",
+          "updatedAt": "2024-10-14T11:11:43Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I would just write here, to check if ciphertext has correct length and fail if not. That way the requirement will be crystal clear.",
+              "createdAt": "2024-10-14T11:11:43Z",
+              "updatedAt": "2024-10-14T11:11:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NCv8i",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T11:25:34Z",
+          "updatedAt": "2024-10-14T11:25:34Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "done",
+              "createdAt": "2024-10-14T11:25:34Z",
+              "updatedAt": "2024-10-14T11:25:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NCv-7",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T11:25:39Z",
+          "updatedAt": "2024-10-14T11:25:39Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "done",
+              "createdAt": "2024-10-14T11:25:39Z",
+              "updatedAt": "2024-10-14T11:25:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NCw3N",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T11:27:14Z",
+          "updatedAt": "2024-10-14T11:27:14Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "OK, removed the length checking paragraph",
+              "createdAt": "2024-10-14T11:27:14Z",
+              "updatedAt": "2024-10-14T11:27:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NC4TL",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T11:36:50Z",
+          "updatedAt": "2024-10-14T11:36:51Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "You're ignoring the sentence right after it: \"Instead, assurance that this\r\ncheck has been performed can be acquired through other means (see SP 800-227 [1 ]).\"\r\n\r\nSo, what it says, is that correctness of the ML-KEM decapsulation key has to be assured. _One way_ of doing that is through checking the hash. \r\n\r\nRewrote it to make it explicit that it's about the whole decapsulation operation.",
+              "createdAt": "2024-10-14T11:36:51Z",
+              "updatedAt": "2024-10-14T11:36:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NC5LK",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T11:38:44Z",
+          "updatedAt": "2024-10-14T11:38:45Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "The decapsulation check is simply not required if the key pair has been generated on the spot, as it is here. TLS does allow reuse of key shares: we should add a sentence to say we shouldn't with ML-KEM.",
+              "createdAt": "2024-10-14T11:38:44Z",
+              "updatedAt": "2024-10-14T11:38:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NC7t3",
+          "commit": {
+            "abbreviatedOid": "c33aff0"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T11:43:19Z",
+          "updatedAt": "2024-10-14T11:43:20Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "Do we actually need those checks?",
+              "createdAt": "2024-10-14T11:43:19Z",
+              "updatedAt": "2024-10-14T11:43:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NDDih",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "FiloSottile",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T11:57:46Z",
+          "updatedAt": "2024-10-14T11:57:46Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I didn't ignore it, I just think FIPS assurances are somewhat out of scope for a TLS draft. Anyway, for ephemeral keys, that assurance is provided by the regrettably mandatory pairwise consistency check. Also, if the ML-KEM decapsulation key is incorrect (how, if it was just generated?), then illegal_parameter is the wrong alert. I definitely disagree with the proposed text as-is now, because it makes it sound like the TLS spec requires doing the dk hash.\r\n\r\nDisallowing key share reuse sounds great, by the way. (But maybe a different PR? @bwesterb can you send one?)",
+              "createdAt": "2024-10-14T11:57:46Z",
+              "updatedAt": "2024-10-14T11:57:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NDHA8",
+          "commit": {
+            "abbreviatedOid": "c33aff0"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T12:02:10Z",
+          "updatedAt": "2024-10-14T12:02:10Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "They are specified in the relevant standards, so yes.\r\nDon't want to do them? Then don't. There's no IETF police that will chase you if you don't follow the RFC guidelines.",
+              "createdAt": "2024-10-14T12:02:10Z",
+              "updatedAt": "2024-10-14T12:02:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NDKR4",
+          "commit": {
+            "abbreviatedOid": "c33aff0"
+          },
+          "author": "FiloSottile",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T12:06:49Z",
+          "updatedAt": "2024-10-14T12:06:49Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "The all-zero check is optional (MAY) in RFC 7748. Is it made mandatory in other TLS specs? Is there a need to make it a MUST here? I think the TLS KDF ensures contributory behavior anyway.",
+              "createdAt": "2024-10-14T12:06:49Z",
+              "updatedAt": "2024-10-14T12:06:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NDUfX",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T12:19:03Z",
+          "updatedAt": "2024-10-14T12:19:03Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "1. specifying which corners can be cut doesn't seem to me like an appropriate thing for a specification defining how to use ML-KEM in TLS, but rather something for CFRG; what we _should_ specify is best practice, it's not like we can enforce particular behaviour anyway\r\n2. I see only two ways to handle errors in decapsulation:\r\n   1. we do the length check outside the cryptographic implementation (the call to `decaps()`), and then we can translate the returned error from `decaps()` to `internal_error`\r\n   2. we delegate all error checking to the cryptographic implementation, and then translate all errors from `decaps()` to `illegal_parameter`",
+              "createdAt": "2024-10-14T12:19:03Z",
+              "updatedAt": "2024-10-14T12:19:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NDV2I",
+          "commit": {
+            "abbreviatedOid": "c33aff0"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T12:21:33Z",
+          "updatedAt": "2024-10-14T12:21:33Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "@FiloSottile rfc8446 makes it a MUST",
+              "createdAt": "2024-10-14T12:21:33Z",
+              "updatedAt": "2024-10-14T12:21:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NDXQu",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T12:23:23Z",
+          "updatedAt": "2024-10-14T12:23:23Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "> we delegate all error checking to the cryptographic implementation\r\n\r\nGiven that the vast majority of cryptographic implementations are still unfortunately C, I wish you good luck with doing any meaningful check on the lengths of buffers. The only way to achieve it then is to do the TLS parsing in the cryptographic implementation, which I'd say is also quite ill advised.",
+              "createdAt": "2024-10-14T12:23:23Z",
+              "updatedAt": "2024-10-14T12:23:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NDZ07",
+          "commit": {
+            "abbreviatedOid": "c33aff0"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T12:27:27Z",
+          "updatedAt": "2024-10-14T12:27:27Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "That can be reconsidered here.",
+              "createdAt": "2024-10-14T12:27:27Z",
+              "updatedAt": "2024-10-14T12:27:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NDbwM",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T12:30:57Z",
+          "updatedAt": "2024-10-14T12:30:57Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "@bwesterb key shares aren't null-terminated strings, it's an opaque binary blob, any remotely sane API will pass it around with the associated length....",
+              "createdAt": "2024-10-14T12:30:57Z",
+              "updatedAt": "2024-10-14T12:30:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NDb2y",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "FiloSottile",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T12:31:09Z",
+          "updatedAt": "2024-10-14T12:31:10Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "My concern here is avoiding adding a MUST that makes it sound like a useless check is mandatory, and secondarily avoiding confusing implementers. I disagree that avoiding useless (and, again, not mandatory) FIPS checks amounts to cutting corners.\r\n\r\nTo be clear, I am only talking about the dk check, I think either way of specifying the ciphertext length check is fine.",
+              "createdAt": "2024-10-14T12:31:09Z",
+              "updatedAt": "2024-10-14T12:31:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NDihF",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T12:42:01Z",
+          "updatedAt": "2024-10-14T12:42:01Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "> any remotely sane API will pass it around with the associated length....\r\n\r\nThe requirement comes from FIPS 203, which requires that the implementation checks the lengths of the provided ciphertext, etc.\r\n\r\nIn C the most natural API for ML-KEM-768 is to simply pass a pointer to the start of the 1088 byte ciphertext. The implicit contract with the caller is that the ciphertext is there, and it can indeed read the full 1088 bytes. This is not enforced by the language.\r\n\r\nYou could also write the API where you pass a pointer, and an explicit length. There is again an implicit contract:  the length parameter should indeed correspond to the actual length of the buffer pointed to. This is not enforced by the language.",
+              "createdAt": "2024-10-14T12:42:01Z",
+              "updatedAt": "2024-10-14T12:42:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NDtbF",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T13:00:17Z",
+          "updatedAt": "2024-10-14T13:00:17Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Sorry, but I'll need a little bit more than \"because I say so\" for me to ignore NIST requirements.\r\n\r\nand, frankly, I'm rather bewildered about all this opposition to _input checks for attacker controlled values_",
+              "createdAt": "2024-10-14T13:00:17Z",
+              "updatedAt": "2024-10-14T13:00:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86ND6YP",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T13:13:18Z",
+          "updatedAt": "2024-10-14T13:13:18Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "To start, I think I did not yet thank you for having a look and trying to get these standards in the best possible shape. Thank you.\r\n\r\nNow:\r\n\r\n> and, frankly, I'm rather bewildered about all this opposition to input checks for attacker controlled values\r\n\r\nEveryone agrees that the length of the keyshares need to be checked. The additional encapsulation and decapsulation key checks were rather controversial last minute additions to FIPS 203, and arguments in their favour do not apply to TLS.\r\n\r\n> Sorry, but I'll need a little bit more than \"because I say so\" for me to ignore NIST requirements.\r\n\r\nI do not believe we used an authority argument. Please, be courteous and assume good faith.",
+              "createdAt": "2024-10-14T13:13:18Z",
+              "updatedAt": "2024-10-14T13:13:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NECnH",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "FiloSottile",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T13:25:59Z",
+          "updatedAt": "2024-10-14T13:25:59Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Yeah, let's back up, maybe we are speaking past each other?\r\n\r\nI think we all agree on the input check for the attacker controlled value, which is the length check on the ciphertext. It's good that this PR makes it explicit.\r\n\r\nAlso, although I have my interpretation of the interaction between the required pair-wise check and the FIPS assurance requirement, I don't think we are arguing for you to ignore any requirement. NIST is free to apply *extra* checks beyond IETF ones. It does indeed in many places.\r\n\r\nMyself, I am just saying I don't want the IETF specification to mandate, or sound like it mandates, the internal decapsulation key hash which for ephemeral keys is arguably redundant.",
+              "createdAt": "2024-10-14T13:25:59Z",
+              "updatedAt": "2024-10-14T13:25:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NF-Sk",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T16:38:58Z",
+          "updatedAt": "2024-10-14T16:38:59Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "> The additional encapsulation and decapsulation key checks were rather controversial last minute additions to FIPS 203, and arguments in their favour do not apply to TLS.\r\n\r\nmy point is, that this draft _will_ be used with FIPS certified modules that _may_ fail in this way (however unlikely), so I think it's better to have specification that can handle that situation\r\n\r\n> I do not believe we used an authority argument. Please, be courteous and assume good faith.\r\n\r\nI did not assume bad faith, while the tone was because of frustration, my intention was to ask to provide a solid justification for ignoring explicit requirements of the standard.\r\n\r\nAnd yes, I agree, it also looks to me like it's a case of \"crossing all the t's and dotting all the i's\" or \"belt and suspenders\" approach, but if they decided to add it, it's likely that they had a good reason for it. And even if that reason was very flimsy, there's very little downside in performing the additional checks on the private key. Unfortunately, I'm afraid we'll need to wait for SP 800-227 actually getting published to know for sure.\r\n\r\n> Also, although I have my interpretation of the interaction between the required pair-wise check and the FIPS assurance requirement, I don't think we are arguing for you to ignore any requirement. NIST is free to apply extra checks beyond IETF ones. It does indeed in many places.\r\n\r\nthen lets be explicit about it, and state that \"If the implementation of ML-KEM decapsulation in use can return errors, because of checks specified in section 7.3 of FIPS 203, they MUST cause a connection abort with illegal_parameter alert. If it can't, then the length check MUST be performed, and if it fails, cause connection abort with an illegal_parameter alert.\"?",
+              "createdAt": "2024-10-14T16:38:58Z",
+              "updatedAt": "2024-10-14T16:39:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NGHgc",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "FiloSottile",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T16:56:16Z",
+          "updatedAt": "2024-10-14T16:56:16Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "> then lets be explicit about it, and state that \"If the implementation of ML-KEM decapsulation in use can return errors, because of checks specified in section 7.3 of FIPS 203, they MUST cause a connection abort with illegal_parameter alert. If it can't, then the length check MUST be performed, and if it fails, cause connection abort with an illegal_parameter alert.\"?\r\n\r\nI still think illegal_parameter is the wrong alert for private key generation errors that have nothing to do with what the peer sent.\r\n\r\nHow about \"The length of the ciphertext MUST be checked to match the expected size, and if it doesn't the connection MUST be aborted with an illegal_parameter alert. If ML-KEM decapsulation fails for any other reason, the connection MUST be aborted with an internal_error alert.\"",
+              "createdAt": "2024-10-14T16:56:16Z",
+              "updatedAt": "2024-10-14T16:56:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NGKE3",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-14T17:02:17Z",
+          "updatedAt": "2024-10-14T17:02:17Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "@kriskwiatkowski is that OK for you?",
+              "createdAt": "2024-10-14T17:02:17Z",
+              "updatedAt": "2024-10-14T17:02:17Z"
             }
           ]
         }
