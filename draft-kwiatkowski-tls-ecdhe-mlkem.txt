@@ -5,12 +5,12 @@
 Transport Layer Security                                  K. Kwiatkowski
 Internet-Draft                                                  PQShield
 Intended status: Informational                             P. Kampanakis
-Expires: 18 April 2025                                               AWS
+Expires: 19 April 2025                                               AWS
                                                         B. E. Westerbaan
                                                               Cloudflare
                                                               D. Stebila
                                                   University of Waterloo
-                                                         15 October 2024
+                                                         16 October 2024
 
 
        Post-quantum hybrid ECDHE-MLKEM Key Agreement for TLSv1.3
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 April 2025.
+   This Internet-Draft will expire on 19 April 2025.
 
 Copyright Notice
 
@@ -377,6 +377,10 @@ Appendix A.  Change log
    *  draft-kwiatkowski-tls-ecdhe-mlkem-03:
 
       -  Adds P-384 combined with ML-KEM-1024
+
+      -  Adds text that describes error-handling and outlines how the
+         client and server must ensure the integrity of the key exchange
+         process.
 
    *  draft-kwiatkowski-tls-ecdhe-mlkem-02:
 
