@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-15T01:19:32.368803+00:00",
+  "timestamp": "2024-10-17T01:18:51.356292+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -197,16 +197,38 @@
       "id": "I_kwDOJfxSy86Sqys4",
       "title": "Other combinations",
       "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/issues/13",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "kriskwiatkowski",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "As MLKEM is out (soon), the good question now is - do we want to include codepoints for more combinations than P256-MLKEM768?\r\n\r\nI think P256-MLKEM768 should stay, but I don't have a clear opinion about use cases for other combinations. ",
       "createdAt": "2024-08-12T11:05:21Z",
-      "updatedAt": "2024-08-12T11:05:21Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-10-16T17:40:56Z",
+      "closedAt": "2024-10-16T17:40:56Z",
+      "comments": [
+        {
+          "author": "dconnolly",
+          "authorAssociation": "NONE",
+          "body": "Support for secp384+MLKEM...1024? I think? @tomato42 \r\n\r\nhttps://mailarchive.ietf.org/arch/msg/tls/YcjHZ6-dWL54lBQQavAUoyxf4sI/",
+          "createdAt": "2024-10-16T17:31:01Z",
+          "updatedAt": "2024-10-16T17:31:14Z"
+        },
+        {
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "secp384r1MLKEM1024 is in already:\r\nhttps://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/blob/0eee72f28caf4a8c06bc9d661c7e39bf0271a424/draft-kwiatkowski-tls-ecdhe-mlkem.md?plain=1#L81",
+          "createdAt": "2024-10-16T17:35:55Z",
+          "updatedAt": "2024-10-16T17:35:55Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Yes, I think that is the only one we want to add. Should be done very soon.\r\nLet's close that issue.",
+          "createdAt": "2024-10-16T17:40:56Z",
+          "updatedAt": "2024-10-16T17:40:56Z"
+        }
+      ]
     },
     {
       "number": 14,
@@ -253,16 +275,31 @@
       "id": "I_kwDOJfxSy86S_NSd",
       "title": "Build doesn't work",
       "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/issues/17",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "kriskwiatkowski",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "For some reason, the build is broken. Investigate",
       "createdAt": "2024-08-14T14:37:44Z",
-      "updatedAt": "2024-08-14T14:37:44Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-10-16T17:39:29Z",
+      "closedAt": "2024-10-16T17:39:29Z",
+      "comments": [
+        {
+          "author": "dconnolly",
+          "authorAssociation": "NONE",
+          "body": "Working now?",
+          "createdAt": "2024-10-16T17:29:42Z",
+          "updatedAt": "2024-10-16T17:29:42Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Yes :)\r\nSweet, thanks",
+          "createdAt": "2024-10-16T17:39:29Z",
+          "updatedAt": "2024-10-16T17:39:29Z"
+        }
+      ]
     },
     {
       "number": 19,
@@ -970,25 +1007,35 @@
       "id": "PR_kwDOJfxSy85-XYbi",
       "title": "document that error checking still needs to be performed",
       "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/23",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "tomato42",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "All algorithms have inputs that are publicly invalid (be it ECDH, X25519, or ML-KEM), document that this error checking still needs to be performed and how errors need to be handled.",
       "createdAt": "2024-10-11T17:06:25Z",
-      "updatedAt": "2024-10-14T17:02:17Z",
+      "updatedAt": "2024-10-15T15:15:59Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "f5275e17fa023de364e4c696528b40152d43ce02",
       "headRepository": "tomato42/draft-kwiatkowski-tls-ecdhe-mlkem",
       "headRefName": "alerts",
-      "headRefOid": "639a846c32f7f2b3bf50fdf2e1251a0deb6de75c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "headRefOid": "a23fc698cc661c5c6b3a08dce7202b027acb42e7",
+      "closedAt": "2024-10-15T12:44:19Z",
+      "mergedAt": "2024-10-15T12:44:19Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "1247554223796ba68ba9afea3cc89ab619af0982"
+      },
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "@tomato42 thank you for your understanding and perseverance.\r\nThank you all. \r\n",
+          "createdAt": "2024-10-15T12:44:00Z",
+          "updatedAt": "2024-10-15T12:44:00Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOJfxSy86M3N1k",
@@ -1965,6 +2012,148 @@
               "updatedAt": "2024-10-14T17:02:17Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NLBJ3",
+          "commit": {
+            "abbreviatedOid": "639a846"
+          },
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T07:59:21Z",
+          "updatedAt": "2024-10-15T07:59:22Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I'm OK with checking ciphertext length. But to require a check of ``dk`` as per section 7.3 is maybe too much. The intention is not to say \"don't do it\", but also I don't believe we should be saying \"You have to do it even if it makes no sense\".\r\n\r\n> my point is, that this draft will be used with FIPS-certified modules that may fail in this way (however unlikely), so I think it's better to have specifications that can handle that situation\r\n\r\nI understand that you're trying to address a situation where a FIPS-certified module fails because the check on \"dk\" fails. I believe that the \"illegal_parameter\" alert indicates a problem with the protocol syntax or handshake. In our case, if the check on \"dk\" fails, then it means that \"dk\" was corrupted in some way. I think the \"internal_error\" alert is the most appropriate for this case.",
+              "createdAt": "2024-10-15T07:59:21Z",
+              "updatedAt": "2024-10-15T08:00:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NLxwb",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "FiloSottile",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T09:16:40Z",
+          "updatedAt": "2024-10-15T09:16:40Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "@kriskwiatkowski it sounds we agree, I think @tomato42 was asking if you're ok with the text I am suggesting in https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/23#discussion_r1799832620.\r\n\r\n> The length of the ciphertext MUST be checked to match the expected size, and if it doesn't the connection MUST be aborted with an illegal_parameter alert. If ML-KEM decapsulation fails for any other reason, the connection MUST be aborted with an internal_error alert.",
+              "createdAt": "2024-10-15T09:16:40Z",
+              "updatedAt": "2024-10-15T09:16:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NMDx9",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T09:42:54Z",
+          "updatedAt": "2024-10-15T09:42:54Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Yep, this text would be perfect in my opinion.",
+              "createdAt": "2024-10-15T09:42:54Z",
+              "updatedAt": "2024-10-15T09:42:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NNb1x",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T11:57:33Z",
+          "updatedAt": "2024-10-15T11:57:34Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "> I think @tomato42 was asking if you're ok with the text I am suggesting in https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/23#discussion_r1799832620.\r\n\r\nprecisely that :)",
+              "createdAt": "2024-10-15T11:57:33Z",
+              "updatedAt": "2024-10-15T11:57:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86NNdXU",
+          "commit": {
+            "abbreviatedOid": "a5bdbb7"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T12:00:23Z",
+          "updatedAt": "2024-10-15T12:00:24Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I've rephrased it slightly so that it matches the paragraphs near it",
+              "createdAt": "2024-10-15T12:00:23Z",
+              "updatedAt": "2024-10-15T12:00:24Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "id": "PR_kwDOJfxSy85-tuAh",
+      "title": "fix eaten characters/words",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/24",
+      "state": "MERGED",
+      "author": "tomato42",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "story as old as time: noticing typos right after publication...",
+      "createdAt": "2024-10-15T18:19:14Z",
+      "updatedAt": "2024-10-15T22:09:39Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "1247554223796ba68ba9afea3cc89ab619af0982",
+      "headRepository": "tomato42/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "headRefName": "typo-fix",
+      "headRefOid": "011cbccb5c5ea7d4fd1cc879346cbaa929bb1b18",
+      "closedAt": "2024-10-15T20:21:20Z",
+      "mergedAt": "2024-10-15T20:21:20Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "5206c52910b9520f3d6809c5f31e3a0820c1c01b"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJfxSy86NSCKn",
+          "commit": {
+            "abbreviatedOid": "011cbcc"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-15T18:59:38Z",
+          "updatedAt": "2024-10-15T18:59:38Z",
+          "comments": []
         }
       ]
     }
