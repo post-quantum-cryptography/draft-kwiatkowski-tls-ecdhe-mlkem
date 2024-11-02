@@ -194,7 +194,7 @@ The same security considerations as those described in {{hybrid}} apply to the a
 The security analysis relies crucially on the TLS 1.3 message transcript, and one cannot assume a similar
 hybridisation is secure in other protocols.
 
-For all groups, both client and server MUST NOT reuse the ECDH or the ML-KEM part of the key share. Reusing ephemeral keys relates key material in different connections that should not be related. A vulnerability (theoretical, bad implementation like no public-key validation, or side channesl) combined with reuse can enable an attacker to recover the shared secret in another connection. Reuse also have significant privacy issues as it allows passive observers to correlate different connections.  NIST's special publication 800-56ar3 {{!SP56A}} forbids reuse by requiring that "An ephemeral private key shall be used in exactly one key-establishment transaction". 
+For all groups, both client and server MUST NOT reuse the ECDH or the ML-KEM part of the key share. Reusing ephemeral keys relates key material in different connections that should not be related. A vulnerability (theoretical, bad implementation like no public-key validation, or side channels) combined with reuse can enable an attacker to recover the shared secret in another connection. Reuse also has significant privacy issues as it allows passive observers to correlate different connections.  NIST's special publication 800-56ar3 {{!SP56A}} forbids reuse by requiring that "An ephemeral private key shall be used in exactly one key-establishment transaction". 
 
 Implementers are encouraged to use implementations resistant to side-channel attacks,
 especially those that can be applied by remote attackers.
