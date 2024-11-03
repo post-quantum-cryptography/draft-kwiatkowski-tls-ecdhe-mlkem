@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-31T01:20:19.714871+00:00",
+  "timestamp": "2024-11-03T01:24:17.547054+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -2154,6 +2154,113 @@
           "createdAt": "2024-10-15T18:59:38Z",
           "updatedAt": "2024-10-15T18:59:38Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "PR_kwDOJfxSy86AqTBg",
+      "title": "Forbid reuse of ephemeral private key",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/25",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Forbid reuse of ephemeral private key.",
+      "createdAt": "2024-11-01T18:28:42Z",
+      "updatedAt": "2024-11-02T07:21:16Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "0eee72f28caf4a8c06bc9d661c7e39bf0271a424",
+      "headRepository": "emanjon/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "headRefName": "patch-1",
+      "headRefOid": "84970ccb910d7d5446a8d3b03a4529a0c1d1e906",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJfxSy86PsPBF",
+          "commit": {
+            "abbreviatedOid": "4e802c9"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-01T19:14:28Z",
+          "updatedAt": "2024-11-01T19:14:28Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "s/channesl/channels/\r\ns/Reuse also have/Reuse also has/\r\n",
+              "createdAt": "2024-11-01T19:14:28Z",
+              "updatedAt": "2024-11-01T19:14:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86PsTvI",
+          "commit": {
+            "abbreviatedOid": "4e802c9"
+          },
+          "author": "ghen2",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-01T19:28:51Z",
+          "updatedAt": "2024-11-01T19:28:59Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Can \"in different connections\" be included in the first sentence already?\r\n\r\nThere's a valid case to reuse key shares for (different combinations of) the same algorithm *in the same connection*, like the Rustls implementation is doing for X25519 and X25519MLKEM768: https://github.com/rustls/rustls/pull/2136\r\n\r\nWhile this specification appears to allow it, it's not 100% unambiguous.",
+              "createdAt": "2024-11-01T19:28:51Z",
+              "updatedAt": "2024-11-01T19:28:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86PuBxH",
+          "commit": {
+            "abbreviatedOid": "4e802c9"
+          },
+          "author": "emanjon",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-02T07:19:50Z",
+          "updatedAt": "2024-11-02T07:19:50Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "fixed",
+              "createdAt": "2024-11-02T07:19:50Z",
+              "updatedAt": "2024-11-02T07:19:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86PuBzH",
+          "commit": {
+            "abbreviatedOid": "4e802c9"
+          },
+          "author": "emanjon",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-02T07:21:16Z",
+          "updatedAt": "2024-11-02T07:21:16Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Good point. fixed. Agree that this is a valid use of \"reuse\" without any security implications. ",
+              "createdAt": "2024-11-02T07:21:16Z",
+              "updatedAt": "2024-11-02T07:21:16Z"
+            }
+          ]
         }
       ]
     }
