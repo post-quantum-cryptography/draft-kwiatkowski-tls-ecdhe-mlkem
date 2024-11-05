@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-03T01:24:17.547054+00:00",
+  "timestamp": "2024-11-05T01:17:30.057042+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -2169,7 +2169,7 @@
       "labels": [],
       "body": "Forbid reuse of ephemeral private key.",
       "createdAt": "2024-11-01T18:28:42Z",
-      "updatedAt": "2024-11-02T07:21:16Z",
+      "updatedAt": "2024-11-04T13:22:43Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "0eee72f28caf4a8c06bc9d661c7e39bf0271a424",
@@ -2180,7 +2180,36 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Let's wait for a decision from TLS chairs before merging it. Reuse is bad, but it would be a better if this requirement covers more than 3 codepoints.",
+          "createdAt": "2024-11-04T08:38:46Z",
+          "updatedAt": "2024-11-04T08:38:46Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "NONE",
+          "body": "> Let's wait for a decision from TLS chairs before merging it. Reuse is bad, but it would be a better if this requirement covers more than 3 codepoints.\r\n\r\nYes, Let's hope for a general MUST NOT. But just forbidding reuse for PQC key exchange or these 3 codepoints would be a big step forward. My expectation is that X25519MLKEM768 will dominate future TLS and should be made MTI in the future.\r\n\r\nI don't think reuse should be up to the endpoint. I would like to know that the endpoint I communicate with is not allowed too do reuse. If someone want to do reuse, I think that should be visible using something like https://www.ietf.org/archive/id/draft-rhrd-tls-tls13-visibility-01.txt\r\n\r\n",
+          "createdAt": "2024-11-04T09:03:48Z",
+          "updatedAt": "2024-11-04T09:03:48Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "+1, absolutely. This is definitely needed in general.",
+          "createdAt": "2024-11-04T09:57:49Z",
+          "updatedAt": "2024-11-04T09:57:49Z"
+        },
+        {
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I agree that it's good if reuse is disallowed, but we can't change that for existing key agreements immediately. Instead, I see we could require this for new key agreement such as these in this document.",
+          "createdAt": "2024-11-04T13:22:42Z",
+          "updatedAt": "2024-11-04T13:22:42Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOJfxSy86PsPBF",
