@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-05T01:17:30.057042+00:00",
+  "timestamp": "2024-11-07T01:17:48.398842+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -2169,7 +2169,7 @@
       "labels": [],
       "body": "Forbid reuse of ephemeral private key.",
       "createdAt": "2024-11-01T18:28:42Z",
-      "updatedAt": "2024-11-04T13:22:43Z",
+      "updatedAt": "2024-11-05T17:13:29Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "0eee72f28caf4a8c06bc9d661c7e39bf0271a424",
@@ -2208,6 +2208,27 @@
           "body": "I agree that it's good if reuse is disallowed, but we can't change that for existing key agreements immediately. Instead, I see we could require this for new key agreement such as these in this document.",
           "createdAt": "2024-11-04T13:22:42Z",
           "updatedAt": "2024-11-04T13:22:42Z"
+        },
+        {
+          "author": "ctz",
+          "authorAssociation": "NONE",
+          "body": "I feel like the text already in https://datatracker.ietf.org/doc/html/draft-ietf-tls-hybrid-design covers this in more precision -- maybe this change could re-refer to that part (6-ish paragraph in section 3.2) rather than restating it? ",
+          "createdAt": "2024-11-05T15:48:39Z",
+          "updatedAt": "2024-11-05T15:48:39Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "NONE",
+          "body": "@ctz I read 3.2 of draft-ietf-tls-hybrid-design and could not see where it forbid reuse. Could you quote.",
+          "createdAt": "2024-11-05T16:42:50Z",
+          "updatedAt": "2024-11-05T16:42:50Z"
+        },
+        {
+          "author": "ctz",
+          "authorAssociation": "NONE",
+          "body": "I was thinking of this part:\r\n\r\n> the KeyShareEntry.key_exchange values MUST be generated in one of the following two ways:\r\n\r\nI don't think either of the two specified ways admits reuse.\r\n\r\nThen again, there's some other text at the end of section 2 that more specifically describes and allows for reuse. I'm probably wrong here.",
+          "createdAt": "2024-11-05T16:50:35Z",
+          "updatedAt": "2024-11-05T16:50:35Z"
         }
       ],
       "reviews": [
@@ -2290,6 +2311,19 @@
               "updatedAt": "2024-11-02T07:21:16Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86QBRi4",
+          "commit": {
+            "abbreviatedOid": "84970cc"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-11-05T17:13:29Z",
+          "updatedAt": "2024-11-05T17:13:29Z",
+          "comments": []
         }
       ]
     }
