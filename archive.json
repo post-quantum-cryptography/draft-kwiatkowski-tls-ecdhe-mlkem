@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-10T01:22:19.812584+00:00",
+  "timestamp": "2024-11-12T01:16:53.419327+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -2169,7 +2169,7 @@
       "labels": [],
       "body": "Forbid reuse of ephemeral private key.",
       "createdAt": "2024-11-01T18:28:42Z",
-      "updatedAt": "2024-11-05T17:13:29Z",
+      "updatedAt": "2024-11-10T12:53:32Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "0eee72f28caf4a8c06bc9d661c7e39bf0271a424",
@@ -2229,6 +2229,13 @@
           "body": "I was thinking of this part:\r\n\r\n> the KeyShareEntry.key_exchange values MUST be generated in one of the following two ways:\r\n\r\nI don't think either of the two specified ways admits reuse.\r\n\r\nThen again, there's some other text at the end of section 2 that more specifically describes and allows for reuse. I'm probably wrong here.",
           "createdAt": "2024-11-05T16:50:35Z",
           "updatedAt": "2024-11-05T16:50:35Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Let's handle this as much as possible in the [draft-ietf-tls-hybrid-design](https://datatracker.ietf.org/doc/html/draft-ietf-tls-hybrid-design), so that it covers other codepoints that may potentially be introduced in the future.\r\nThis document may refer the corresponding section in draft-ietf-tls-hybrid-design once text is added.",
+          "createdAt": "2024-11-10T12:53:30Z",
+          "updatedAt": "2024-11-10T12:53:30Z"
         }
       ],
       "reviews": [
