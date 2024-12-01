@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-28T01:24:27.121543+00:00",
+  "timestamp": "2024-12-01T01:44:50.875215+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -2169,7 +2169,7 @@
       "labels": [],
       "body": "Forbid reuse of ephemeral private key.",
       "createdAt": "2024-11-01T18:28:42Z",
-      "updatedAt": "2024-11-10T12:53:32Z",
+      "updatedAt": "2024-11-29T00:01:06Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "0eee72f28caf4a8c06bc9d661c7e39bf0271a424",
@@ -2236,6 +2236,13 @@
           "body": "Let's handle this as much as possible in the [draft-ietf-tls-hybrid-design](https://datatracker.ietf.org/doc/html/draft-ietf-tls-hybrid-design), so that it covers other codepoints that may potentially be introduced in the future.\r\nThis document may refer the corresponding section in draft-ietf-tls-hybrid-design once text is added.",
           "createdAt": "2024-11-10T12:53:30Z",
           "updatedAt": "2024-11-10T12:53:30Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "I've submitted PR with this text to draft-ietf-tls-hybrid-design \r\n\r\nhttps://github.com/dstebila/draft-ietf-tls-hybrid-design/pull/39",
+          "createdAt": "2024-11-29T00:01:06Z",
+          "updatedAt": "2024-11-29T00:01:06Z"
         }
       ],
       "reviews": [
