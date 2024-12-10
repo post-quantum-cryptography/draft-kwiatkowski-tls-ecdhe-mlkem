@@ -64,7 +64,7 @@ informative:
          ANSI: ANS X9.62-2005
 --- abstract
 
-This draft defines three hybrid key agreements for TLS 1.3: X25519MLKEM768,
+This draft defines three hybrid key agreements for TLS 1.3: MLKEM768X25519,
 SecP256r1MLKEM768, and SecP384r1MLKEM1024 which combine
 a post-quantum KEM with an elliptic curve Diffie-Hellman (ECDHE).
 
@@ -77,7 +77,7 @@ ML-KEM is a key encapsulation method (KEM) defined in the {{FIPS203}}. It is des
 withstand cryptanalytic attacks from quantum computers.
 
 This document introduces three new supported groups for hybrid post-quantum key
-agreements in TLS 1.3: the X25519MLKEM768, SecP256r1MLKEM768,
+agreements in TLS 1.3: the MLKEM768X25519, SecP256r1MLKEM768,
 and SecP384r1MLKEM1024 which combine ML-KEM with ECDH
 in the manner of {{hybrid}}.
 
@@ -106,14 +106,14 @@ special publication 800-56Cr2 {{SP56C}} approves the usage of HKDF
 a FIPS-approved key-establishment scheme. FIPS also requires a certified implementation
 of the scheme, which will remain more ubiqutous for secp256r1 in the coming years.
 
-For this reason we put the ML-KEM shared secret first in X25519MLKEM768,
+For this reason we put the ML-KEM shared secret first in MLKEM768X25519,
 and the ECDH shared secret first in SecP256r1MLKEM768 and SecP384r1MLKEM1024.
 
 ## Construction
 
 ### Client share
 
-When the X25519MLKEM768 group is negotiated, the client's key_exchange value
+When the MLKEM768X25519 group is negotiated, the client's key_exchange value
 is the concatenation of the client's ML-KEM-768 encapsulation key
 and the client's X25519 ephemeral share.
 The size of the client share is 1216 bytes (1184 bytes for the ML-KEM part and 32 bytes for X25519).
@@ -132,7 +132,7 @@ client share is 1665 bytes (97 bytes for the secp384r1 and the 1568 for the ML-K
 
 ### Server share
 
-When the X25519MLKEM768 group is negotiated, the server's key exchange
+When the MLKEM768X25519 group is negotiated, the server's key exchange
 value is the concatenation of an ML-KEM ciphertext returned from encapsulation
 to the client's encapsulation key, and the server's ephemeral X25519 share.
 The size of the server share is 1120 bytes (1088 bytes for the ML-KEM part and 32 bytes for X25519).
@@ -165,7 +165,7 @@ and abort with an illegal_parameter alert if it fails.
 
 ### Shared secret
 
-For X25519MLKEM768, the shared secret is the concatenation of the ML-KEM
+For MLKEM768X25519, the shared secret is the concatenation of the ML-KEM
 shared secret and the X25519 shared secret. The shared secret is 64 bytes
 (32 bytes for each part).
 
@@ -223,13 +223,13 @@ ratified by NIST, version of ML-KEM which is specified in {{FIPS203}}.
  Comment:
  : Combining secp256r1 ECDH with ML-KEM-768
 
-## X25519MLKEM768
+## MLKEM768X25519
 
  Value:
  : 4588 (0x11EC)
 
  Description:
- : X25519MLKEM768
+ : MLKEM768X25519
 
  DTLS-OK:
  : Y
@@ -241,7 +241,7 @@ ratified by NIST, version of ML-KEM which is specified in {{FIPS203}}.
  : This document
 
  Comment:
- : Combining X25519 ECDH with ML-KEM-768
+ : Combining ML-KEM-768 with X25519 ECDH
 
 ## SecP384r1MLKEM1024
 
@@ -275,6 +275,7 @@ This document obsoletes 25497 and 25498 in the TLS Supported Groups registry.
 * draft-kwiatkowski-tls-ecdhe-mlkem-03:
   * Adds P-384 combined with ML-KEM-1024
   * Adds text that describes error-handling and outlines how the client and server must ensure the integrity of the key exchange process.
+  * Change the name of X25519MLKEM768 to MLKEM768X25519. This is done to align with the requirement described in section 3.2 of draft-ietf-tls-hybrid-design-11.
 
 * draft-kwiatkowski-tls-ecdhe-mlkem-02:
   * Adds section that mentions supported groups that this document obsoletes.
