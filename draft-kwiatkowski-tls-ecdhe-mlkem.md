@@ -109,6 +109,10 @@ of the scheme, which will remain more ubiqutous for secp256r1 in the coming year
 For this reason we put the ML-KEM shared secret first in X25519MLKEM768,
 and the ECDH shared secret first in SecP256r1MLKEM768 and SecP384r1MLKEM1024.
 
+Note: The group name X25519MLKEM768 does not adhere to the naming convention outlined in
+{{Section 3.2 of hybrid}}. Specifically, the order of shares in the concatenation has been
+reversed. This is due to historical reasons.
+
 ## Construction
 
 ### Client share
