@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-10T01:27:13.544413+00:00",
+  "timestamp": "2024-12-12T01:25:36.151385+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -2162,21 +2162,21 @@
       "id": "PR_kwDOJfxSy86AqTBg",
       "title": "Forbid reuse of ephemeral private key",
       "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/25",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emanjon",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "Forbid reuse of ephemeral private key.",
       "createdAt": "2024-11-01T18:28:42Z",
-      "updatedAt": "2024-11-29T00:01:06Z",
+      "updatedAt": "2024-12-11T16:23:59Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "0eee72f28caf4a8c06bc9d661c7e39bf0271a424",
       "headRepository": "emanjon/draft-kwiatkowski-tls-ecdhe-mlkem",
       "headRefName": "patch-1",
       "headRefOid": "84970ccb910d7d5446a8d3b03a4529a0c1d1e906",
-      "closedAt": null,
+      "closedAt": "2024-12-11T16:23:59Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -2243,6 +2243,13 @@
           "body": "I've submitted PR with this text to draft-ietf-tls-hybrid-design \r\n\r\nhttps://github.com/dstebila/draft-ietf-tls-hybrid-design/pull/39",
           "createdAt": "2024-11-29T00:01:06Z",
           "updatedAt": "2024-11-29T00:01:06Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "@emanjon  https://github.com/dstebila/draft-ietf-tls-hybrid-design/pull/39 is merged. I hope that this solves the problem.\r\nFeel free to re-open PR if something else needs to be added.",
+          "createdAt": "2024-12-11T16:23:59Z",
+          "updatedAt": "2024-12-11T16:23:59Z"
         }
       ],
       "reviews": [
@@ -2337,6 +2344,254 @@
           "body": "",
           "createdAt": "2024-11-05T17:13:29Z",
           "updatedAt": "2024-11-05T17:13:29Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "id": "PR_kwDOJfxSy86Ex6Nm",
+      "title": "X25519MLKEM768 to MLKEM768X25519",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/26",
+      "state": "OPEN",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "This is done to align with the requirement described in section 3.2 of draft-ietf-tls-hybrid-design-11.",
+      "createdAt": "2024-12-11T00:00:28Z",
+      "updatedAt": "2024-12-11T18:03:05Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "0eee72f28caf4a8c06bc9d661c7e39bf0271a424",
+      "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "headRefName": "kris/swap_order",
+      "headRefOid": "3a0a93662df76abe90d2503231d5dafb13efadd2",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I don't believe there is working group consensus to make this change, and X25519MLKEM768 *under that name* is widely deployed already.",
+          "createdAt": "2024-12-11T00:27:46Z",
+          "updatedAt": "2024-12-11T00:28:23Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Ha! I calculated (zulip + mailing list), 5 people prefer to swap, 4 people prefer not to, 2 people undecided/don't care.\r\nThe other thing we could is just to mention that the name X25519MLKEM768 is kind of exception and it is not aligned with draft-tls-hybrid. And that's it.\r\n\r\nFrankly, I would like to find consensus (whatever it is) and make the draft ready for adoption.",
+          "createdAt": "2024-12-11T00:42:35Z",
+          "updatedAt": "2024-12-11T00:45:30Z"
+        },
+        {
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> X25519MLKEM768 is kind of exception and it is not aligned with draft-tls-hybrid. \r\n\r\nI think that is painless enough. Did it come up in the list a people objected? I don't remember. \r\n",
+          "createdAt": "2024-12-11T03:15:37Z",
+          "updatedAt": "2024-12-11T03:15:37Z"
+        },
+        {
+          "author": "dconnolly",
+          "authorAssociation": "NONE",
+          "body": "> > X25519MLKEM768 is kind of exception and it is not aligned with draft-tls-hybrid.\r\n> \r\n> I think that is painless enough. Did it come up in the list a people objected? I don't remember.\r\n\r\nI did \ud83e\udee3",
+          "createdAt": "2024-12-11T04:28:29Z",
+          "updatedAt": "2024-12-11T04:28:29Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "How about that, then? https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/27?",
+          "createdAt": "2024-12-11T08:40:39Z",
+          "updatedAt": "2024-12-11T13:25:47Z"
+        },
+        {
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "cc @davidben",
+          "createdAt": "2024-12-11T11:05:47Z",
+          "updatedAt": "2024-12-11T11:05:47Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "@dconnolly what do you think about #27 ?",
+          "createdAt": "2024-12-11T11:38:14Z",
+          "updatedAt": "2024-12-11T11:38:14Z"
+        },
+        {
+          "author": "davidben",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "No strong preference on the name, as long as the wire format stays compatible. Leaving a footnote is fine with me.",
+          "createdAt": "2024-12-11T15:34:12Z",
+          "updatedAt": "2024-12-11T15:34:12Z"
+        },
+        {
+          "author": "dconnolly",
+          "authorAssociation": "NONE",
+          "body": "Since the wire format is the same, the codepoint is the same, it should align with -hybrid-design and have the name match the wire format, as intended",
+          "createdAt": "2024-12-11T16:24:36Z",
+          "updatedAt": "2024-12-11T16:24:36Z"
+        },
+        {
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "If you are a developer and see these two choices:\r\n\r\n- P256MLKEM768\r\n- MLKEM768X25519\r\n\r\nThe user might think: why is the MLKEM768 in a different place? Does it matter?\r\n\r\nOf course the order is immaterial. It's less confusing if we just use the names.\r\n\r\n- P256MLKEM768\r\n- X25519MLKEM768\r\n\r\nOf course this is more confusing to the crypto engineer that need to implement this in TLS libraries. But there are many more developers picking KEMs than there are crypto engineers implementing them. We shouldn't move undue complexity to the enduser.\r\n",
+          "createdAt": "2024-12-11T16:36:41Z",
+          "updatedAt": "2024-12-11T16:38:51Z"
+        },
+        {
+          "author": "davidben",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I do agree it would be a poor outcome if the names were different like that. It is... unfortunate that we ended up making the wire order inconsistent but the wire order impacts fewer people than the names.",
+          "createdAt": "2024-12-11T16:54:00Z",
+          "updatedAt": "2024-12-11T16:54:00Z"
+        },
+        {
+          "author": "dconnolly",
+          "authorAssociation": "NONE",
+          "body": "To be clear, this is a MUST in [-hybrid-design](https://www.ietf.org/archive/id/draft-ietf-tls-hybrid-design-11.html):\r\n\r\n<img width=\"760\" alt=\"image\" src=\"https://github.com/user-attachments/assets/bdc6614c-ea3a-4cc8-965c-05e37703b87c\" />\r\n",
+          "createdAt": "2024-12-11T17:29:42Z",
+          "updatedAt": "2024-12-11T17:29:42Z"
+        },
+        {
+          "author": "FiloSottile",
+          "authorAssociation": "NONE",
+          "body": "Strong preference for keeping X25519MLKEM768.\r\n\r\nWe already deployed it under that name and it's forever seared into our backwards-compatibility promise. golang/go#69985\r\n\r\nI also find the argument in https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/26#issuecomment-2536502901 persuasive. There are dozens (maybe less?) of implementers and tens of thousands (maybe more?) system administrators that will be exposed to these names. \r\n\r\nI'd even argue to change the overall rule to `[non-PQ][PQ]` in -hybrid-design.",
+          "createdAt": "2024-12-11T17:30:12Z",
+          "updatedAt": "2024-12-11T17:30:12Z"
+        },
+        {
+          "author": "dconnolly",
+          "authorAssociation": "NONE",
+          "body": "> Strong preference for keeping X25519MLKEM768.\r\n> \r\n> We already deployed it under that name and it's forever seared into our backwards-compatibility promise. [golang/go#69985](https://github.com/golang/go/issues/69985)\r\n> \r\n> I also find the argument in [#26 (comment)](https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/26#issuecomment-2536502901) persuasive. There are dozens (maybe less?) of implementers and tens of thousands (maybe more?) system administrators that will be exposed to these names.\r\n> \r\n> I'd even argue to change the overall rule to `[non-PQ][PQ]` in -hybrid-design.\r\n\r\nYou made backwards-compatibility commitments on an unstable document?",
+          "createdAt": "2024-12-11T17:34:32Z",
+          "updatedAt": "2024-12-11T17:34:32Z"
+        },
+        {
+          "author": "dconnolly",
+          "authorAssociation": "NONE",
+          "body": "> Strong preference for keeping X25519MLKEM768.\r\n> \r\n> We already deployed it under that name and it's forever seared into our backwards-compatibility promise. [golang/go#69985](https://github.com/golang/go/issues/69985)\r\n> \r\n> I also find the argument in [#26 (comment)](https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/26#issuecomment-2536502901) persuasive. There are dozens (maybe less?) of implementers and tens of thousands (maybe more?) system administrators that will be exposed to these names.\r\n> \r\n> I'd even argue to change the overall rule to `[non-PQ][PQ]` in -hybrid-design.\r\n\r\nAlso -hybrid-design has already gone through last call",
+          "createdAt": "2024-12-11T17:35:13Z",
+          "updatedAt": "2024-12-11T17:35:13Z"
+        },
+        {
+          "author": "FiloSottile",
+          "authorAssociation": "NONE",
+          "body": "I deployed a security-relevant improvement to my users, the same that's deployed by browsers and CDNs, and referred to it by its current name. I stand by that choice.\r\n\r\n-hybrid-design is a sign, not a cop, and it would be a deeply sad outcome if we deliberately chose to sign up thousands of people for confusion because we feel we can't amend a last call or add a note saying it doesn't match a document that anyway AFAICT is not necessary to implement X25519MLKEM768.\r\n\r\nLooking at this thread, X25519MLKEM768 has rough consensus and running code. ",
+          "createdAt": "2024-12-11T17:42:09Z",
+          "updatedAt": "2024-12-11T17:42:09Z"
+        },
+        {
+          "author": "FiloSottile",
+          "authorAssociation": "NONE",
+          "body": "Also, the IANA registry already has an entry for 4588 with name X25519MLKEM768.\r\n\r\nhttps://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-8\r\n\r\nIt feels completely legitimate to rely on names in the IANA registry not to change. Can IANA registries be changed in a non-backwards compatible way? What would even be the point of IANA then?",
+          "createdAt": "2024-12-11T17:48:47Z",
+          "updatedAt": "2024-12-11T17:48:47Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "@FiloSottile, _if_ we proceed with this change, then the plan is to update this name in IANA without modifying the code point value.\r\n\r\n",
+          "createdAt": "2024-12-11T18:03:04Z",
+          "updatedAt": "2024-12-11T18:03:04Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJfxSy86Up3d7",
+          "commit": {
+            "abbreviatedOid": "3a0a936"
+          },
+          "author": "dconnolly",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-12-11T00:20:08Z",
+          "updatedAt": "2024-12-11T00:20:08Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "id": "PR_kwDOJfxSy86E0gEd",
+      "title": "Exception for X25519MLKEM768 naming",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/27",
+      "state": "OPEN",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-12-11T08:40:10Z",
+      "updatedAt": "2024-12-11T19:41:30Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "0eee72f28caf4a8c06bc9d661c7e39bf0271a424",
+      "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "headRefName": "kris/exception",
+      "headRefOid": "c0dff294c61a087bd5849a3f7895f895872b2686",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "dconnolly",
+          "authorAssociation": "NONE",
+          "body": "This is not in compliance with [-hybrid-design](https://www.ietf.org/archive/id/draft-ietf-tls-hybrid-design-11.html):\r\n\r\n<img width=\"764\" alt=\"image\" src=\"https://github.com/user-attachments/assets/5e042535-d8aa-498a-b731-f489cdbeb42d\" />\r\n\r\n",
+          "createdAt": "2024-12-11T17:30:36Z",
+          "updatedAt": "2024-12-11T17:30:36Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJfxSy86UuVwq",
+          "commit": {
+            "abbreviatedOid": "c0dff29"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-12-11T11:04:49Z",
+          "updatedAt": "2024-12-11T11:04:49Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJfxSy86U0ES4",
+          "commit": {
+            "abbreviatedOid": "c0dff29"
+          },
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-11T19:41:00Z",
+          "updatedAt": "2024-12-11T19:41:00Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "LGTM",
+              "createdAt": "2024-12-11T19:41:00Z",
+              "updatedAt": "2024-12-11T19:41:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86U0E0F",
+          "commit": {
+            "abbreviatedOid": "c0dff29"
+          },
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-12-11T19:41:30Z",
+          "updatedAt": "2024-12-11T19:41:30Z",
           "comments": []
         }
       ]
