@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-12T01:25:36.151385+00:00",
+  "timestamp": "2024-12-15T01:39:08.680043+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -2360,7 +2360,7 @@
       "labels": [],
       "body": "This is done to align with the requirement described in section 3.2 of draft-ietf-tls-hybrid-design-11.",
       "createdAt": "2024-12-11T00:00:28Z",
-      "updatedAt": "2024-12-11T18:03:05Z",
+      "updatedAt": "2024-12-13T16:18:26Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "0eee72f28caf4a8c06bc9d661c7e39bf0271a424",
@@ -2497,6 +2497,34 @@
           "body": "@FiloSottile, _if_ we proceed with this change, then the plan is to update this name in IANA without modifying the code point value.\r\n\r\n",
           "createdAt": "2024-12-11T18:03:04Z",
           "updatedAt": "2024-12-11T18:03:04Z"
+        },
+        {
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@FiloSottile\r\n> Also, the IANA registry already has an entry for 4588 with name X25519MLKEM768.\r\n> \r\n> https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-8\r\n> \r\n> It feels completely legitimate to rely on names in the IANA registry not to change. Can IANA registries be changed in a non-backwards compatible way? What would even be the point of IANA then?\r\n\r\nthe IDs in IANA referenced by drafts can definitely change, they're not immutable\r\n\r\nwhile I agree that changing the name is painful, providing an alias, where both `X25519MLKEM768` and `MLKEM768X25519` will work to enable the same group isn't insurmountable\r\n\r\nand just looking at gnutls, openssl and NSS I see different names for this fundamentally the same group already; hell, we've had OpenSSL refer to `secp256r1` as `prime256v1`  as basically the only implementation and the internet still managed to widely deploy it, so it's not like Go _needs_ to change the name to align it with IANA\r\n\r\nat the end of the day, the users don't care (or even know) what key exchange they use, as long as the connection works, they're happy",
+          "createdAt": "2024-12-12T17:06:58Z",
+          "updatedAt": "2024-12-12T17:06:58Z"
+        },
+        {
+          "author": "rolandshoemaker",
+          "authorAssociation": "NONE",
+          "body": "Chiming in as a maintainer of the Go crypto libraries. While I understand the intent behind this change, I would like to add that this seems likely to cause more pain and confusion than it is likely to solve. The mismatch between the name and wire format is unfortunate, but that property is likely of importance to 1% of the people who will be exposed to the name.\r\n\r\nSwitching now, after many libraries have already deployed using the current name, and much documentation, and many blog posts have been written using the current name, feels like it'd cause significant confusion.\r\n\r\nAs a library maintainer, the idea that users don't need to worry about these naming choices strikes me as incorrect. The confusing naming choices of ciphersuites and crypto primitives, and a lack of consistency around them, turns out to be a consistent pain point for users, and for maintainers who have to answer their questions. The NIST P-256/secp256r1/prime256v1 confusion is still something we get questions about, and the RFC 8422 Appendix A \"clarifications\" have done nothing to prevent this.\r\n\r\nIn this case we are perhaps lucky that the proposed change is just reversing the order, but I would put a not insignificant amount of money on the fact that if the name changes now, I'll be fielding questions about whether X25519MLKEM768 is the same thing as MLKEM768X25519, or why we don't implement one or the other, for the foreseeable future.\r\n\r\nFor better or worse, (quite a bit of) deployed software now uses the name X25519MLKEM768, and search engines are going to perpetuate this mistake for eternity, whether or not the name is changed at this late point. ",
+          "createdAt": "2024-12-12T18:25:54Z",
+          "updatedAt": "2024-12-13T16:18:26Z"
+        },
+        {
+          "author": "alexzas",
+          "authorAssociation": "NONE",
+          "body": "An implementer here adding hybrid MLKEM to our CryptoComply library. I must admit I initially assumed that the order of key shares is dictated by scheme name (which is correct for most other schemes) and spent several days debugging failed connections to Chrome client. \r\nI wonder if \"NIST intends to allow the 800-56C key derivation methods to apply to shared secrets of the form Z = T || Z\u2019, where T and Z\u2019 are ...in reverse order.\" should help here? \r\n\r\nMy assumption is that PQC migration will affect much wider audience, with some not even familiar with FIPS, but they might open wireshark and see inconsistency on the wire. \r\n   \r\nI hope we are still in the early days of PQC migration and can make things right.. \r\n\r\nmy 2c,\r\nAlex",
+          "createdAt": "2024-12-13T13:43:00Z",
+          "updatedAt": "2024-12-13T13:43:00Z"
+        },
+        {
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> I must admit I initially assumed that the order of key shares is dictated by scheme name (which is correct for most other schemes) and spent several days debugging failed connections to Chrome client.\r\n\r\nSorry about that :(.\r\n\r\n> My assumption is that PQC migration will affect much wider audience, with some not even familiar with FIPS, but they might open wireshark and see inconsistency on the wire.\r\n\r\nOn the wire these are almost uniform random blobs. Technically I can tell the order with good probability (because coefficients mod 3329 are stored in 12 bits), but I doubt a casual user would see that.\r\n\r\n",
+          "createdAt": "2024-12-13T14:09:30Z",
+          "updatedAt": "2024-12-13T14:09:30Z"
         }
       ],
       "reviews": [
@@ -2527,7 +2555,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-12-11T08:40:10Z",
-      "updatedAt": "2024-12-11T19:41:30Z",
+      "updatedAt": "2024-12-12T17:42:51Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "0eee72f28caf4a8c06bc9d661c7e39bf0271a424",
@@ -2592,6 +2620,32 @@
           "body": "",
           "createdAt": "2024-12-11T19:41:30Z",
           "updatedAt": "2024-12-11T19:41:30Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJfxSy86VA2KU",
+          "commit": {
+            "abbreviatedOid": "c0dff29"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-12-12T15:33:42Z",
+          "updatedAt": "2024-12-12T15:33:42Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJfxSy86VCL-Y",
+          "commit": {
+            "abbreviatedOid": "c0dff29"
+          },
+          "author": "ctz",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "This situation is unfortunate but I think this direction leaves us with the minimum amount of mess.",
+          "createdAt": "2024-12-12T17:42:51Z",
+          "updatedAt": "2024-12-12T17:42:51Z",
           "comments": []
         }
       ]
