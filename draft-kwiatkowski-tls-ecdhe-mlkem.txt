@@ -5,12 +5,12 @@
 Transport Layer Security                                  K. Kwiatkowski
 Internet-Draft                                                  PQShield
 Intended status: Informational                             P. Kampanakis
-Expires: 19 April 2025                                               AWS
+Expires: 19 June 2025                                                AWS
                                                         B. E. Westerbaan
                                                               Cloudflare
                                                               D. Stebila
                                                   University of Waterloo
-                                                         16 October 2024
+                                                        16 December 2024
 
 
        Post-quantum hybrid ECDHE-MLKEM Key Agreement for TLSv1.3
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 April 2025.
+   This Internet-Draft will expire on 19 June 2025.
 
 Copyright Notice
 
@@ -252,43 +252,28 @@ Table of Contents
 5.1.  SecP256r1MLKEM768
 
    Value:  4587 (0x11EB)
-
    Description:  SecP256r1MLKEM768
-
    DTLS-OK:  Y
-
    Recommended:  N
-
    Reference:  This document
-
    Comment:  Combining secp256r1 ECDH with ML-KEM-768
 
 5.2.  X25519MLKEM768
 
    Value:  4588 (0x11EC)
-
    Description:  X25519MLKEM768
-
    DTLS-OK:  Y
-
    Recommended:  N
-
    Reference:  This document
-
    Comment:  Combining X25519 ECDH with ML-KEM-768
 
 5.3.  SecP384r1MLKEM1024
 
    Value:  4589 (0x11ED)
-
    Description:  SecP384r1MLKEM1024
-
    DTLS-OK:  Y
-
    Recommended:  N
-
    Reference:  This document
-
    Comment:  Combining secp384r1 ECDH with ML-KEM-1024
 
 5.4.  Obsoleted Supported Groups
@@ -300,9 +285,9 @@ Table of Contents
 
 6.1.  Normative References
 
-   [FIPS203]  "Module-Lattice-Based Key-Encapsulation Mechanism
-              Standard", National Institute of Standards and Technology,
-              DOI 10.6028/nist.fips.203, August 2024,
+   [FIPS203]  "Module-lattice-based key-encapsulation mechanism
+              standard", National Institute of Standards and Technology
+              (U.S.), DOI 10.6028/nist.fips.203, August 2024,
               <https://doi.org/10.6028/nist.fips.203>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -362,9 +347,9 @@ Table of Contents
 
    [tlsiana]  Salowey, J. A. and S. Turner, "IANA Registry Updates for
               TLS and DTLS", Work in Progress, Internet-Draft, draft-
-              ietf-tls-rfc8447bis-09, 30 April 2024,
+              ietf-tls-rfc8447bis-10, 3 November 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
-              rfc8447bis-09>.
+              rfc8447bis-10>.
 
    [xyber]    Westerbaan, B. and D. Stebila, "X25519Kyber768Draft00
               hybrid post-quantum key agreement", Work in Progress,
