@@ -222,6 +222,7 @@ ratified by NIST, version of ML-KEM which is specified in {{FIPS203}}.
 
  Comment:
  : Combining secp256r1 ECDH with ML-KEM-768
+ {: spacing="compact"}
 
 ## X25519MLKEM768
 
@@ -242,6 +243,7 @@ ratified by NIST, version of ML-KEM which is specified in {{FIPS203}}.
 
  Comment:
  : Combining X25519 ECDH with ML-KEM-768
+{: spacing="compact"}
 
 ## SecP384r1MLKEM1024
 
@@ -262,7 +264,7 @@ ratified by NIST, version of ML-KEM which is specified in {{FIPS203}}.
 
  Comment:
  : Combining secp384r1 ECDH with ML-KEM-1024
-
+{: spacing="compact"}
 
 ## Obsoleted Supported Groups
 
