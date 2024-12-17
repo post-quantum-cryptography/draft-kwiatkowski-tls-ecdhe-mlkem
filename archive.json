@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-15T01:39:08.680043+00:00",
+  "timestamp": "2024-12-17T01:25:45.188639+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -2360,10 +2360,10 @@
       "labels": [],
       "body": "This is done to align with the requirement described in section 3.2 of draft-ietf-tls-hybrid-design-11.",
       "createdAt": "2024-12-11T00:00:28Z",
-      "updatedAt": "2024-12-13T16:18:26Z",
+      "updatedAt": "2024-12-16T22:47:23Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
-      "baseRefOid": "0eee72f28caf4a8c06bc9d661c7e39bf0271a424",
+      "baseRefOid": "5c011f12b5dc794db15fbd73d04d5561d822ef9f",
       "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "headRefName": "kris/swap_order",
       "headRefOid": "3a0a93662df76abe90d2503231d5dafb13efadd2",
@@ -2555,10 +2555,10 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-12-11T08:40:10Z",
-      "updatedAt": "2024-12-12T17:42:51Z",
+      "updatedAt": "2024-12-16T22:47:23Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
-      "baseRefOid": "0eee72f28caf4a8c06bc9d661c7e39bf0271a424",
+      "baseRefOid": "5c011f12b5dc794db15fbd73d04d5561d822ef9f",
       "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "headRefName": "kris/exception",
       "headRefOid": "c0dff294c61a087bd5849a3f7895f895872b2686",
@@ -2646,6 +2646,56 @@
           "body": "This situation is unfortunate but I think this direction leaves us with the minimum amount of mess.",
           "createdAt": "2024-12-12T17:42:51Z",
           "updatedAt": "2024-12-12T17:42:51Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "id": "PR_kwDOJfxSy86FawUH",
+      "title": "Compact spacing for IANA considerations",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/28",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Just a cosmetic change.\r\n\r\n(Also, you should consider pushing a revision of the document to get the P-384 suite out there.)",
+      "createdAt": "2024-12-16T22:24:25Z",
+      "updatedAt": "2024-12-16T22:44:39Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "0eee72f28caf4a8c06bc9d661c7e39bf0271a424",
+      "headRepository": "martinthomson/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "headRefName": "patch-1",
+      "headRefOid": "e991332ece6cf5eb1a0040522efc2cabe192efea",
+      "closedAt": "2024-12-16T22:44:39Z",
+      "mergedAt": "2024-12-16T22:44:38Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "dc3122f642b807672b7f17eeda4d394b3b021326"
+      },
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "@martinthomson Thanks. Yes, I'll push for P384 very soon. I was hoping -03 will resolve issue around naming of X25519MLKEM768.",
+          "createdAt": "2024-12-16T22:43:16Z",
+          "updatedAt": "2024-12-16T22:44:17Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJfxSy86VdTVU",
+          "commit": {
+            "abbreviatedOid": "e991332"
+          },
+          "author": "dconnolly",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-12-16T22:32:43Z",
+          "updatedAt": "2024-12-16T22:32:43Z",
           "comments": []
         }
       ]
