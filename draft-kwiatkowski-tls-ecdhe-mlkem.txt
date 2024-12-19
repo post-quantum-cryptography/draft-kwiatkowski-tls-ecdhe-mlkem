@@ -5,12 +5,12 @@
 Transport Layer Security                                  K. Kwiatkowski
 Internet-Draft                                                  PQShield
 Intended status: Informational                             P. Kampanakis
-Expires: 19 June 2025                                                AWS
+Expires: 22 June 2025                                                AWS
                                                         B. E. Westerbaan
                                                               Cloudflare
                                                               D. Stebila
                                                   University of Waterloo
-                                                        16 December 2024
+                                                        19 December 2024
 
 
        Post-quantum hybrid ECDHE-MLKEM Key Agreement for TLSv1.3
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 June 2025.
+   This Internet-Draft will expire on 22 June 2025.
 
 Copyright Notice
 
@@ -143,6 +143,11 @@ Table of Contents
    For this reason we put the ML-KEM shared secret first in
    X25519MLKEM768, and the ECDH shared secret first in SecP256r1MLKEM768
    and SecP384r1MLKEM1024.
+
+   Note: The group name X25519MLKEM768 does not adhere to the naming
+   convention outlined in Section 3.2 of [hybrid].  Specifically, the
+   order of shares in the concatenation has been reversed.  This is due
+   to historical reasons.
 
 3.1.  Construction
 
