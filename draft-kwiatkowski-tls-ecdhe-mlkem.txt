@@ -372,6 +372,11 @@ Appendix A.  Change log
          client and server must ensure the integrity of the key exchange
          process.
 
+      -  Adds note on the incompatibility of the codepoint name
+         X25519MLKEM768 with [hybrid].
+
+      -  Various cosmetic changes.
+
    *  draft-kwiatkowski-tls-ecdhe-mlkem-02:
 
       -  Adds section that mentions supported groups that this document
