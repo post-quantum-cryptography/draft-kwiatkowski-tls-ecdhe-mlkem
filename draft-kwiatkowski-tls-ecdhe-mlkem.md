@@ -281,6 +281,8 @@ This document obsoletes 25497 and 25498 in the TLS Supported Groups registry.
 * draft-kwiatkowski-tls-ecdhe-mlkem-03:
   * Adds P-384 combined with ML-KEM-1024
   * Adds text that describes error-handling and outlines how the client and server must ensure the integrity of the key exchange process.
+  * Adds note on the incompatibility of the codepoint name X25519MLKEM768 with {{hybrid}}.
+  * Various cosmetic changes.
 
 * draft-kwiatkowski-tls-ecdhe-mlkem-02:
   * Adds section that mentions supported groups that this document obsoletes.
