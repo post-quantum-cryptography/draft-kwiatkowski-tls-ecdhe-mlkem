@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-19T01:23:24.551510+00:00",
+  "timestamp": "2024-12-22T01:25:06.785047+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -2548,24 +2548,26 @@
       "id": "PR_kwDOJfxSy86E0gEd",
       "title": "Exception for X25519MLKEM768 naming",
       "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/27",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "kriskwiatkowski",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-12-11T08:40:10Z",
-      "updatedAt": "2024-12-16T22:47:23Z",
+      "updatedAt": "2024-12-19T10:41:58Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "5c011f12b5dc794db15fbd73d04d5561d822ef9f",
       "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "headRefName": "kris/exception",
       "headRefOid": "c0dff294c61a087bd5849a3f7895f895872b2686",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-12-19T10:41:53Z",
+      "mergedAt": "2024-12-19T10:41:53Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "0197886417fda04fded659d8611dacd2a1904914"
+      },
       "comments": [
         {
           "author": "dconnolly",
@@ -2573,6 +2575,13 @@
           "body": "This is not in compliance with [-hybrid-design](https://www.ietf.org/archive/id/draft-ietf-tls-hybrid-design-11.html):\r\n\r\n<img width=\"764\" alt=\"image\" src=\"https://github.com/user-attachments/assets/5e042535-d8aa-498a-b731-f489cdbeb42d\" />\r\n\r\n",
           "createdAt": "2024-12-11T17:30:36Z",
           "updatedAt": "2024-12-11T17:30:36Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "Let's merge it as this is current state of the art.\r\nI don't think there is clear consensus regarding changing the name of X25519-MLKEM768. We will get a consensus after document is adopted.",
+          "createdAt": "2024-12-19T10:41:13Z",
+          "updatedAt": "2024-12-19T10:41:13Z"
         }
       ],
       "reviews": [
