@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-02T01:18:16.513080+00:00",
+  "timestamp": "2025-01-05T01:25:05.599178+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -2360,7 +2360,7 @@
       "labels": [],
       "body": "This is done to align with the requirement described in section 3.2 of draft-ietf-tls-hybrid-design-11.",
       "createdAt": "2024-12-11T00:00:28Z",
-      "updatedAt": "2024-12-16T22:47:23Z",
+      "updatedAt": "2025-01-03T01:38:32Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "5c011f12b5dc794db15fbd73d04d5561d822ef9f",
@@ -2525,6 +2525,13 @@
           "body": "> I must admit I initially assumed that the order of key shares is dictated by scheme name (which is correct for most other schemes) and spent several days debugging failed connections to Chrome client.\r\n\r\nSorry about that :(.\r\n\r\n> My assumption is that PQC migration will affect much wider audience, with some not even familiar with FIPS, but they might open wireshark and see inconsistency on the wire.\r\n\r\nOn the wire these are almost uniform random blobs. Technically I can tell the order with good probability (because coefficients mod 3329 are stored in 12 bits), but I doubt a casual user would see that.\r\n\r\n",
           "createdAt": "2024-12-13T14:09:30Z",
           "updatedAt": "2024-12-13T14:09:30Z"
+        },
+        {
+          "author": "vdukhovni",
+          "authorAssociation": "NONE",
+          "body": "I fail to see how the requirement on the wire order of the components matching the order of algorithms defining the hybrid translates to a requirement on the group **name**.  The group **name** `X25519MLKEM768` can easily refer the ordered algorithm pair `(MLKEM768, X25519)`, which then produce their outputs in the widely implemented order expected of the code point. The group name (bikeshed colour) could be `REDBLUE` for all it matters.\r\n\r\nLet's not change the name now unless (rather unexpectedly) the wire order is changing and a new code point is being assigned.",
+          "createdAt": "2025-01-03T00:51:24Z",
+          "updatedAt": "2025-01-03T00:51:24Z"
         }
       ],
       "reviews": [
@@ -2540,6 +2547,50 @@
           "createdAt": "2024-12-11T00:20:08Z",
           "updatedAt": "2024-12-11T00:20:08Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOJfxSy86WtVdv",
+          "commit": {
+            "abbreviatedOid": "3a0a936"
+          },
+          "author": "vdukhovni",
+          "authorAssociation": "NONE",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2025-01-03T01:30:54Z",
+          "updatedAt": "2025-01-03T01:38:32Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "This confuses identities with identifiers. The name is just an identifier, and so long as the group by that name is defined to be an ordered combination of `ML-KEM-768` (NIST name) and `X25519`, there is no conflict with the hybrid design draft, that draft isn't about how things are named, it is about how they're defined.\r\n\r\nSo this change feels gratuitous.",
+              "createdAt": "2025-01-03T01:30:54Z",
+              "updatedAt": "2025-01-03T01:38:32Z"
+            },
+            {
+              "originalPosition": 23,
+              "body": "Whatever the reason, the definition should first state the order of the two component algorithms (state the definition of the group), and only then perhaps give a rationale, or note that in that particular order the result may be better aligned with FIPS (which may or may not be true).",
+              "createdAt": "2025-01-03T01:33:55Z",
+              "updatedAt": "2025-01-03T01:38:32Z"
+            },
+            {
+              "originalPosition": 33,
+              "body": "```suggestion\r\nand the client's X25519 ephemeral share, in that order.\r\n```\r\nThis finally is the definition of the group, though one could also state that the hybrid algorithm is an ordered combination of `ML-KEM-768` and `X25519` and the wire order is then, in accordance with hybrid-design, ML-KEM first, X25519 second.",
+              "createdAt": "2025-01-03T01:34:29Z",
+              "updatedAt": "2025-01-03T01:38:32Z"
+            },
+            {
+              "originalPosition": 74,
+              "body": "This part is justified, since it is reaffirming the order of the components that the group represents as identified by the group name.",
+              "createdAt": "2025-01-03T01:38:07Z",
+              "updatedAt": "2025-01-03T01:38:32Z"
+            },
+            {
+              "originalPosition": 82,
+              "body": "Let's not.",
+              "createdAt": "2025-01-03T01:38:24Z",
+              "updatedAt": "2025-01-03T01:38:32Z"
+            }
+          ]
         }
       ]
     },
