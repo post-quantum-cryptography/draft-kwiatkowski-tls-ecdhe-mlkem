@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-14T01:15:52.104378+00:00",
+  "timestamp": "2025-01-16T01:16:56.111944+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -2353,21 +2353,21 @@
       "id": "PR_kwDOJfxSy86Ex6Nm",
       "title": "X25519MLKEM768 to MLKEM768X25519",
       "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/26",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "kriskwiatkowski",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "This is done to align with the requirement described in section 3.2 of draft-ietf-tls-hybrid-design-11.",
       "createdAt": "2024-12-11T00:00:28Z",
-      "updatedAt": "2025-01-03T01:38:32Z",
+      "updatedAt": "2025-01-15T22:09:17Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "5c011f12b5dc794db15fbd73d04d5561d822ef9f",
       "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "headRefName": "kris/swap_order",
       "headRefOid": "3a0a93662df76abe90d2503231d5dafb13efadd2",
-      "closedAt": null,
+      "closedAt": "2025-01-15T22:07:28Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -2532,6 +2532,13 @@
           "body": "I fail to see how the requirement on the wire order of the components matching the order of algorithms defining the hybrid translates to a requirement on the group **name**.  The group **name** `X25519MLKEM768` can easily refer the ordered algorithm pair `(MLKEM768, X25519)`, which then produce their outputs in the widely implemented order expected of the code point. The group name (bikeshed colour) could be `REDBLUE` for all it matters.\r\n\r\nLet's not change the name now unless (rather unexpectedly) the wire order is changing and a new code point is being assigned.",
           "createdAt": "2025-01-03T00:51:24Z",
           "updatedAt": "2025-01-03T00:51:24Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "IETF believes in \u201din rough consensus and running code\u201d. We may not have rough consensus here, but running code is definitely there.\r\nI'll close this PR, it seems most participants in this discussion wish not to do it (including myself now).\r\n",
+          "createdAt": "2025-01-15T22:07:28Z",
+          "updatedAt": "2025-01-15T22:09:17Z"
         }
       ],
       "reviews": [
