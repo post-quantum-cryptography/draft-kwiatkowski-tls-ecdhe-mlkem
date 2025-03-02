@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-27T01:21:02.670127+00:00",
+  "timestamp": "2025-03-02T01:25:38.540920+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -360,7 +360,7 @@
       "labels": [],
       "body": "3.1.3 says:\n\n> For all groups, both client and server MUST calculate the ECDH part of the shared secret as described in [Section 7.4.2](https://rfc-editor.org/rfc/rfc8446#section-7.4.2) of [[RFC8446](https://www.ietf.org/archive/id/draft-kwiatkowski-tls-ecdhe-mlkem-03.html#RFC8446)], including the shared secret check as described in Section 5.7.1.2 of [[SP56A](https://www.ietf.org/archive/id/draft-kwiatkowski-tls-ecdhe-mlkem-03.html#SP56A)] or the all-zero shared secret check (depending on the curve), and abort the connection with an illegal_parameter alert if it fails.\n\nLooking at SP561, I'm guessing this is referring to this bit?\n\n> If P = \u00d8, destroy all intermediate values used in the attempted computation of P, then output an error indicator, and exit this process without further processing.\n\nCalling it the \"shared secret\" check is slightly odd because P isn't the shared secret Z. It's something you use to compute it. (Also if you somehow forgot this check, you would be unable to compute Z in the first place. The point at infinity has no x-coordinate.)\n\nMore importantly, this case is actually impossible. All the applicable curves here are prime order (the SP56A citation is not talking about X25519), so this will only happen if the peer key was also the point at infinity. But the spec already says:\n\n> For all groups, both client and server MUST process the ECDH part as described in [Section 4.2.8.2](https://rfc-editor.org/rfc/rfc8446#section-4.2.8.2) of [[RFC8446](https://www.ietf.org/archive/id/draft-kwiatkowski-tls-ecdhe-mlkem-03.html#RFC8446)], including all validity checks, and abort with an illegal_parameter alert if it fails.\n\nThat text already precludes the point at infinity.\n\nWe also don't _need_ to reiterate things for ECDH that are already required in the specification for ECDH. It can be useful to reiterate things to emphasize them, but since this is actually impossible, it doesn't really need to be emphasized. (The X25519 check is different because that's optional in the base X25519 specification.)\n\nThus we should delete that confusing clause and simply replace it with:\n\n> For all groups, both client and server MUST calculate the ECDH part of the shared secret as described in [Section 7.4.2](https://rfc-editor.org/rfc/rfc8446#section-7.4.2) of [[RFC8446](https://www.ietf.org/archive/id/draft-kwiatkowski-tls-ecdhe-mlkem-03.html#RFC8446)], including the all-zero shared secret check for X25519, and abort the connection with an illegal_parameter alert if it fails.\n\n",
       "createdAt": "2025-02-26T20:43:37Z",
-      "updatedAt": "2025-02-26T21:50:55Z",
+      "updatedAt": "2025-02-28T15:56:43Z",
       "closedAt": null,
       "comments": [
         {
@@ -376,6 +376,20 @@
           "body": "@tomato42 Ok by you?",
           "createdAt": "2025-02-26T21:50:54Z",
           "updatedAt": "2025-02-26T21:50:54Z"
+        },
+        {
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "true, **P** is not the shared secret, but the implementation should still check if it isn't the point at infinity, it's a trivial check and may be _necessary_ for later standards that use different curves and this RFC as template...",
+          "createdAt": "2025-02-28T12:57:34Z",
+          "updatedAt": "2025-02-28T12:57:34Z"
+        },
+        {
+          "author": "davidben",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@tomato42 Looks like your responses on the PR and the issue are different, so I'll respond to those on each separately...\n\nCan you give an example of a different curve that where this would be necessary? (I believe the only curves in the TLS supported group registry with cofactors are X25519 and X448, where this would not be applicable anyway. Although I did not check the ones added in RFC 9189. Those aren't readily available in OpenSSL's giant table.)\n\nPeople mostly do not use curves with cofactors. Of the prime-field curves (as opposed to the binary field ones, which ~no one uses) in OpenSSL, the only ones with cofactors are secp112r2 and secp128r2. Is the concern that we might introduce one of them to TLS and hybridize with PQC?\n\nCofactors also actually complicate far more than this check. Now you have to worry about whether your ECDH algorithm is specified to clear the cofactor and whatnot. (I believe this is often called \"cofactor ECDH\".) So it's already the case that this draft would not be a suitable template.\n\nSure, almost all implementations would want to check. It is natural to implement ECDH by calling your generic EC point x-coordinate extraction function, and that would need to account for the point at infinity. As noted in https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/31#issuecomment-2690972391, the check is *already* covered by citation, because those specifications are also structured like that. But since it is _impossible_, not doing the check and doing it are equally conformant. So we should follow RFC 8446's precedent and observe that this check does not rise to the level of needing reiterating up the stack. We should retain our limited implementor attention budget on something that actually matters.",
+          "createdAt": "2025-02-28T15:56:42Z",
+          "updatedAt": "2025-02-28T15:56:42Z"
         }
       ]
     }
@@ -2826,7 +2840,7 @@
       "labels": [],
       "body": "Closes #30. See #30 for details.",
       "createdAt": "2025-02-26T20:46:44Z",
-      "updatedAt": "2025-02-26T21:49:46Z",
+      "updatedAt": "2025-02-28T15:41:13Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "4dd74c1198cabd487b56018de584ca5646c618e3",
@@ -2851,9 +2865,56 @@
           "body": "> CI breakage is unrelated. See https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/32\r\n\r\nRebased",
           "createdAt": "2025-02-26T21:49:45Z",
           "updatedAt": "2025-02-26T21:49:45Z"
+        },
+        {
+          "author": "davidben",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@tomato42 Looks like your responses on the PR and the issue are different, so I'll respond to those on each separately...\r\n\r\nThis is about ECDH, not ECDSA, and even there is no connection to interoperability here. If your implementation happened to use a different ECDH specification, without this check (does such a specification exist? there are a lot of ECDH specifications, but I've never seen one that omits it), it would make no difference because this case is _not possible_.\r\n\r\nMoreover, it doesn't matter what other specifications exist because we already say to follow Section 7.4.2 of RFC 8446, which is already responsible for covering all this. If there's something missing in RFC 8446, we should fix it in rfc8446bis. But also there isn't anything missing in RFC 8446, except that maybe it would be nice to cite a more freely accessible standard for ECDH. (Though I do have access to it and can tell you it does indeed include that check.) In both this document, and in RFC 8446, an impossible case does not rise to the level of needing reiteration.\r\n\r\nI'll touch on whether it's possible for different curves in reply to your issue comment.",
+          "createdAt": "2025-02-28T15:41:12Z",
+          "updatedAt": "2025-02-28T15:41:12Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOJfxSy86dyw1G",
+          "commit": {
+            "abbreviatedOid": "50850de"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-27T10:32:57Z",
+          "updatedAt": "2025-02-27T10:32:57Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJfxSy86d-4Jo",
+          "commit": {
+            "abbreviatedOid": "50850de"
+          },
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-28T11:39:33Z",
+          "updatedAt": "2025-02-28T11:39:33Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJfxSy86d_V-r",
+          "commit": {
+            "abbreviatedOid": "50850de"
+          },
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "no, while indeed the `P` is not _the_ shared secret in SP 800-56A, so we may want to re-phrase it; I think we should be explicit that this check should be performed, as SP 800-56A is not the only interoperable implementation of ECDSA...",
+          "createdAt": "2025-02-28T12:36:15Z",
+          "updatedAt": "2025-02-28T12:36:15Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 32,
