@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-02T01:25:38.540920+00:00",
+  "timestamp": "2025-03-04T01:22:14.137764+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -2840,7 +2840,7 @@
       "labels": [],
       "body": "Closes #30. See #30 for details.",
       "createdAt": "2025-02-26T20:46:44Z",
-      "updatedAt": "2025-02-28T15:41:13Z",
+      "updatedAt": "2025-03-03T15:15:56Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "4dd74c1198cabd487b56018de584ca5646c618e3",
@@ -2872,6 +2872,34 @@
           "body": "@tomato42 Looks like your responses on the PR and the issue are different, so I'll respond to those on each separately...\r\n\r\nThis is about ECDH, not ECDSA, and even there is no connection to interoperability here. If your implementation happened to use a different ECDH specification, without this check (does such a specification exist? there are a lot of ECDH specifications, but I've never seen one that omits it), it would make no difference because this case is _not possible_.\r\n\r\nMoreover, it doesn't matter what other specifications exist because we already say to follow Section 7.4.2 of RFC 8446, which is already responsible for covering all this. If there's something missing in RFC 8446, we should fix it in rfc8446bis. But also there isn't anything missing in RFC 8446, except that maybe it would be nice to cite a more freely accessible standard for ECDH. (Though I do have access to it and can tell you it does indeed include that check.) In both this document, and in RFC 8446, an impossible case does not rise to the level of needing reiteration.\r\n\r\nI'll touch on whether it's possible for different curves in reply to your issue comment.",
           "createdAt": "2025-02-28T15:41:12Z",
           "updatedAt": "2025-02-28T15:41:12Z"
+        },
+        {
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> his is about ECDH, not ECDSA, and even there is no connection to interoperability here\r\n\r\nyes sorry, meant ECC, not ECDSA\r\n\r\n\r\nI don't like that we're bing explicit about x25519 checks while we're not about NIST curves.\r\n\r\n> Moreover, it doesn't matter what other specifications exist because we already say to follow Section 7.4.2 of RFC 8446, which is already responsible for covering all this.  If there's something missing in RFC 8446, we should fix it in rfc8446bis. \r\n\r\n1. the RFC8446 is also explicit about checks for X25519 and X448, not NIST curves (for those it delegates to IEEE1363)\r\n2. fixing it in 8446bis is a long delay\r\n\r\nAnd yes, _technically_ that situation can't happen, yet low level standards ask for including that check...\r\n\r\nso, while I would prefer an explicit check and reference to SP800-56A, I'll not insist on it...",
+          "createdAt": "2025-03-03T14:31:10Z",
+          "updatedAt": "2025-03-03T14:31:10Z"
+        },
+        {
+          "author": "davidben",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Right, the difference between NIST curves and X25519 is twofold:\r\n\r\n1. X25519 has a cofactor and no check of the peer key on input, so the check is actually possible to hit\r\n2. The check in the underlying specification is optional, so if TLS wants the check to happen, it needs to say so explicitly\r\n\r\n(2) means that, in RFC 8446, this is actually load-bearing normative text, not just reiterating a requirement. Since this document cites RFC 8446, it is not load-bearing in this document (so I think it would have been fine to omit both), but because of (1), it's plausible to reiterate it here. Neither of these apply to NIST curves.\r\n\r\n> fixing it in 8446bis is a long delay\r\n\r\nWe don't necessarily have to cite 8446bis and wait for it to complete. I'm saying that if we think that the text belongs here, it certainly belongs in 8446bis and should be proposed there in parallel too. (But IMO it belongs in neither.)",
+          "createdAt": "2025-03-03T14:53:27Z",
+          "updatedAt": "2025-03-03T14:54:04Z"
+        },
+        {
+          "author": "davidben",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Well, I guess (1) is slightly more subtle because it's a question of whether, in NIST curves, you check for the point at infinity (the only low order peer key) on input[*] or afterwards. You could indeed formulate NIST ECDH by saying that the point at infinity is checked after ECDH, rather than before, and then the check is also load-bearing. But this document and RFC 8446 chose to check it on input.\r\n\r\n[*] There is, technically, a goofy one-byte encoding of the point at infinity. TLS doesn't permit it. Our library doesn't even implement it at all, even in the low-level cryptographic bits, because it's pure risk.",
+          "createdAt": "2025-03-03T14:55:28Z",
+          "updatedAt": "2025-03-03T14:56:44Z"
+        },
+        {
+          "author": "tomato42",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "yes, I still don't like the complete removal of the check from the text; that being said, I'm ok with it, so I'm leaving it up to @kriskwiatkowski ",
+          "createdAt": "2025-03-03T15:15:54Z",
+          "updatedAt": "2025-03-03T15:15:54Z"
         }
       ],
       "reviews": [
