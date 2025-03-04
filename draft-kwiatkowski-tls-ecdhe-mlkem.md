@@ -187,10 +187,9 @@ The size of the shared secret is 80 bytes (48 bytes for the ECDH part and
 32 bytes for the ML-KEM part).
 
 For all groups, both client and server MUST calculate the ECDH part of the
-shared secret as described in {{Section 7.4.2 of !RFC8446}}, including
-the shared secret check as described in Section 5.7.1.2 of {{!SP56A}}
-or the all-zero shared secret check (depending on the curve), and abort the
-connection with an illegal_parameter alert if it fails.
+shared secret as described in {{Section 7.4.2 of !RFC8446}}, including the
+all-zero shared secret check for X25519, and abort the connection with an
+illegal_parameter alert if it fails.
 
 # Security Considerations
 
