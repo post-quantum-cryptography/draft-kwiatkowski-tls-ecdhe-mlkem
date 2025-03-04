@@ -5,12 +5,12 @@
 Transport Layer Security                                  K. Kwiatkowski
 Internet-Draft                                                  PQShield
 Intended status: Informational                             P. Kampanakis
-Expires: 30 August 2025                                              AWS
+Expires: 5 September 2025                                            AWS
                                                         B. E. Westerbaan
                                                               Cloudflare
                                                               D. Stebila
                                                   University of Waterloo
-                                                        26 February 2025
+                                                            4 March 2025
 
 
        Post-quantum hybrid ECDHE-MLKEM Key Agreement for TLSv1.3
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 August 2025.
+   This Internet-Draft will expire on 5 September 2025.
 
 Copyright Notice
 
@@ -232,9 +232,8 @@ Table of Contents
 
    For all groups, both client and server MUST calculate the ECDH part
    of the shared secret as described in Section 7.4.2 of [RFC8446],
-   including the shared secret check as described in Section 5.7.1.2 of
-   [SP56A] or the all-zero shared secret check (depending on the curve),
-   and abort the connection with an illegal_parameter alert if it fails.
+   including the all-zero shared secret check for X25519, and abort the
+   connection with an illegal_parameter alert if it fails.
 
 4.  Security Considerations
 
