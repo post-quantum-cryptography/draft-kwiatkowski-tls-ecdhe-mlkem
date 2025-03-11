@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-09T01:12:01.965521+00:00",
+  "timestamp": "2025-03-11T01:22:52.212830+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -390,6 +390,30 @@
           "body": "@tomato42 Looks like your responses on the PR and the issue are different, so I'll respond to those on each separately...\n\nCan you give an example of a different curve that where this would be necessary? (I believe the only curves in the TLS supported group registry with cofactors are X25519 and X448, where this would not be applicable anyway. Although I did not check the ones added in RFC 9189. Those aren't readily available in OpenSSL's giant table.)\n\nPeople mostly do not use curves with cofactors. Of the prime-field curves (as opposed to the binary field ones, which ~no one uses) in OpenSSL, the only ones with cofactors are secp112r2 and secp128r2. Is the concern that we might introduce one of them to TLS and hybridize with PQC?\n\nCofactors also actually complicate far more than this check. Now you have to worry about whether your ECDH algorithm is specified to clear the cofactor and whatnot. (I believe this is often called \"cofactor ECDH\".) So it's already the case that this draft would not be a suitable template.\n\nSure, almost all implementations would want to check. It is natural to implement ECDH by calling your generic EC point x-coordinate extraction function, and that would need to account for the point at infinity. As noted in https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/31#issuecomment-2690972391, the check is *already* covered by citation, because those specifications are also structured like that. But since it is _impossible_, not doing the check and doing it are equally conformant. So we should follow RFC 8446's precedent and observe that this check does not rise to the level of needing reiterating up the stack. We should retain our limited implementor attention budget on something that actually matters.",
           "createdAt": "2025-02-28T15:56:42Z",
           "updatedAt": "2025-02-28T15:56:42Z"
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "id": "I_kwDOJfxSy86tLGa0",
+      "title": "Forbid reuse of private key",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/issues/34",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "See e.g., this for a explanation why reuse of ephemeral keys are dangerous\nhttps://emanjon.github.io/NIST-comments/2025%20-%20SP%20800-227.pdf\nhttps://mailarchive.ietf.org/arch/msg/tls/rBbld01LhQ1EHa4FxCv8FbmYlDg/\nAccoding to draft-ietf-tls-hybrid-design this was also discussed raised by Bernstein and Lange. \n\"Daniel J. Bernstein and Tanja Lange commented on the risks of reuse of ephemeral public keys.\" \n\nThe following text has been suggested to draft-kwiatkowski-tls-ecdhe-mlkem and draft-ietf-tls-hybrid-design\n\n\"For all groups, both the client and server must not reuse the ECDH or the PQKEM portion of the key share across different connections. Reusing ephemeral keys ties key material from different connections together, which should remain unrelated. This vulnerability, combined with key reuse, could enable an attacker to recover the shared secret from another connection. Additionally, reusing keys raises significant privacy concerns, as it allows passive observers to correlate different connections.\"\n\nSee further discussion here:\nhttps://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/25\nhttps://github.com/dstebila/draft-ietf-tls-hybrid-design/issues/41\nhttps://github.com/dstebila/draft-ietf-tls-hybrid-design/pull/39\nhttps://github.com/dstebila/draft-ietf-tls-hybrid-design/pull/40\n\nNote that as draft-ietf-tls-hybrid-design is an informal draft informally referenced by, I do not think it is enough with a security consideration in draft-ietf-tls-hybrid-design. I would like normative language in draft-kwiatkowski-tls-ecdhe-mlkem regarding X25519MLKEM768.\n\n\n\n",
+      "createdAt": "2025-03-09T11:25:17Z",
+      "updatedAt": "2025-03-09T22:23:30Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "For the PQ portion, the server is responsible for encapsulation. The only potential mistake the server could make is reusing entropy when generating the value 'm' (refer to Algorithm 20 in FIPS-203), which would be a critical implementation flaw.\n\nHowever, even if this were to happen, the server derives the ciphertext using a hash of the ephemeral public key 'ek,' which is itself ephemeral.\n\nUltimately, regarding MLKEM, I'm unsure how to interpret that statement from the server's perspective. FIPS-203 already specifies that the value 'm' must not be reused, so this requirement is inherently covered by the standard.",
+          "createdAt": "2025-03-09T22:20:23Z",
+          "updatedAt": "2025-03-09T22:23:30Z"
         }
       ]
     }
