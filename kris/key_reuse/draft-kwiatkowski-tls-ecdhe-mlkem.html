@@ -1393,8 +1393,8 @@ hybridisation is secure in other protocols.<a href="#section-4-1" class="pilcrow
 especially those that can be applied by remote attackers.<a href="#section-4-2" class="pilcrow">¶</a></p>
 <p id="section-4-3">Reusing ephemeral keys links key material across connections that should remain separate. This, combined with key
 reuse, may let an attacker recover a shared secret from another connection. It also poses privacy risks, enabling
-passive observers to correlate connections. Therefore, the client and server must not reuse the ECDH portion of the
-key share across different connections. The client must not reuse the MLKEM portion of the key share. We note that
+passive observers to correlate connections. Therefore, the client and server <span class="bcp14">MUST NOT</span> reuse the ECDH portion of the
+key share across different connections. The client <span class="bcp14">MUST NOT</span> reuse the MLKEM portion of the key share. We note that
 FIPS-203 conformant implementation of MLKEM doesn't allow key reuse on the server side.<a href="#section-4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
