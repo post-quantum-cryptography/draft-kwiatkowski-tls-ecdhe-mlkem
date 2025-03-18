@@ -196,8 +196,8 @@ especially those that can be applied by remote attackers.
 
 Reusing ephemeral keys links key material across connections that should remain separate. This, combined with key
 reuse, may let an attacker recover a shared secret from another connection. It also poses privacy risks, enabling
-passive observers to correlate connections. Therefore, the client and server must not reuse the ECDH portion of the
-key share across different connections. The client must not reuse the MLKEM portion of the key share. We note that
+passive observers to correlate connections. Therefore, the client and server MUST NOT reuse the ECDH portion of the
+key share across different connections. The client MUST NOT reuse the MLKEM portion of the key share. We note that
 FIPS-203 conformant implementation of MLKEM doesn't allow key reuse on the server side.
 
 # IANA Considerations
