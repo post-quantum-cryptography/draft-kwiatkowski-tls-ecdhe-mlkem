@@ -18,6 +18,7 @@ keyword:
  - hybrid
  - ML-KEM
  - post-quantum
+ - TLS
  - x25519
 venue:
   group: "Transport Layer Security"
@@ -193,6 +194,12 @@ hybridisation is secure in other protocols.
 Implementers are encouraged to use implementations resistant to side-channel attacks,
 especially those that can be applied by remote attackers.
 
+Reusing ephemeral keys links key material across connections that should remain separate. This, combined with key
+reuse, may let an attacker recover a shared secret from another connection. It also poses privacy risks, enabling
+passive observers to correlate connections. Therefore, the client and server must not reuse the ECDH portion of the
+key share across different connections. The client must not reuse the MLKEM portion of the key share. We note that
+FIPS-203 conformant implementation of MLKEM doesn't allow key reuse on the server side.
+
 # IANA Considerations
 
 This document requests/registers three new entries to the TLS Supported Groups registry, according
@@ -269,6 +276,9 @@ This document obsoletes 25497 and 25498 in the TLS Supported Groups registry.
 --- back
 
 # Change log
+
+* draft-kwiatkowski-tls-ecdhe-mlkem-04:
+  * Adds text about key reuse.
 
 * draft-kwiatkowski-tls-ecdhe-mlkem-03:
   * Adds P-384 combined with ML-KEM-1024
