@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-18T01:23:15.072458+00:00",
+  "timestamp": "2025-03-20T01:22:41.824252+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -3052,6 +3052,168 @@
           "createdAt": "2025-03-04T12:01:31Z",
           "updatedAt": "2025-03-04T12:01:31Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "id": "PR_kwDOJfxSy86PDnBx",
+      "title": "Add text about key reuse",
+      "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/35",
+      "state": "OPEN",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #34 \r\n\r\n@emanjon how about that?",
+      "createdAt": "2025-03-18T08:12:40Z",
+      "updatedAt": "2025-03-18T14:12:23Z",
+      "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "baseRefName": "main",
+      "baseRefOid": "5baab051ded4a4561a14533bfd7198fa38deb9b3",
+      "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
+      "headRefName": "kris/key_reuse",
+      "headRefOid": "7513bc4c96e54f60ca5c64c2cf65ce759df2155d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "dconnolly",
+          "authorAssociation": "NONE",
+          "body": "> Therefore, the client and server must not reuse the ECDH portion of the\r\nkey share across different connections. The client must not reuse the MLKEM portion of the key share. We note that\r\nFIPS-203 conformant implementation of MLKEM doesn't allow key reuse on the server side.\r\n\r\nMust not or MUST NOT?",
+          "createdAt": "2025-03-18T08:14:59Z",
+          "updatedAt": "2025-03-18T08:14:59Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "@dconnolly Thanks, the latter.",
+          "createdAt": "2025-03-18T08:16:19Z",
+          "updatedAt": "2025-03-18T08:16:19Z"
+        },
+        {
+          "author": "dconnolly",
+          "authorAssociation": "NONE",
+          "body": "If the wg likes this language I can use similar in my mlkem-only document ",
+          "createdAt": "2025-03-18T08:17:53Z",
+          "updatedAt": "2025-03-18T08:17:53Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJfxSy86gikqx",
+          "commit": {
+            "abbreviatedOid": "7513bc4"
+          },
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-18T08:17:28Z",
+          "updatedAt": "2025-03-18T08:17:28Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "\"server side\" -> maybe explain that encapsulation doesn't allow key reuse ",
+              "createdAt": "2025-03-18T08:17:28Z",
+              "updatedAt": "2025-03-18T08:17:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86gjoDM",
+          "commit": {
+            "abbreviatedOid": "7513bc4"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-18T09:39:45Z",
+          "updatedAt": "2025-03-18T09:39:45Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "Perhaps we can add \"(For MLKEM this ensures the server's portion is also not reused.)\" after \"The client MUST NOT reuse the MLKEM portion of the key share\" or something to the same affect.",
+              "createdAt": "2025-03-18T09:39:45Z",
+              "updatedAt": "2025-03-18T09:40:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86gjpcj",
+          "commit": {
+            "abbreviatedOid": "7513bc4"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-18T09:41:16Z",
+          "updatedAt": "2025-03-18T09:41:17Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "Although I suppose the server could technically use the same message. Ok, never mind. It's good as is.",
+              "createdAt": "2025-03-18T09:41:16Z",
+              "updatedAt": "2025-03-18T09:41:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86gjqUM",
+          "commit": {
+            "abbreviatedOid": "7513bc4"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-18T09:42:19Z",
+          "updatedAt": "2025-03-18T09:42:19Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJfxSy86gmZyF",
+          "commit": {
+            "abbreviatedOid": "7513bc4"
+          },
+          "author": "vdukhovni",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-18T12:55:25Z",
+          "updatedAt": "2025-03-18T12:59:52Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "Is there really a rough consensus to prohibit key reuse, or just one adamant voice?\r\nWhy not document the pros/cons and let implementations decide?\r\nSome clients (server-to-server routine traffic) have no reason to, and get no benefit if they do, avoid session linking.\r\nWhy shouldn't they amortise the cost of key generation via reuse of ML-KEM ephemeral keys?",
+              "createdAt": "2025-03-18T12:55:25Z",
+              "updatedAt": "2025-03-18T12:59:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJfxSy86gnoOv",
+          "commit": {
+            "abbreviatedOid": "7513bc4"
+          },
+          "author": "bwesterb",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-18T14:12:23Z",
+          "updatedAt": "2025-03-18T14:12:23Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "Perhaps you missed it, but support [has been expressed by several people](https://mailarchive.ietf.org/arch/msg/tls/1brhJ5dtxCp1-xYPiKV8tg2uT7k/). You could suggest to the chairs to issue a vote.\r\n\r\n> Why shouldn't they amortise the cost of key generation via reuse of ML-KEM ephemeral keys?\r\n\r\nML-KEM key generation is cheap. It'd have to be a weird setup (offload to HSM?) where the hassle of regenerating keys is worth it.",
+              "createdAt": "2025-03-18T14:12:23Z",
+              "updatedAt": "2025-03-18T14:12:23Z"
+            }
+          ]
         }
       ]
     }
