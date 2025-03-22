@@ -3,15 +3,15 @@ title: Post-quantum hybrid ECDHE-MLKEM Key Agreement for TLSv1.3
 abbrev: ECDHE-MLKEM
 category: info
 
-docname: draft-kwiatkowski-tls-ecdhe-mlkem-latest
-submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
+docname: draft-ietf-tls-ecdhe-mlkem-latest
+submissiontype: IETF
 number:
 date:
 stand_alone: yes
 consensus: true
 v: 3
 ipr: trust200902
-# area: AREA
+area: "Security"
 workgroup: "Transport Layer Security"
 keyword:
  - ECDH
@@ -23,8 +23,9 @@ venue:
   group: "Transport Layer Security"
   type: "Working Group"
   mail: "tls@ietf.org"
-  github: post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem
-  latest: https://post-quantum-cryptography.github.io/draft-kwiatkowski-tls-ecdhe-mlkem/
+  arch: "https://mailarchive.ietf.org/arch/browse/tls/"
+  github: "tlswg/draft-ietf-tls-ecdhe-mlkem"
+  latest: "https://tlswg.github.io/draft-ietf-tls-ecdhe-mlkem/draft-ietf-tls-ecdhe-mlkem.html"
 
 author:
   - ins: K. Kwiatkowski
@@ -268,6 +269,10 @@ This document obsoletes 25497 and 25498 in the TLS Supported Groups registry.
 --- back
 
 # Change log
+
+* draft-ietf-tls-ecdhe-mlkem-01:
+  * Change a name of the draft, following adoption by TLS WG
+  * Fixes references to the to NIST ECC CDH
 
 * draft-kwiatkowski-tls-ecdhe-mlkem-03:
   * Adds P-384 combined with ML-KEM-1024
