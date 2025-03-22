@@ -47,7 +47,6 @@ author:
 normative:
   rfc7748:
   FIPS203: DOI.10.6028/NIST.FIPS.203
-  SP56A: DOI.10.6028/NIST.SP.800-56Ar3
   SP56C: DOI.10.6028/NIST.SP.800-56Cr2
 
 informative:
