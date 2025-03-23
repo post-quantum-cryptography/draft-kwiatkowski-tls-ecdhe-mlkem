@@ -5,16 +5,16 @@
 Transport Layer Security                                  K. Kwiatkowski
 Internet-Draft                                                  PQShield
 Intended status: Informational                             P. Kampanakis
-Expires: 5 September 2025                                            AWS
+Expires: 24 September 2025                                           AWS
                                                         B. E. Westerbaan
                                                               Cloudflare
                                                               D. Stebila
                                                   University of Waterloo
-                                                            4 March 2025
+                                                           23 March 2025
 
 
        Post-quantum hybrid ECDHE-MLKEM Key Agreement for TLSv1.3
-                draft-kwiatkowski-tls-ecdhe-mlkem-latest
+                   draft-ietf-tls-ecdhe-mlkem-latest
 
 Abstract
 
@@ -27,10 +27,10 @@ About This Document
 
    This note is to be removed before publishing as an RFC.
 
-   The latest revision of this draft can be found at https://post-
-   quantum-cryptography.github.io/draft-kwiatkowski-tls-ecdhe-mlkem/.
-   Status information for this document may be found at
-   https://datatracker.ietf.org/doc/draft-kwiatkowski-tls-ecdhe-mlkem/.
+   The latest revision of this draft can be found at
+   https://tlswg.github.io/draft-ietf-tls-ecdhe-mlkem/draft-ietf-tls-
+   ecdhe-mlkem.html.  Status information for this document may be found
+   at https://datatracker.ietf.org/doc/draft-ietf-tls-ecdhe-mlkem/.
 
    Discussion of this document takes place on the Transport Layer
    Security Working Group mailing list (mailto:tls@ietf.org), which is
@@ -38,8 +38,7 @@ About This Document
    at https://www.ietf.org/mailman/listinfo/tls/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-
-   ecdhe-mlkem.
+   https://github.com/tlswg/draft-ietf-tls-ecdhe-mlkem.
 
 Status of This Memo
 
@@ -56,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 September 2025.
+   This Internet-Draft will expire on 24 September 2025.
 
 Copyright Notice
 
@@ -322,13 +321,6 @@ Table of Contents
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
               <https://www.rfc-editor.org/rfc/rfc8446>.
 
-   [SP56A]    Barker, E., Chen, L., Roginsky, A., Vassilev, A., and R.
-              Davis, "Recommendation for pair-wise key-establishment
-              schemes using discrete logarithm cryptography", National
-              Institute of Standards and Technology,
-              DOI 10.6028/nist.sp.800-56ar3, April 2018,
-              <https://doi.org/10.6028/nist.sp.800-56ar3>.
-
    [SP56C]    Barker, E., Chen, L., and R. Davis, "Recommendation for
               Key-Derivation Methods in Key-Establishment Schemes",
               National Institute of Standards and Technology,
@@ -350,9 +342,9 @@ Table of Contents
 
    [tlsiana]  Salowey, J. A. and S. Turner, "IANA Registry Updates for
               TLS and DTLS", Work in Progress, Internet-Draft, draft-
-              ietf-tls-rfc8447bis-10, 3 November 2024,
+              ietf-tls-rfc8447bis-11, 11 March 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
-              rfc8447bis-10>.
+              rfc8447bis-11>.
 
    [xyber]    Westerbaan, B. and D. Stebila, "X25519Kyber768Draft00
               hybrid post-quantum key agreement", Work in Progress,
@@ -361,6 +353,12 @@ Table of Contents
               draft-tls-westerbaan-xyber768d00-03>.
 
 Appendix A.  Change log
+
+   *  draft-ietf-tls-ecdhe-mlkem-01:
+
+      -  Change a name of the draft, following adoption by TLS WG
+
+      -  Fixes references to the to NIST ECC CDH
 
    *  draft-kwiatkowski-tls-ecdhe-mlkem-03:
 

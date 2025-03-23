@@ -20,14 +20,14 @@ a post-quantum KEM with an elliptic curve Diffie-Hellman (ECDHE).
 <meta content="ML-KEM" name="keyword">
 <meta content="post-quantum" name="keyword">
 <meta content="x25519" name="keyword">
-<meta content="draft-kwiatkowski-tls-ecdhe-mlkem-latest" name="ietf.draft">
+<meta content="draft-ietf-tls-ecdhe-mlkem-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.28.0
     Python 3.12.9
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
-    Jinja2 3.1.5
+    Jinja2 3.1.6
     lxml 5.3.0
     platformdirs 4.3.6
     pycountry 24.6.1
@@ -36,7 +36,7 @@ a post-quantum KEM with an elliptic curve Diffie-Hellman (ECDHE).
     setuptools 70.3.0
     wcwidth 0.2.13
 -->
-<link href="draft-kwiatkowski-tls-ecdhe-mlkem.xml" rel="alternate" type="application/rfc+xml">
+<link href="draft-ietf-tls-ecdhe-mlkem.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">@font-face {
   font-family: 'Lora';
@@ -1057,7 +1057,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Kwiatkowski, et al.</td>
-<td class="center">Expires 5 September 2025</td>
+<td class="center">Expires 24 September 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1067,15 +1067,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">Transport Layer Security</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-kwiatkowski-tls-ecdhe-mlkem-latest</dd>
+<dd class="internet-draft">draft-ietf-tls-ecdhe-mlkem-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-03-04" class="published">4 March 2025</time>
+<time datetime="2025-03-23" class="published">23 March 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-09-05">5 September 2025</time></dd>
+<dd class="expires"><time datetime="2025-09-24">24 September 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1110,15 +1110,15 @@ a post-quantum KEM with an elliptic curve Diffie-Hellman (ECDHE).<a href="#secti
       </h2>
 <p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
 <p id="section-note.1-2">
-        The latest revision of this draft can be found at <span><a href="https://post-quantum-cryptography.github.io/draft-kwiatkowski-tls-ecdhe-mlkem/">https://post-quantum-cryptography.github.io/draft-kwiatkowski-tls-ecdhe-mlkem/</a></span>.
-        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-kwiatkowski-tls-ecdhe-mlkem/">https://datatracker.ietf.org/doc/draft-kwiatkowski-tls-ecdhe-mlkem/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+        The latest revision of this draft can be found at <span><a href="https://tlswg.github.io/draft-ietf-tls-ecdhe-mlkem/draft-ietf-tls-ecdhe-mlkem.html">https://tlswg.github.io/draft-ietf-tls-ecdhe-mlkem/draft-ietf-tls-ecdhe-mlkem.html</a></span>.
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ietf-tls-ecdhe-mlkem/">https://datatracker.ietf.org/doc/draft-ietf-tls-ecdhe-mlkem/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
         Transport Layer Security Working Group mailing list (<span><a href="mailto:tls@ietf.org">mailto:tls@ietf.org</a></span>),
         which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/tls/">https://mailarchive.ietf.org/arch/browse/tls/</a></span>.
         Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/tls/">https://www.ietf.org/mailman/listinfo/tls/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
-        <span><a href="https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem">https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+        <span><a href="https://github.com/tlswg/draft-ietf-tls-ecdhe-mlkem">https://github.com/tlswg/draft-ietf-tls-ecdhe-mlkem</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1139,7 +1139,7 @@ a post-quantum KEM with an elliptic curve Diffie-Hellman (ECDHE).<a href="#secti
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 5 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 24 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1398,7 +1398,7 @@ especially those that can be applied by remote attackers.<a href="#section-4-2" 
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
 <p id="section-5-1">This document requests/registers three new entries to the TLS Supported Groups registry, according
-to the procedures in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-rfc8447bis-10#section-6" class="relref">Section 6</a> of [<a href="#tlsiana" class="cite xref">tlsiana</a>]</span>. These identifiers are to be used with the final,
+to the procedures in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-rfc8447bis-11#section-6" class="relref">Section 6</a> of [<a href="#tlsiana" class="cite xref">tlsiana</a>]</span>. These identifiers are to be used with the final,
 ratified by NIST, version of ML-KEM which is specified in <span>[<a href="#FIPS203" class="cite xref">FIPS203</a>]</span>.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <div id="secp256r1mlkem768">
 <section id="section-5.1">
@@ -1562,10 +1562,6 @@ ratified by NIST, version of ML-KEM which is specified in <span>[<a href="#FIPS2
         <dd>
 <span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8446">https://www.rfc-editor.org/rfc/rfc8446</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="SP56A">[SP56A]</dt>
-        <dd>
-<span class="refAuthor">Barker, E.</span>, <span class="refAuthor">Chen, L.</span>, <span class="refAuthor">Roginsky, A.</span>, <span class="refAuthor">Vassilev, A.</span>, and <span class="refAuthor">R. Davis</span>, <span class="refTitle">"Recommendation for pair-wise key-establishment schemes using discrete logarithm cryptography"</span>, <span class="refContent">National Institute of Standards and Technology</span>, <span class="seriesInfo">DOI 10.6028/nist.sp.800-56ar3</span>, <time datetime="2018-04" class="refDate">April 2018</time>, <span>&lt;<a href="https://doi.org/10.6028/nist.sp.800-56ar3">https://doi.org/10.6028/nist.sp.800-56ar3</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="SP56C">[SP56C]</dt>
       <dd>
 <span class="refAuthor">Barker, E.</span>, <span class="refAuthor">Chen, L.</span>, and <span class="refAuthor">R. Davis</span>, <span class="refTitle">"Recommendation for Key-Derivation Methods in Key-Establishment Schemes"</span>, <span class="refContent">National Institute of Standards and Technology</span>, <span class="seriesInfo">DOI 10.6028/nist.sp.800-56cr2</span>, <time datetime="2020-08" class="refDate">August 2020</time>, <span>&lt;<a href="https://doi.org/10.6028/nist.sp.800-56cr2">https://doi.org/10.6028/nist.sp.800-56cr2</a>&gt;</span>. </dd>
@@ -1589,7 +1585,7 @@ ratified by NIST, version of ML-KEM which is specified in <span>[<a href="#FIPS2
 <dd class="break"></dd>
 <dt id="tlsiana">[tlsiana]</dt>
         <dd>
-<span class="refAuthor">Salowey, J. A.</span> and <span class="refAuthor">S. Turner</span>, <span class="refTitle">"IANA Registry Updates for TLS and DTLS"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-tls-rfc8447bis-10</span>, <time datetime="2024-11-03" class="refDate">3 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-rfc8447bis-10">https://datatracker.ietf.org/doc/html/draft-ietf-tls-rfc8447bis-10</a>&gt;</span>. </dd>
+<span class="refAuthor">Salowey, J. A.</span> and <span class="refAuthor">S. Turner</span>, <span class="refTitle">"IANA Registry Updates for TLS and DTLS"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-tls-rfc8447bis-11</span>, <time datetime="2025-03-11" class="refDate">11 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-rfc8447bis-11">https://datatracker.ietf.org/doc/html/draft-ietf-tls-rfc8447bis-11</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="xyber">[xyber]</dt>
       <dd>
@@ -1607,60 +1603,71 @@ ratified by NIST, version of ML-KEM which is specified in <span>[<a href="#FIPS2
       </h2>
 <ul class="normal">
 <li class="normal" id="appendix-A-1.1">
-          <p id="appendix-A-1.1.1">draft-kwiatkowski-tls-ecdhe-mlkem-03:<a href="#appendix-A-1.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-1.1.1">draft-ietf-tls-ecdhe-mlkem-01:<a href="#appendix-A-1.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-1.1.2.1">
-              <p id="appendix-A-1.1.2.1.1">Adds P-384 combined with ML-KEM-1024<a href="#appendix-A-1.1.2.1.1" class="pilcrow">¶</a></p>
+              <p id="appendix-A-1.1.2.1.1">Change a name of the draft, following adoption by TLS WG<a href="#appendix-A-1.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="appendix-A-1.1.2.2">
-              <p id="appendix-A-1.1.2.2.1">Adds text that describes error-handling and outlines how the client and server must ensure the integrity of the key exchange process.<a href="#appendix-A-1.1.2.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="appendix-A-1.1.2.3">
-              <p id="appendix-A-1.1.2.3.1">Adds note on the incompatibility of the codepoint name X25519MLKEM768 with <span>[<a href="#hybrid" class="cite xref">hybrid</a>]</span>.<a href="#appendix-A-1.1.2.3.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="appendix-A-1.1.2.4">
-              <p id="appendix-A-1.1.2.4.1">Various cosmetic changes.<a href="#appendix-A-1.1.2.4.1" class="pilcrow">¶</a></p>
+              <p id="appendix-A-1.1.2.2.1">Fixes references to the to NIST ECC CDH<a href="#appendix-A-1.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
         <li class="normal" id="appendix-A-1.2">
-          <p id="appendix-A-1.2.1">draft-kwiatkowski-tls-ecdhe-mlkem-02:<a href="#appendix-A-1.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-1.2.1">draft-kwiatkowski-tls-ecdhe-mlkem-03:<a href="#appendix-A-1.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-1.2.2.1">
-              <p id="appendix-A-1.2.2.1.1">Adds section that mentions supported groups that this document obsoletes.<a href="#appendix-A-1.2.2.1.1" class="pilcrow">¶</a></p>
+              <p id="appendix-A-1.2.2.1.1">Adds P-384 combined with ML-KEM-1024<a href="#appendix-A-1.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="appendix-A-1.2.2.2">
-              <p id="appendix-A-1.2.2.2.1">Fix a reference to encapsulation in the FIPS 203.<a href="#appendix-A-1.2.2.2.1" class="pilcrow">¶</a></p>
+              <p id="appendix-A-1.2.2.2.1">Adds text that describes error-handling and outlines how the client and server must ensure the integrity of the key exchange process.<a href="#appendix-A-1.2.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A-1.2.2.3">
+              <p id="appendix-A-1.2.2.3.1">Adds note on the incompatibility of the codepoint name X25519MLKEM768 with <span>[<a href="#hybrid" class="cite xref">hybrid</a>]</span>.<a href="#appendix-A-1.2.2.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A-1.2.2.4">
+              <p id="appendix-A-1.2.2.4.1">Various cosmetic changes.<a href="#appendix-A-1.2.2.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
         <li class="normal" id="appendix-A-1.3">
-          <p id="appendix-A-1.3.1">draft-kwiatkowski-tls-ecdhe-mlkem-01:<a href="#appendix-A-1.3.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-1.3.1">draft-kwiatkowski-tls-ecdhe-mlkem-02:<a href="#appendix-A-1.3.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-1.3.2.1">
-              <p id="appendix-A-1.3.2.1.1">Add X25519MLKEM768<a href="#appendix-A-1.3.2.1.1" class="pilcrow">¶</a></p>
+              <p id="appendix-A-1.3.2.1.1">Adds section that mentions supported groups that this document obsoletes.<a href="#appendix-A-1.3.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A-1.3.2.2">
+              <p id="appendix-A-1.3.2.2.1">Fix a reference to encapsulation in the FIPS 203.<a href="#appendix-A-1.3.2.2.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
         <li class="normal" id="appendix-A-1.4">
-          <p id="appendix-A-1.4.1">draft-kwiatkowski-tls-ecdhe-mlkem-00:<a href="#appendix-A-1.4.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-1.4.1">draft-kwiatkowski-tls-ecdhe-mlkem-01:<a href="#appendix-A-1.4.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-1.4.2.1">
-              <p id="appendix-A-1.4.2.1.1">Change Kyber name to ML-KEM<a href="#appendix-A-1.4.2.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="appendix-A-1.4.2.2">
-              <p id="appendix-A-1.4.2.2.1">Swap reference to I-D.cfrg-schwabe-kyber with FIPS-203<a href="#appendix-A-1.4.2.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="appendix-A-1.4.2.3">
-              <p id="appendix-A-1.4.2.3.1">Change codepoint. New value is equal to old value + 1.<a href="#appendix-A-1.4.2.3.1" class="pilcrow">¶</a></p>
+              <p id="appendix-A-1.4.2.1.1">Add X25519MLKEM768<a href="#appendix-A-1.4.2.1.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
         <li class="normal" id="appendix-A-1.5">
-          <p id="appendix-A-1.5.1">draft-kwiatkowski-tls-ecdhe-kyber-01: Fix size of key shares generated by the client and the server<a href="#appendix-A-1.5.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-1.5.1">draft-kwiatkowski-tls-ecdhe-mlkem-00:<a href="#appendix-A-1.5.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-1.5.2.1">
+              <p id="appendix-A-1.5.2.1.1">Change Kyber name to ML-KEM<a href="#appendix-A-1.5.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A-1.5.2.2">
+              <p id="appendix-A-1.5.2.2.1">Swap reference to I-D.cfrg-schwabe-kyber with FIPS-203<a href="#appendix-A-1.5.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A-1.5.2.3">
+              <p id="appendix-A-1.5.2.3.1">Change codepoint. New value is equal to old value + 1.<a href="#appendix-A-1.5.2.3.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
 </li>
         <li class="normal" id="appendix-A-1.6">
-          <p id="appendix-A-1.6.1">draft-kwiatkowski-tls-ecdhe-kyber-00: updates following IANA review<a href="#appendix-A-1.6.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-1.6.1">draft-kwiatkowski-tls-ecdhe-kyber-01: Fix size of key shares generated by the client and the server<a href="#appendix-A-1.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-1.7">
+          <p id="appendix-A-1.7.1">draft-kwiatkowski-tls-ecdhe-kyber-00: updates following IANA review<a href="#appendix-A-1.7.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
