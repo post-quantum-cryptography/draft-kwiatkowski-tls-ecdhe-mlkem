@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-20T01:22:41.824252+00:00",
+  "timestamp": "2025-03-23T01:36:19.459755+00:00",
   "repo": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
   "labels": [
     {
@@ -3060,21 +3060,21 @@
       "id": "PR_kwDOJfxSy86PDnBx",
       "title": "Add text about key reuse",
       "url": "https://github.com/post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem/pull/35",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "kriskwiatkowski",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "Closes #34 \r\n\r\n@emanjon how about that?",
       "createdAt": "2025-03-18T08:12:40Z",
-      "updatedAt": "2025-03-18T14:12:23Z",
+      "updatedAt": "2025-03-21T21:42:56Z",
       "baseRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "baseRefName": "main",
       "baseRefOid": "5baab051ded4a4561a14533bfd7198fa38deb9b3",
       "headRepository": "post-quantum-cryptography/draft-kwiatkowski-tls-ecdhe-mlkem",
       "headRefName": "kris/key_reuse",
       "headRefOid": "7513bc4c96e54f60ca5c64c2cf65ce759df2155d",
-      "closedAt": null,
+      "closedAt": "2025-03-21T06:40:59Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -3099,6 +3099,20 @@
           "body": "If the wg likes this language I can use similar in my mlkem-only document ",
           "createdAt": "2025-03-18T08:17:53Z",
           "updatedAt": "2025-03-18T08:17:53Z"
+        },
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "MEMBER",
+          "body": "The document was adopted by TLS WG and not anymore I-D. That means we need a consensus to get this change in. ",
+          "createdAt": "2025-03-21T06:40:59Z",
+          "updatedAt": "2025-03-21T06:40:59Z"
+        },
+        {
+          "author": "csosto-pk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "+1 to normative language for client and server. With maybe a \"MAY\" for corner cases. ",
+          "createdAt": "2025-03-21T21:42:33Z",
+          "updatedAt": "2025-03-21T21:42:55Z"
         }
       ],
       "reviews": [
